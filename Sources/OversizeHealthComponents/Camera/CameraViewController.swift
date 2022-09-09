@@ -7,7 +7,7 @@ import SwiftUI
 import UIKit
 
 final class CameraViewController: UIViewController {
-    let cameraController = CameraController()
+    let cameraController: CameraController = .init()
     var previewView: UIView!
 
     override func viewDidLoad() {

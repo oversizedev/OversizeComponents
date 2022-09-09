@@ -73,7 +73,7 @@ public struct WeightPicker: View {
     }
 
     private var formatter: NumberFormatter {
-        let f = NumberFormatter()
+        let f: NumberFormatter = .init()
         f.numberStyle = .decimal
         f.maximumFractionDigits = 0
         return f

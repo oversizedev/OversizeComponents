@@ -26,6 +26,8 @@ let package = Package(
         .package(name: "OversizeUI", path: "../OversizeUI"),
         .package(name: "SlidingRuler", path: "../OversizeSlideRuler"),
         .package(name: "OversizeCore", path: "../OversizeCore"),
+        .package(name: "OversizeServices", path: "../OversizeLibrary/OversizeServices"),
+        .package(name: "OversizeLocalizable", path: "../OversizeLocalizable"),
         // .package(url: "https://github.com/Pyroh/SlidingRuler", .upToNextMajor(from: "0.2.0")),
     ],
     targets: [
@@ -33,6 +35,8 @@ let package = Package(
             name: "OversizeComponents",
             dependencies: [
                 .product(name: "OversizeUI", package: "OversizeUI"),
+                .product(name: "OversizeServices", package: "OversizeServices"),
+                .product(name: "OversizeLocalizable", package: "OversizeLocalizable"),
             ]
         ),
         .target(
