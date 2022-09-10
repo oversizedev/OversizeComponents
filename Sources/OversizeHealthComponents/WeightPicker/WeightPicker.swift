@@ -4,7 +4,6 @@
 //
 
 import OversizeUI
-import SlidingRuler
 import SwiftUI
 import UIKit
 

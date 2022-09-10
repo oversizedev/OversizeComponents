@@ -4,7 +4,7 @@
 //
 
 import OversizeUI
-import SlidingRuler
+// import SlidingRuler
 import SwiftUI
 
 public struct RulerPicker: View {
