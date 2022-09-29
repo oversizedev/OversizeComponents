@@ -23,7 +23,7 @@ public extension Optional {
     }
 }
 
-public extension Optional where Wrapped == Bool {
+public extension Bool? {
     /// Returns the wrapped `Bool` value if not `nil`. `false` otherwise.
     /// - Parameter rhs: The value to test against nil.
     @inlinable static prefix func !! (rhs: Self) -> Bool {

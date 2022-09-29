@@ -50,7 +50,7 @@ public extension CGSize {
     ///   - lhs: The point to multiply components.
     ///   - rhs: The value to multiply.
     @inlinable
-    static func * <I: BinaryInteger>(lhs: CGSize, rhs: I) -> CGSize {
+    static func * (lhs: CGSize, rhs: some BinaryInteger) -> CGSize {
         lhs * CGFloat(rhs)
     }
 
@@ -59,7 +59,7 @@ public extension CGSize {
     ///   - lhs: The point to multiply components.
     ///   - rhs: The value to multiply.
     @inlinable
-    static func * <F: BinaryFloatingPoint>(lhs: CGSize, rhs: F) -> CGSize {
+    static func * (lhs: CGSize, rhs: some BinaryFloatingPoint) -> CGSize {
         lhs * CGFloat(rhs)
     }
 
@@ -82,7 +82,7 @@ public extension CGSize {
     ///   - lhs: The point to devide components.
     ///   - rhs: The value to devide.
     @inlinable
-    static func / <I: BinaryInteger>(lhs: CGSize, rhs: I) -> CGSize {
+    static func / (lhs: CGSize, rhs: some BinaryInteger) -> CGSize {
         lhs / CGFloat(rhs)
     }
 
@@ -91,7 +91,7 @@ public extension CGSize {
     ///   - lhs: The point to devide components.
     ///   - rhs: The value to devide.
     @inlinable
-    static func / <F: BinaryFloatingPoint>(lhs: CGSize, rhs: F) -> CGSize {
+    static func / (lhs: CGSize, rhs: some BinaryFloatingPoint) -> CGSize {
         lhs / CGFloat(rhs)
     }
 

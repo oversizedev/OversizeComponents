@@ -341,7 +341,7 @@ extension SlidingRuler {
 extension SlidingRuler {
     /// Adjusts the number of cells as the control size changes.
     private func updateCellsIfNeeded() {
-        guard let controlWidth = controlWidth else { return }
+        guard let controlWidth else { return }
         let count = (Int(ceil(controlWidth / cellWidth)) + cellOverflow * 2).nextOdd()
         if count != cells.count { populateCells(count: count) }
     }

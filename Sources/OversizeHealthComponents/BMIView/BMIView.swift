@@ -110,6 +110,7 @@ public struct BMIView: View {
                     Icon(.helpCircle, size: .medium, color: .onBackgroundDisabled)
                 }
             }
+            .unredacted()
         }
     }
 }

@@ -16,7 +16,7 @@ final class CameraViewController: UIViewController {
         view.addSubview(previewView)
 
         cameraController.prepare { error in
-            if let error = error {
+            if let error {
                 print(error)
             }
 

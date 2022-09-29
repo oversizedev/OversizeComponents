@@ -94,14 +94,14 @@ public func => <T>(lhs: Bool, rhs: @autoclosure () throws -> T) rethrows -> T? {
     lhs ? try rhs() : nil
 }
 
-public postfix func % <I: BinaryInteger>(_ lhs: I) -> Double { Double(lhs) / 100.0 }
+public postfix func % (_ lhs: some BinaryInteger) -> Double { Double(lhs) / 100.0 }
 
-public postfix func % <I: BinaryFloatingPoint>(_ lhs: I) -> Double { Double(lhs) / 100.0 }
+public postfix func % (_ lhs: some BinaryFloatingPoint) -> Double { Double(lhs) / 100.0 }
 
-public postfix func % <I: BinaryInteger>(_ lhs: I) -> CGFloat { CGFloat(lhs) / 100.0 }
+public postfix func % (_ lhs: some BinaryInteger) -> CGFloat { CGFloat(lhs) / 100.0 }
 
-public postfix func % <I: BinaryFloatingPoint>(_ lhs: I) -> CGFloat { CGFloat(lhs) / 100.0 }
+public postfix func % (_ lhs: some BinaryFloatingPoint) -> CGFloat { CGFloat(lhs) / 100.0 }
 
-public postfix func % <I: BinaryInteger>(_ lhs: I) -> Float { Float(lhs) / 100.0 }
+public postfix func % (_ lhs: some BinaryInteger) -> Float { Float(lhs) / 100.0 }
 
-public postfix func % <I: BinaryFloatingPoint>(_ lhs: I) -> Float { Float(lhs) / 100.0 }
+public postfix func % (_ lhs: some BinaryFloatingPoint) -> Float { Float(lhs) / 100.0 }

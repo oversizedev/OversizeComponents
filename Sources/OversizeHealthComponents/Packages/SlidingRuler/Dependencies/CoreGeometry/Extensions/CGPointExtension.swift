@@ -86,7 +86,7 @@ public extension CGPoint {
     ///   - lhs: The point to multiply components.
     ///   - rhs: The value to multiply.
     @inlinable
-    static func * <I: BinaryInteger>(lhs: CGPoint, rhs: I) -> CGPoint {
+    static func * (lhs: CGPoint, rhs: some BinaryInteger) -> CGPoint {
         lhs * CGFloat(rhs)
     }
 
@@ -95,7 +95,7 @@ public extension CGPoint {
     ///   - lhs: The point to multiply components.
     ///   - rhs: The value to multiply.
     @inlinable
-    static func * <F: BinaryFloatingPoint>(lhs: CGPoint, rhs: F) -> CGPoint {
+    static func * (lhs: CGPoint, rhs: some BinaryFloatingPoint) -> CGPoint {
         lhs * CGFloat(rhs)
     }
 
@@ -122,7 +122,7 @@ public extension CGPoint {
     ///   - lhs: The point to divide components.
     ///   - rhs: The value to devide by.
     @inlinable
-    static func / <I: BinaryInteger>(lhs: CGPoint, rhs: I) -> CGPoint {
+    static func / (lhs: CGPoint, rhs: some BinaryInteger) -> CGPoint {
         lhs / CGFloat(rhs)
     }
 
@@ -131,7 +131,7 @@ public extension CGPoint {
     ///   - lhs: The point to divide components.
     ///   - rhs: The value to devide by.
     @inlinable
-    static func / <F: BinaryFloatingPoint>(lhs: CGPoint, rhs: F) -> CGPoint {
+    static func / (lhs: CGPoint, rhs: some BinaryFloatingPoint) -> CGPoint {
         lhs / CGFloat(rhs)
     }
 

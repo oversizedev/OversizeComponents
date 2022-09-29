@@ -37,7 +37,7 @@ public struct ErrorView: View {
     }
 
     private var contenButtonType: ContenButtonType? {
-        if let primaryButton = primaryButton {
+        if let primaryButton {
             switch primaryButton {
             case .locationSettings:
                 return .accent(L10n.Button.goToSettings, action: {

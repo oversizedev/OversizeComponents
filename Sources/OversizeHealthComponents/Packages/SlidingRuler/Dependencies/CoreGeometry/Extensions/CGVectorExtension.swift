@@ -58,7 +58,7 @@ public extension CGVector {
     ///   - rhs: The given value.
     /// - Returns: The resulting vector.
     @inlinable
-    static func * <I: BinaryInteger>(lhs: CGVector, rhs: I) -> CGVector {
+    static func * (lhs: CGVector, rhs: some BinaryInteger) -> CGVector {
         lhs * CGFloat(rhs)
     }
 
@@ -69,7 +69,7 @@ public extension CGVector {
     ///   - rhs: The given value.
     /// - Returns: The resulting vector.
     @inlinable
-    static func * <F: BinaryFloatingPoint>(lhs: CGVector, rhs: F) -> CGVector {
+    static func * (lhs: CGVector, rhs: some BinaryFloatingPoint) -> CGVector {
         lhs * CGFloat(rhs)
     }
 
@@ -91,7 +91,7 @@ public extension CGVector {
     ///   - rhs: The given value.
     /// - Returns: The resulting vector.
     @inlinable
-    static func / <I: BinaryInteger>(lhs: CGVector, rhs: I) -> CGVector {
+    static func / (lhs: CGVector, rhs: some BinaryInteger) -> CGVector {
         lhs / CGFloat(rhs)
     }
 
@@ -102,7 +102,7 @@ public extension CGVector {
     ///   - rhs: The given value.
     /// - Returns: The resulting vector.
     @inlinable
-    static func / <F: BinaryFloatingPoint>(lhs: CGVector, rhs: F) -> CGVector {
+    static func / (lhs: CGVector, rhs: some BinaryFloatingPoint) -> CGVector {
         lhs / CGFloat(rhs)
     }
 

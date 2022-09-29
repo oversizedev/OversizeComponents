@@ -25,9 +25,9 @@ class CameraController: NSObject {
             camera?.unlockForConfiguration()
         }
         func configureDeviceInputs() throws {
-            guard let captureSession = captureSession else { throw CameraControllerError.captureSessionIsMissing }
+            guard let captureSession else { throw CameraControllerError.captureSessionIsMissing }
 
-            if let frontCamera = frontCamera {
+            if let frontCamera {
                 frontCameraInput = try AVCaptureDeviceInput(device: frontCamera)
 
                 if captureSession.canAddInput(frontCameraInput!) { captureSession.addInput(frontCameraInput!) }
@@ -57,7 +57,7 @@ class CameraController: NSObject {
     }
 
     func displayPreview(on view: UIView) throws {
-        guard let captureSession = captureSession, captureSession.isRunning else { throw CameraControllerError.captureSessionIsMissing }
+        guard let captureSession, captureSession.isRunning else { throw CameraControllerError.captureSessionIsMissing }
 
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill

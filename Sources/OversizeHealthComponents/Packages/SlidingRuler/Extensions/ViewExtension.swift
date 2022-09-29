@@ -6,7 +6,7 @@
 import SwiftUI
 
 public extension View {
-    func slidingRulerStyle<S>(_ style: S) -> some View where S: SlidingRulerStyle {
+    func slidingRulerStyle(_ style: some SlidingRulerStyle) -> some View {
         environment(\.slidingRulerStyle, .init(style: style))
     }
 
