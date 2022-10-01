@@ -110,7 +110,7 @@ public struct WeightPicker: View {
                          formatter: formatter)
                 .slidingRulerStyle(CenteredSlindingRulerStyle())
                 .overlay(alignment: .top) {
-                    Text(value.toStringWithoutPoint)
+                    Text(value.toStringOnePoint)
                         .foregroundColor(.white)
                         .font(.title2.monospacedDigit())
                         .bold()
@@ -214,7 +214,7 @@ public struct WeightPicker: View {
                             Icon(.chevronRight, color: .onSurfaceDisabled)
                         }
                     }
-                    .matchedGeometryEffect(id: "Weight", in: animation)
+                    // .matchedGeometryEffect(id: "Weight", in: animation)
                     .animation(.default, value: weightChange)
             }
 
@@ -229,7 +229,7 @@ public struct WeightPicker: View {
                         .font(.system(size: 40, design: .rounded).weight(.bold))
                         .monospacedDigit()
 
-                    Text(valueText.toStringWithoutPoint.dropFirst())
+                    Text(valueText.toStringOnePoint.dropFirst())
                         .font(.system(size: 40, design: .rounded).weight(.bold))
                         .monospacedDigit()
 
@@ -239,8 +239,8 @@ public struct WeightPicker: View {
                 }
                 .foregroundColor(weightColor)
                 .frame(maxWidth: .infinity)
-                .matchedGeometryEffect(id: "Weight", in: animation)
-                .animation(.default, value: weightChange)
+                // .matchedGeometryEffect(id: "Weight", in: animation)
+                // .animation(.default, value: weightChange)
             }
         }
     }

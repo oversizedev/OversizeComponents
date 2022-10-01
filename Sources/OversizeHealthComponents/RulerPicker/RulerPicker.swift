@@ -49,7 +49,7 @@ public struct RulerPicker: View {
                          formatter: formatter)
                 .slidingRulerStyle(CenteredSlindingRulerStyle())
                 .overlay(alignment: .top) {
-                    Text(step < 10 ? selection.toStringWithoutPoint : String(format: "%.0f", selection))
+                    Text(step < 10 ? selection.toStringOnePoint : String(format: "%.1f", selection))
                         .foregroundColor(.white)
                         .font(.title2.monospacedDigit())
                         .bold()
