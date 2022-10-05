@@ -3,6 +3,21 @@
 
 import PackageDescription
 
+let productionDependencies: [PackageDescription.Package.Dependency] = { [
+    .package(url: "http://github.com/oversizedev/OversizeUI.git", branch: "main"),
+    .package(url: "http://github.com/oversizedev/OversizeCore.git", branch: "main"),
+    .package(url: "http://github.com/oversizedev/OversizeServices.git", branch: "main"),
+    .package(url: "http://github.com/oversizedev/OversizeLocalizable.git", branch: "main"),
+]}()
+
+let developmentDependencies: [PackageDescription.Package.Dependency] = { [
+    .package(name: "OversizeUI", path: "../OversizeUI"),
+    .package(name: "OversizeCore", path: "../OversizeCore"),
+    .package(name: "OversizeServices", path: "../OversizeServices"),
+    .package(name: "OversizeLocalizable", path: "../OversizeLocalizable"),
+]}()
+
+
 let package = Package(
     name: "OversizeComponents",
     defaultLocalization: "en",
@@ -22,14 +37,7 @@ let package = Package(
             targets: ["OversizeHealthComponents"]
         ),
     ],
-    dependencies: [
-        .package(name: "OversizeUI", path: "../OversizeUI"),
-        // .package(name: "SlidingRuler", path: "../OversizeSlideRuler"),
-        .package(name: "OversizeCore", path: "../OversizeCore"),
-        .package(name: "OversizeServices", path: "../OversizeServices"),
-        .package(name: "OversizeLocalizable", path: "../OversizeLocalizable"),
-        // .package(url: "https://github.com/Pyroh/SlidingRuler", .upToNextMajor(from: "0.2.0")),
-    ],
+    dependencies: productionDependencies,
     targets: [
         .target(
             name: "OversizeComponents",

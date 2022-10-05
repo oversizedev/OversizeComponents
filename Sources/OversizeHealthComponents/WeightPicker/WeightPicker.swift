@@ -9,6 +9,7 @@ import UIKit
 
 public struct WeightPicker: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.isPremium) var isPremium
 
     private let startWeight: Double
 
@@ -16,7 +17,7 @@ public struct WeightPicker: View {
 
     private let action: ((Double, UIImage) -> Void)?
 
-    private let cameraAction: (() -> Void)?
+    private let premiumAction: (() -> Void)?
 
     @State var isShowCamera = false
 
@@ -24,11 +25,11 @@ public struct WeightPicker: View {
 
     @State private var image = UIImage()
 
-    public init(startWeight: Double, action: ((Double, UIImage) -> Void)? = nil, cameraAction: (() -> Void)? = nil) {
+    public init(startWeight: Double, action: ((Double, UIImage) -> Void)? = nil, premiumAction: (() -> Void)? = nil) {
         self.startWeight = startWeight
         _value = State(initialValue: startWeight)
         self.action = action
-        self.cameraAction = cameraAction
+        self.premiumAction = premiumAction
     }
 
     var weightChange: Double? {
@@ -85,6 +86,7 @@ public struct WeightPicker: View {
             bottomContent
         }
         .background(Color.surfacePrimary)
+        // .alert("To add photos, you need to buy a Pro subscription", isPresented: <#T##Binding<Bool>#>, actions: <#T##() -> View#>)
     }
 
     var topContent: some View {
@@ -181,10 +183,19 @@ public struct WeightPicker: View {
 
                     } else {
                         Button {
-                            isShowCamera.toggle()
-                            // cameraAction?()
+                            if isPremium {
+                                isShowCamera.toggle()
+                            } else {
+                                premiumAction?()
+                            }
                         } label: {
-                            Text("Attach a photo")
+                            HStack {
+                                Text("Attach a photo")
+
+                                if !isPremium {
+                                    PremiumLabel(size: .small)
+                                }
+                            }
                         }
                         .buttonStyle(.quaternary)
                         .controlBorderShape(.roundedRectangle(radius: .large))
