@@ -20,15 +20,18 @@ public struct RulerPicker: View {
 
     private let step: Double
 
+    private let witoutPoint: Bool
+
     @Namespace private var animation
 
-    public init(selection: Binding<Double>, minValue: Double = 10, step: Double = 1, maxValue: Double = 150, mark: Mark = .fraction, tick: Mark = .fraction) {
+    public init(selection: Binding<Double>, minValue: Double = 10, step: Double = 1, maxValue: Double = 150, mark: Mark = .fraction, tick: Mark = .fraction, witoutPoint: Bool = false) {
         _selection = selection
         self.minValue = minValue
         self.maxValue = maxValue
         self.step = step
         self.mark = mark
         self.tick = tick
+        self.witoutPoint = witoutPoint
     }
 
     private var formatter: NumberFormatter {
@@ -49,15 +52,23 @@ public struct RulerPicker: View {
                          formatter: formatter)
                 .slidingRulerStyle(CenteredSlindingRulerStyle())
                 .overlay(alignment: .top) {
-                    Text(step < 10 ? selection.toStringOnePoint : String(format: "%.1f", selection))
-                        .foregroundColor(.white)
-                        .font(.title2.monospacedDigit())
-                        .bold()
-                        .background {
-                            Circle()
-                                .foregroundColor(Color.black)
-                                .frame(width: 72, height: 72, alignment: .center)
+                    Group {
+                        if witoutPoint {
+                            Text(step < 10 ? selection.toStringWithoutPoint : String(format: "%.0f", selection))
+                                .bold()
+                        } else {
+                            Text(step < 10 ? selection.toStringOnePoint : String(format: "%.1f", selection))
+                                .bold()
                         }
+                    }
+                    .foregroundColor(.white)
+                    .font(.title2.monospacedDigit())
+
+                    .background {
+                        Circle()
+                            .foregroundColor(Color.black)
+                            .frame(width: 72, height: 72, alignment: .center)
+                    }
                 }
         }
         .background { Color.yellow.ignoresSafeArea() }

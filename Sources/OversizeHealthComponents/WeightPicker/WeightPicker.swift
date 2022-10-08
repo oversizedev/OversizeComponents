@@ -86,7 +86,6 @@ public struct WeightPicker: View {
             bottomContent
         }
         .background(Color.surfacePrimary)
-        // .alert("To add photos, you need to buy a Pro subscription", isPresented: <#T##Binding<Bool>#>, actions: <#T##() -> View#>)
     }
 
     var topContent: some View {

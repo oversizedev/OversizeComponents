@@ -40,7 +40,7 @@ public struct FloatingTabBar<Content: View>: View {
                     .foregroundColor(Color.surfacePrimary)
             }
             .shadowElevaton(.z2)
-            .padding(.bottom, screenSize.safeAreaBottom)
+            .padding(.bottom, screenSize.safeAreaBottom + 24)
         }
         .ignoresSafeArea()
         .onPreferenceChange(TabItemPreferenceKey.self) { value in
@@ -58,7 +58,16 @@ public struct FloatingTabBar<Content: View>: View {
         Group {
             if plusAction != nil, let number = tabs.count % 2, number == index {
                 Group {
-                    tabItem.icon
+                    Button {
+                        withAnimation {
+                            selection = index
+                        }
+                    } label: {
+                        tabItem.icon
+                            .renderingMode(.template)
+                            .foregroundColor(index == selection ? Color.onSurfaceHighEmphasis : Color.onSurfaceMediumEmphasis)
+                    }
+                    .buttonStyle(ScaleRoundButtonStyle())
 
                     Button {
                         plusAction?()
@@ -71,15 +80,20 @@ public struct FloatingTabBar<Content: View>: View {
                                     .frame(width: 32, height: 32, alignment: .center)
                             }
                     }
+                    // .buttonStyle(.scale)
                 }
 
             } else {
-                tabItem.icon
-            }
-        }
-        .onTapGesture {
-            withAnimation {
-                selection = index
+                Button {
+                    withAnimation {
+                        selection = index
+                    }
+                } label: {
+                    tabItem.icon
+                        .renderingMode(.template)
+                        .foregroundColor(index == selection ? Color.onSurfaceHighEmphasis : Color.onSurfaceMediumEmphasis)
+                }
+                .buttonStyle(ScaleRoundButtonStyle())
             }
         }
     }
@@ -108,5 +122,24 @@ struct FloatingTabBarExample: View {
 struct FloatingTabBar_Previews: PreviewProvider {
     static var previews: some View {
         FloatingTabBarExample()
+    }
+}
+
+private struct ScaleRoundButtonStyle: ButtonStyle {
+    init() {}
+
+    fileprivate func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.92 : 1)
+            .background {
+                if configuration.isPressed {
+                    Circle()
+                        .fillSurfaceTertiary()
+                        .padding(.all, -12)
+                } else {
+                    EmptyView()
+                }
+            }
+            .animation(.easeIn(duration: 0.2), value: configuration.isPressed)
     }
 }
