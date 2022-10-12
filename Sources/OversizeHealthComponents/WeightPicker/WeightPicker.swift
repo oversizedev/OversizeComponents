@@ -24,12 +24,15 @@ public struct WeightPicker: View {
     @Namespace private var animation
 
     @State private var image = UIImage()
+    
+    private let unit: String
 
-    public init(startWeight: Double, action: ((Double, UIImage) -> Void)? = nil, premiumAction: (() -> Void)? = nil) {
+    public init(startWeight: Double, unit: String, action: ((Double, UIImage) -> Void)? = nil, premiumAction: (() -> Void)? = nil) {
         self.startWeight = startWeight
         _value = State(initialValue: startWeight)
         self.action = action
         self.premiumAction = premiumAction
+        self.unit = unit
     }
 
     var weightChange: Double? {
@@ -104,7 +107,7 @@ public struct WeightPicker: View {
                 .padding(.bottom, .large)
 
             SlidingRuler(value: $value,
-                         in: 10 ... 150,
+                         in: 1 ... 350,
                          step: 1,
                          snap: .fraction,
                          tick: .fraction,
@@ -243,7 +246,7 @@ public struct WeightPicker: View {
                         .font(.system(size: 40, design: .rounded).weight(.bold))
                         .monospacedDigit()
 
-                    Text("kg")
+                    Text(unit)
                         .font(.system(.title2, design: .rounded).weight(.semibold))
                         .foregroundColor(.onBackgroundDisabled)
                 }
@@ -258,6 +261,6 @@ public struct WeightPicker: View {
 
 struct WeightPicker_Previews: PreviewProvider {
     static var previews: some View {
-        WeightPicker(startWeight: 80)
+        WeightPicker(startWeight: 80, unit: "kg")
     }
 }
