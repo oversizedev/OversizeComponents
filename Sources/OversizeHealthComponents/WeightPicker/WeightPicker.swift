@@ -24,7 +24,7 @@ public struct WeightPicker: View {
     @Namespace private var animation
 
     @State private var image = UIImage()
-    
+
     private let unit: String
 
     public init(startWeight: Double, unit: String, action: ((Double, UIImage) -> Void)? = nil, premiumAction: (() -> Void)? = nil) {

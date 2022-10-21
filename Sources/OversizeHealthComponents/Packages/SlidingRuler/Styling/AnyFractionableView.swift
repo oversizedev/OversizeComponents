@@ -9,5 +9,5 @@ struct AnyFractionableView: FractionableView {
     static var fractions: Int { 0 }
     private let view: AnyView
     var body: some View { view }
-    init<V: View>(_ view: V) { self.view = AnyView(view) }
+    init(_ view: some View) { self.view = AnyView(view) }
 }

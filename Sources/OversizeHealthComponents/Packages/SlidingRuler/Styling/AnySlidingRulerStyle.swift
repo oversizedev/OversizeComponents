@@ -14,7 +14,7 @@ struct AnySlidingRulerStyle: SlidingRulerStyle {
     let cursorAlignment: VerticalAlignment
     let hasMarks: Bool
 
-    init<T: SlidingRulerStyle>(style: T) {
+    init(style: some SlidingRulerStyle) {
         cellProvider = { (configuration: SlidingRulerStyleConfiguation) -> AnyFractionableView in
             AnyFractionableView(style.makeCellBody(configuration: configuration))
         }
