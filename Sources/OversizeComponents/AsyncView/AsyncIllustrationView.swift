@@ -29,6 +29,7 @@ public struct AsyncIllustrationView: View {
         AsyncImage(url: url, scale: scale) {
             $0
                 .resizable()
+                .scaledToFit()
         } placeholder: {
             Circle()
                 .fillSurfaceTertiary()
