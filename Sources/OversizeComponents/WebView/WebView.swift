@@ -3,6 +3,7 @@
 // WebView.swift
 //
 
+#if os(iOS)
 import SwiftUI
 import WebKit
 
@@ -27,3 +28,4 @@ struct WebView_Previews: PreviewProvider {
         WebView(url: URL(string: "https://www.apple.com")!)
     }
 }
+#endif
