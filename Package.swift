@@ -39,6 +39,10 @@ let package = Package(
             name: "OversizeHealthComponents",
             targets: ["OversizeHealthComponents"]
         ),
+        .library(
+            name: "OversizeWeatherComponents",
+            targets: ["OversizeWeatherComponents"]
+        ),
     ],
     dependencies: productionDependencies,
     targets: [
@@ -57,6 +61,13 @@ let package = Package(
             dependencies: [
                 .product(name: "OversizeUI", package: "OversizeUI"),
                 // .product(name: "SlidingRuler", package: "SlidingRuler"),
+                .product(name: "OversizeCore", package: "OversizeCore"),
+            ]
+        ),
+        .target(
+            name: "OversizeWeatherComponents",
+            dependencies: [
+                .product(name: "OversizeUI", package: "OversizeUI"),
                 .product(name: "OversizeCore", package: "OversizeCore"),
             ]
         ),
