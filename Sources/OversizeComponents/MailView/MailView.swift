@@ -3,10 +3,10 @@
 // MailView.swift
 //
 
-import MessageUI
-import SwiftUI
-
 #if os(iOS)
+    import MessageUI
+    import SwiftUI
+
     public struct MailView: UIViewControllerRepresentable {
         private var to: String
         private var subject: String
