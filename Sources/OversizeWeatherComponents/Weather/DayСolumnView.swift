@@ -3,9 +3,11 @@
 // DayСolumnView.swift
 //
 
-import OversizeCraft
+import OversizeLocalizable
 import OversizeUI
+import OversizeCore
 import SwiftUI
+import OversizeResources
 
 public struct DayСolumnView: View {
     @Environment(\.weatherTextColor) var textColor
@@ -46,12 +48,12 @@ public struct DayСolumnView: View {
         VStack(spacing: .zero) {
             Text(day)
                 .padding(.top, .small)
-                .fontStyle(.button, color: textColor)
+                .fontStyle(.headline, color: textColor)
                 .multilineTextAlignment(.center)
 
             Text(dayDescription)
                 .padding(.top, .xxxSmall)
-                .fontStyle(.subtitle2, color: textColor.opacity(0.7))
+                .fontStyle(.subheadline, color: textColor.opacity(0.7))
                 .multilineTextAlignment(.center)
 
             dayIcon
@@ -61,13 +63,13 @@ public struct DayСolumnView: View {
 
             Text(dayTemperature.toStringTemperature)
                 .padding(.top, 20)
-                .fontStyle(.subtitle1, color: textColor.opacity(0.7))
+                .fontStyle(.subheadline, color: textColor.opacity(0.7))
                 .multilineTextAlignment(.center)
 
             Spacer()
 
             Text(nightTemperature.toStringTemperature)
-                .fontStyle(.subtitle1, color: textColor.opacity(0.7))
+                .fontStyle(.subheadline, color: textColor.opacity(0.7))
                 .multilineTextAlignment(.center)
                 .padding(.bottom, .medium)
 
@@ -89,7 +91,7 @@ public struct DayСolumnView: View {
 
             Text(String(format: "%.0f", windSpeed) + " " + L10n.Common.metereSec)
                 .padding(.top, .xxxSmall)
-                .fontStyle(.overline, color: textColor)
+                .fontStyle(.caption, color: textColor)
                 .multilineTextAlignment(.center)
         }
     }

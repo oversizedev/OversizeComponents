@@ -3,7 +3,7 @@
 // DayShortRowView.swift
 //
 
-import OversizeCraft
+import OversizeLocalizable
 import OversizeUI
 import SwiftUI
 
@@ -76,7 +76,7 @@ public struct DayShortRowView: View {
                         .frame(width: 32, height: 32, alignment: .center)
 
                     Text(day)
-                        .fontStyle(.subtitle1, color: textColor)
+                        .fontStyle(.headline, color: textColor)
                         .padding(.leading, .medium)
 
                     Spacer()
@@ -88,12 +88,12 @@ public struct DayShortRowView: View {
                         .padding(.horizontal, .small)
 
                         Text(dayTemperature.toStringTemperature)
-                            .fontStyle(.subtitle1, color: textColor)
+                            .fontStyle(.headline, color: textColor)
                             .frame(minWidth: 44)
                             .multilineTextAlignment(.center)
 
                         Text(nightTemperature.toStringTemperature)
-                            .fontStyle(.subtitle1, color: textColor.opacity(0.7))
+                            .fontStyle(.headline, color: textColor.opacity(0.7))
                             .frame(minWidth: 44)
                             .multilineTextAlignment(.center)
                     } else {
@@ -114,7 +114,7 @@ public struct DayShortRowView: View {
 
                         HStack {
                             Text("\(L10n.Common.morning) \(mornTemperature.toStringTemperature)")
-                                .fontStyle(.subtitle1, color: textColor)
+                                .fontStyle(.headline, color: textColor)
 
                             Text("\(L10n.Common.feelsLike.lowercased()) \(mornTemperatureFeelLike.toStringTemperature)")
                                 .font(.system(size: 16))
@@ -124,7 +124,7 @@ public struct DayShortRowView: View {
 
                         HStack {
                             Text("\(L10n.Common.day) \(dayTemperature.toStringTemperature)")
-                                .fontStyle(.subtitle1, color: textColor)
+                                .fontStyle(.headline, color: textColor)
 
                             Text("\(L10n.Common.feelsLike.lowercased()) \(dayTemperatureFeelLike.toStringTemperature)")
                                 .font(.system(size: 16))
@@ -134,7 +134,7 @@ public struct DayShortRowView: View {
 
                         HStack {
                             Text("\(L10n.Common.evening) \(eveTemperature.toStringTemperature)")
-                                .fontStyle(.subtitle1, color: textColor)
+                                .fontStyle(.headline, color: textColor)
 
                             Text("\(L10n.Common.feelsLike.lowercased()) \(eveTemperatureFeelLike.toStringTemperature)")
                                 .font(.system(size: 16))
@@ -144,7 +144,7 @@ public struct DayShortRowView: View {
 
                         HStack {
                             Text("\(L10n.Common.night) \(nightTemperature.toStringTemperature)")
-                                .fontStyle(.subtitle1, color: textColor)
+                                .fontStyle(.headline, color: textColor)
 
                             // swiftlint:disable line_length
                             Text("\(L10n.Common.feelsLike.lowercased()) \(nightTemperatureFeelLike.toStringTemperature)")
