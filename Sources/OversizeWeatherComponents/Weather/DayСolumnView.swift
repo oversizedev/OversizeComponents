@@ -3,11 +3,11 @@
 // DayСolumnView.swift
 //
 
-import OversizeLocalizable
-import OversizeUI
 import OversizeCore
-import SwiftUI
+import OversizeLocalizable
 import OversizeResources
+import OversizeUI
+import SwiftUI
 
 public struct DayСolumnView: View {
     @Environment(\.weatherTextColor) var textColor

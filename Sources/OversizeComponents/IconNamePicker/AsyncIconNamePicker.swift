@@ -3,10 +3,10 @@
 // AsyncIconNamePicker.swift
 //
 
+import OversizeLocalizable
 import OversizeUI
 import SDWebImageSwiftUI
 import SwiftUI
-import OversizeLocalizable
 
 #if os(iOS)
     public struct AsyncIconNamePicker: View {
