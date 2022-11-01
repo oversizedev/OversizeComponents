@@ -3,6 +3,7 @@
 // FieldScreenView.swift
 //
 
+import OversizeCore
 import OversizeUI
 import SwiftUI
 
@@ -13,6 +14,7 @@ public struct FieldScreenView: View {
     @Binding public var helperText: String
     @Binding public var showHelper: Bool
     @State var offset = CGPoint(x: 0, y: 0)
+    @FocusState private var isFocused: Bool
 
     public var leadingImage: IconsNames
     public var trallingImage: IconsNames
@@ -20,9 +22,7 @@ public struct FieldScreenView: View {
     public var buttonText: String
     public var action: () -> Void
 
-    @Environment(\.presentationMode) var presentationMode
-
-    @State private var focused: Bool = false
+    @Environment(\.dismiss) var dismiss
 
     public init(_ label: String,
                 placeholder: String,
@@ -31,7 +31,7 @@ public struct FieldScreenView: View {
                 showHelper: Binding<Bool> = .constant(false),
                 leadingImage: IconsNames = .none,
                 trallingImage: IconsNames = .none,
-                buttonText: String = "",
+                buttonText: String = "Save",
                 buttonAction: @escaping () -> Void)
     {
         self.label = label
@@ -46,7 +46,7 @@ public struct FieldScreenView: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             Spacer()
 
             VStack(spacing: 0) {
@@ -55,12 +55,11 @@ public struct FieldScreenView: View {
                         Icon(leadingImage)
                     }
 
-                    TextField(placeholder, text: $text, onEditingChanged: { focused in
-                        self.focused = focused
-                    })
-                    .largeTitle()
-                    .foregroundColor(.onSurfaceHighEmphasis)
-                    .multilineTextAlignment(.center)
+                    TextField(placeholder, text: $text)
+                        .largeTitle()
+                        .foregroundColor(.onSurfaceHighEmphasis)
+                        .multilineTextAlignment(.center)
+                        .focused($isFocused)
 
                     if trallingImage != .none {
                         Icon(trallingImage)
@@ -81,21 +80,26 @@ public struct FieldScreenView: View {
                 Text(buttonText)
             })
             .buttonStyle(.primary)
-            .padding()
+            .paddingContent()
+            .disabled(text.isEmpty)
         }
-        .navigationBar("App", style: .fixed($offset)) {
+        .navigationBar(label, style: .fixed($offset)) {
             BarButton(type: .close)
         } trailingBar: {} bottomBar: {}
+        .onAppear {
+            isFocused = true
+        }
     }
 
     func buttonAction() {
         action()
-        presentationMode.wrappedValue.dismiss()
+        dismiss()
+        isFocused = false
     }
 }
 
 struct FieldScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        FieldScreenView("Your name", placeholder: "Alexander", text: .constant("Alexander"), buttonAction: {})
+        FieldScreenView("Your name", placeholder: "Alexander", text: .constant("Alexander"), buttonText: "Save", buttonAction: {})
     }
 }
