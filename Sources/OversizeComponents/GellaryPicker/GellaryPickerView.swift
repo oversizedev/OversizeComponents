@@ -3,7 +3,6 @@
 // GellaryPickerView.swift
 //
 
-import OversizeComponents
 import OversizeCore
 import OversizeLocalizable
 import OversizeResources
