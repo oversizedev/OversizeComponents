@@ -3,11 +3,8 @@
 // PhotoShowView.swift
 //
 
-import OversizeComponents
 import OversizeCore
 import OversizeLocalizable
-import OversizePhotoCoreData
-import OversizeServices
 import OversizeUI
 import SwiftUI
 
@@ -203,12 +200,6 @@ public struct PhotoShowView: View {
             isShowPhotoDetal = false
         }
     }
-
-    @ViewBuilder
-    private func content(data _: [AlbumMO]) -> some View {}
-
-    @ViewBuilder
-    private func placeholder() -> some View {}
 }
 
 public extension View {
