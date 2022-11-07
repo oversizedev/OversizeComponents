@@ -8,7 +8,7 @@ import OversizeLocalizable
 import OversizeUI
 import SwiftUI
 
-public struct PhotoShowView: View {
+public struct PhotoShowView: ViewModifier {
     @Environment(\.screenSize) var screenSize
     @Environment(\.theme) var theme
 
@@ -25,81 +25,51 @@ public struct PhotoShowView: View {
 
     @Binding var isShowPhotoDetal: Bool
 
-    var backgroundOpacity: CGFloat {
-        if isShowPhotoDetal {
-            if currentOffset.height == 0 {
-                return 1
-            } else if currentOffset.height > 0 {
-                return 1 / (currentOffset.height * 0.01)
-            } else {
-                return 1 / (-currentOffset.height * 0.01)
-            }
-        } else {
-            return 0
-        }
-    }
-
-    var optionsOpacity: CGFloat {
-        if isShowPhotoDetal {
-            if currentScale > 1.2 {
-                return 1
-            }
-
-            if currentOffset.height == 0 {
-                return 1
-            } else if currentOffset.height > 0 {
-                return 1 / (currentOffset.height * 0.3)
-            } else {
-                return 1 / (-currentOffset.height * 0.3)
-            }
-        } else {
-            return 0
-        }
-    }
-
     public init(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image]) {
         _selectionIndex = selection
         self.photos = photos
         _isShowPhotoDetal = isPresent
     }
 
-    public var body: some View {
-        ZStack {
-            TabView(selection: $selectionIndex) {
-                ForEach(0 ..< photos.count, id: \.self) { index in
-                    photoWithOptions(image: photos[index])
+    public func body(content: Content) -> some View {
+        content.overlay {
+            ZStack {
+                TabView(selection: $selectionIndex) {
+                    ForEach(0 ..< photos.count, id: \.self) { index in
+                        photoWithOptions(image: photos[index])
 
-                        .tag(index)
+                            .tag(index)
+                    }
                 }
-            }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .indexViewStyle(.page(backgroundDisplayMode: .never))
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .indexViewStyle(.page(backgroundDisplayMode: .never))
 
-            VStack {
-                ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
-                                   bigTitle: false,
-                                   offset: .constant(CGPoint(x: 0, y: 0)),
-                                   modalityPresent: true,
-                                   alwaysSlideSmallTile: false,
-                                   leadingBar: { BarButton(type: .backAction(action: {
-                                       withAnimation {
-                                           isShowPhotoDetal = false
-                                       }
+                VStack {
+                    ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
+                                       bigTitle: false,
+                                       offset: .constant(CGPoint(x: 0, y: 0)),
+                                       modalityPresent: true,
+                                       alwaysSlideSmallTile: false,
+                                       leadingBar: { BarButton(type: .backAction(action: {
+                                           withAnimation {
+                                               isShowPhotoDetal = false
+                                           }
 
-                                   })) },
-                                   trailingBar: { BarButton(type: .secondary("Delete", action: {})) })
-                    .opacity(isShowOptions ? 1 : 0)
-                    .background(.black.opacity(isShowOptions ? 0.1 : 0))
-                Spacer()
+                                       })) },
+                                       trailingBar: { BarButton(type: .secondary("Delete", action: {})) })
+                        .opacity(isShowOptions ? 1 : 0)
+                        .background(.black.opacity(isShowOptions ? 0.1 : 0))
+                    Spacer()
+                }
+                .opacity(optionsOpacity)
             }
-            .opacity(optionsOpacity)
+            .navigationBarHidden(true)
+            .background(.black.opacity(backgroundOpacity))
+            .opacity(isShowPhotoDetal ? 1 : 0)
+            .statusBar(hidden: isShowPhotoDetal)
+            .colorScheme(.dark)
+            .ignoresSafeArea(.all)
         }
-
-        .navigationBarHidden(true)
-        .background(.black.opacity(backgroundOpacity))
-        .opacity(isShowPhotoDetal ? 1 : 0)
-        .statusBar(hidden: isShowPhotoDetal)
-        .colorScheme(.dark)
     }
 
     @ViewBuilder
@@ -200,14 +170,43 @@ public struct PhotoShowView: View {
             isShowPhotoDetal = false
         }
     }
+
+    var backgroundOpacity: CGFloat {
+        if isShowPhotoDetal {
+            if currentOffset.height == 0 {
+                return 1
+            } else if currentOffset.height > 0 {
+                return 1 / (currentOffset.height * 0.01)
+            } else {
+                return 1 / (-currentOffset.height * 0.01)
+            }
+        } else {
+            return 0
+        }
+    }
+
+    var optionsOpacity: CGFloat {
+        if isShowPhotoDetal {
+            if currentScale > 1.2 {
+                return 1
+            }
+
+            if currentOffset.height == 0 {
+                return 1
+            } else if currentOffset.height > 0 {
+                return 1 / (currentOffset.height * 0.3)
+            } else {
+                return 1 / (-currentOffset.height * 0.3)
+            }
+        } else {
+            return 0
+        }
+    }
 }
 
 public extension View {
     func photoOverlay(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image]) -> some View {
-        overlay {
-            PhotoShowView(isPresent: isPresent, selection: selection, photos: photos)
-                .ignoresSafeArea(.all)
-        }
+        modifier(PhotoShowView(isPresent: isPresent, selection: selection, photos: photos))
     }
 }
 
