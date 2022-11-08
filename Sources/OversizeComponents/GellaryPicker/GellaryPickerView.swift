@@ -20,6 +20,11 @@ public struct GellaryPickerView: View {
     @State var isShowCamera: Bool = .init(false)
 
     @Binding var selection: [UIImage]
+    
+    @State var isImportingPhotos: Bool = false
+    
+    @State var importProgress = 0.0
+    @State var importImagesCount = 0.0
 
     private let threeColumnGrid = [
         GridItem(.flexible(minimum: 40), spacing: 2),
@@ -34,18 +39,22 @@ public struct GellaryPickerView: View {
     public var body: some View {
         PageView("Gallery") {
             content()
+                .disabled(isImportingPhotos)
+                .opacity(isImportingPhotos ? 0.6 : 1)
         }
         .leadingBar {
             BarButton(type: .close)
         }
         .trailingBar {
-            if !selectedImages.isEmpty {
+            if !selectedImages.isEmpty, !isImportingPhotos {
                 BarButton(type: .accent(L10n.Button.add, action: {
-                    let selectedImages: [UIImage] = selectedImages.compactMap { getImageFromAsset(asset: $0) }
-                    selection += selectedImages
-                    dismiss()
+                    importPhotos()
                 }))
             }
+//            if isImportingPhotos {
+//                ProgressView("", value: importProgress, total: importImagesCount)
+//                    .progressViewStyle(.circular)
+//            }
         }
         .onAppear {
             getImages()
@@ -120,6 +129,19 @@ public struct GellaryPickerView: View {
             }
         }
     }
+    
+    func importPhotos() {
+        let selectedImages: [UIImage] = selectedImages.compactMap { getImageFromAsset(asset: $0) }
+        selection += selectedImages
+        dismiss()
+    }
+    
+    func upImportCounter() {
+        DispatchQueue.main.async {
+            importImagesCount = Double(selectedImages.count)
+            importProgress += 1
+        }
+    }
 
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
@@ -129,6 +151,7 @@ public struct GellaryPickerView: View {
         manager.requestImage(for: asset, targetSize: CGSize(width: 300, height: 300), contentMode: .aspectFit, options: option, resultHandler: { result, _ in
             thumbnail = result!
         })
+        upImportCounter()
         return thumbnail
     }
 

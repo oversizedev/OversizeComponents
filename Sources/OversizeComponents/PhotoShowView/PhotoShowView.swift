@@ -5,6 +5,7 @@
 
 import OversizeCore
 import OversizeLocalizable
+import OversizeResources
 import OversizeUI
 import SwiftUI
 
@@ -24,11 +25,14 @@ public struct PhotoShowView: ViewModifier {
     let photos: [Image]
 
     @Binding var isShowPhotoDetal: Bool
+    
+    let action: (() -> Void)
 
-    public init(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image]) {
+    public init(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image], action: @escaping () -> Void) {
         _selectionIndex = selection
         self.photos = photos
         _isShowPhotoDetal = isPresent
+        self.action = action
     }
 
     public func body(content: Content) -> some View {
@@ -56,7 +60,7 @@ public struct PhotoShowView: ViewModifier {
                                            }
 
                                        })) },
-                                       trailingBar: { BarButton(type: .secondary("Delete", action: {})) })
+                                       trailingBar: { BarButton(type: .icon(.moreHorizontal, action: action)) })
                         .opacity(isShowOptions ? 1 : 0)
                         .background(.black.opacity(isShowOptions ? 0.1 : 0))
                     Spacer()
@@ -83,7 +87,6 @@ public struct PhotoShowView: ViewModifier {
             .scaleEffect(max(currentScale, 0.01)) // the second question
             .vCenter()
             .gesture(combined)
-
             .simultaneousGesture(dragGestue)
             .gesture(magnificationGesture)
     }
@@ -205,8 +208,8 @@ public struct PhotoShowView: ViewModifier {
 }
 
 public extension View {
-    func photoOverlay(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image]) -> some View {
-        modifier(PhotoShowView(isPresent: isPresent, selection: selection, photos: photos))
+    func photoOverlay(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image], action: @escaping () -> Void) -> some View {
+        modifier(PhotoShowView(isPresent: isPresent, selection: selection, photos: photos, action: action))
     }
 }
 
