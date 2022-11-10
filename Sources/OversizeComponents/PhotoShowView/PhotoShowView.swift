@@ -25,8 +25,8 @@ public struct PhotoShowView: ViewModifier {
     let photos: [Image]
 
     @Binding var isShowPhotoDetal: Bool
-    
-    let action: (() -> Void)
+
+    let action: () -> Void
 
     public init(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image], action: @escaping () -> Void) {
         _selectionIndex = selection
@@ -36,59 +36,58 @@ public struct PhotoShowView: ViewModifier {
     }
 
     public func body(content: Content) -> some View {
-        content.overlay {
-            ZStack {
-                TabView(selection: $selectionIndex) {
-                    ForEach(0 ..< photos.count, id: \.self) { index in
-                        photoWithOptions(image: photos[index])
-
-                            .tag(index)
+        content
+            .overlay {
+                ZStack {
+                    TabView(selection: $selectionIndex) {
+                        ForEach(0 ..< photos.count, id: \.self) { index in
+                            photoWithOptions(image: photos[index])
+                                .tag(index)
+                                .id(index)
+                        }
                     }
-                }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                .indexViewStyle(.page(backgroundDisplayMode: .never))
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+                    .indexViewStyle(.page(backgroundDisplayMode: .never))
 
-                VStack {
-                    ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
-                                       bigTitle: false,
-                                       offset: .constant(CGPoint(x: 0, y: 0)),
-                                       modalityPresent: true,
-                                       alwaysSlideSmallTile: false,
-                                       leadingBar: { BarButton(type: .backAction(action: {
-                                           withAnimation {
-                                               isShowPhotoDetal = false
-                                           }
+                    VStack {
+                        ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
+                                           bigTitle: false,
+                                           offset: .constant(CGPoint(x: 0, y: 0)),
+                                           modalityPresent: true,
+                                           alwaysSlideSmallTile: false,
+                                           leadingBar: { BarButton(type: .backAction(action: {
+                                               withAnimation {
+                                                   isShowPhotoDetal = false
+                                               }
 
-                                       })) },
-                                       trailingBar: { BarButton(type: .icon(.moreHorizontal, action: action)) })
-                        .opacity(isShowOptions ? 1 : 0)
-                        .background(.black.opacity(isShowOptions ? 0.1 : 0))
-                    Spacer()
+                                           })) },
+                                           trailingBar: { BarButton(type: .icon(.moreHorizontal, action: action)) })
+                            .opacity(isShowOptions ? 1 : 0)
+                            .background(.black.opacity(isShowOptions ? 0.1 : 0))
+                        Spacer()
+                    }
+                    .opacity(optionsOpacity)
                 }
-                .opacity(optionsOpacity)
+                .ignoresSafeArea(.all)
+                .navigationBarHidden(true)
+                .background(.black.opacity(backgroundOpacity))
+                .opacity(isShowPhotoDetal ? 1 : 0)
+                .statusBar(hidden: isShowPhotoDetal)
+                .colorScheme(.dark)
             }
-            .navigationBarHidden(true)
-            .background(.black.opacity(backgroundOpacity))
-            .opacity(isShowPhotoDetal ? 1 : 0)
-            .statusBar(hidden: isShowPhotoDetal)
-            .colorScheme(.dark)
-            .ignoresSafeArea(.all)
-        }
     }
 
     @ViewBuilder
     func photoWithOptions(image: Image) -> some View {
-        let combined = tapGestue.sequenced(before: doubleTapGestue)
         image
             .resizable()
-            .edgesIgnoringSafeArea(.all)
             .aspectRatio(contentMode: .fit)
             .offset(x: currentOffset.width, y: currentOffset.height)
             .scaleEffect(max(currentScale, 0.01)) // the second question
-            .vCenter()
-            .gesture(combined)
+            .gesture(tapGestue.sequenced(before: doubleTapGestue))
             .simultaneousGesture(dragGestue)
             .gesture(magnificationGesture)
+        // .vCenter()
     }
 
     var magnificationGesture: some Gesture {

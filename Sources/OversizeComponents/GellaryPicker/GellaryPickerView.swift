@@ -20,9 +20,9 @@ public struct GellaryPickerView: View {
     @State var isShowCamera: Bool = .init(false)
 
     @Binding var selection: [UIImage]
-    
+
     @State var isImportingPhotos: Bool = false
-    
+
     @State var importProgress = 0.0
     @State var importImagesCount = 0.0
 
@@ -41,6 +41,9 @@ public struct GellaryPickerView: View {
             content()
                 .disabled(isImportingPhotos)
                 .opacity(isImportingPhotos ? 0.6 : 1)
+                .onAppear {
+                    getImages()
+                }
         }
         .leadingBar {
             BarButton(type: .close)
@@ -51,13 +54,10 @@ public struct GellaryPickerView: View {
                     importPhotos()
                 }))
             }
-//            if isImportingPhotos {
-//                ProgressView("", value: importProgress, total: importImagesCount)
-//                    .progressViewStyle(.circular)
-//            }
-        }
-        .onAppear {
-            getImages()
+            if isImportingPhotos {
+                ProgressView("", value: importProgress, total: importImagesCount)
+                    .progressViewStyle(.circular)
+            }
         }
         .fullScreenCover(isPresented: $isShowCamera, onDismiss: {
             selection.append(cameraImage)
@@ -88,11 +88,10 @@ public struct GellaryPickerView: View {
             .buttonStyle(.scale)
 
             ForEach(gellaryImages, id: \.self) { image in
-                let uiImage = getAssetThumbnail(asset: image)
                 let isSelected = selectedImages.contains(image)
                 Color.clear
                     .background(
-                        Image(uiImage: uiImage)
+                        Image(uiImage: getAssetThumbnail(asset: image))
                             .resizable()
                             .scaledToFill()
                     )
@@ -129,13 +128,14 @@ public struct GellaryPickerView: View {
             }
         }
     }
-    
+
     func importPhotos() {
+        isImportingPhotos = true
         let selectedImages: [UIImage] = selectedImages.compactMap { getImageFromAsset(asset: $0) }
         selection += selectedImages
         dismiss()
     }
-    
+
     func upImportCounter() {
         DispatchQueue.main.async {
             importImagesCount = Double(selectedImages.count)
@@ -151,7 +151,6 @@ public struct GellaryPickerView: View {
         manager.requestImage(for: asset, targetSize: CGSize(width: 300, height: 300), contentMode: .aspectFit, options: option, resultHandler: { result, _ in
             thumbnail = result!
         })
-        upImportCounter()
         return thumbnail
     }
 
@@ -165,6 +164,7 @@ public struct GellaryPickerView: View {
         manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .default, options: option, resultHandler: { result, _ in
             thumbnail = result!
         })
+        upImportCounter()
         return thumbnail
     }
 
@@ -175,6 +175,64 @@ public struct GellaryPickerView: View {
         let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
         assets.enumerateObjects { object, _, _ in
             self.gellaryImages.append(object)
+        }
+    }
+}
+
+struct UnexpectedNilError: Error {}
+
+extension PHImageManager {
+    func requestImage(
+        for asset: PHAsset,
+        targetSize: CGSize,
+        contentMode: PHImageContentMode,
+        options: PHImageRequestOptions?
+    ) async throws -> UIImage {
+        options?.isSynchronous = false
+
+        var requestID: PHImageRequestID?
+
+        return try await withTaskCancellationHandler(
+            handler: { [requestID] in
+                guard let requestID else {
+                    return
+                }
+
+                cancelImageRequest(requestID)
+            }
+        ) {
+            try await withCheckedThrowingContinuation { continuation in
+                requestID = requestImage(
+                    for: asset,
+                    targetSize: targetSize,
+                    contentMode: contentMode,
+                    options: options
+                ) { image, info in
+                    if let error = info?[PHImageErrorKey] as? Error {
+                        continuation.resume(throwing: error)
+                        return
+                    }
+
+                    guard !(info?[PHImageCancelledKey] as? Bool ?? false) else {
+                        continuation.resume(throwing: CancellationError())
+                        return
+                    }
+
+                    // When degraded image is provided, the completion handler will be called again.
+                    guard !(info?[PHImageResultIsDegradedKey] as? Bool ?? false) else {
+                        return
+                    }
+
+                    guard let image else {
+                        // This should in theory not happen.
+                        continuation.resume(throwing: UnexpectedNilError())
+                        return
+                    }
+
+                    // According to the docs, the image is guaranteed at this point.
+                    continuation.resume(returning: image)
+                }
+            }
         }
     }
 }
