@@ -20,6 +20,7 @@ public struct GellaryPickerView: View {
     @State var isShowCamera: Bool = .init(false)
 
     @Binding var selection: [UIImage]
+    @Binding var selectionDate: [Date]
 
     @State var isImportingPhotos: Bool = false
 
@@ -32,8 +33,9 @@ public struct GellaryPickerView: View {
         GridItem(.flexible(minimum: 40), spacing: 2),
     ]
 
-    public init(selection: Binding<[UIImage]>) {
+    public init(selection: Binding<[UIImage]>, selectionDate: Binding<[Date]>) {
         _selection = selection
+        _selectionDate = selectionDate
     }
 
     public var body: some View {
@@ -131,16 +133,16 @@ public struct GellaryPickerView: View {
 
     func importPhotos() {
         isImportingPhotos = true
-        let selectedImages: [UIImage] = selectedImages.compactMap { getImageFromAsset(asset: $0) }
-        selection += selectedImages
+        let selectedUiImages: [UIImage] = selectedImages.compactMap { getImageFromAsset(asset: $0) }
+        let selectedImagesDates: [Date] = selectedImages.compactMap { $0.creationDate }
+        selection += selectedUiImages
+        selectionDate += selectedImagesDates
         dismiss()
     }
 
     func upImportCounter() {
-        DispatchQueue.main.async {
-            importImagesCount = Double(selectedImages.count)
-            importProgress += 1
-        }
+        importImagesCount = Double(selectedImages.count)
+        importProgress += 1
     }
 
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
@@ -179,66 +181,66 @@ public struct GellaryPickerView: View {
     }
 }
 
-struct UnexpectedNilError: Error {}
-
-extension PHImageManager {
-    func requestImage(
-        for asset: PHAsset,
-        targetSize: CGSize,
-        contentMode: PHImageContentMode,
-        options: PHImageRequestOptions?
-    ) async throws -> UIImage {
-        options?.isSynchronous = false
-
-        var requestID: PHImageRequestID?
-
-        return try await withTaskCancellationHandler(
-            handler: { [requestID] in
-                guard let requestID else {
-                    return
-                }
-
-                cancelImageRequest(requestID)
-            }
-        ) {
-            try await withCheckedThrowingContinuation { continuation in
-                requestID = requestImage(
-                    for: asset,
-                    targetSize: targetSize,
-                    contentMode: contentMode,
-                    options: options
-                ) { image, info in
-                    if let error = info?[PHImageErrorKey] as? Error {
-                        continuation.resume(throwing: error)
-                        return
-                    }
-
-                    guard !(info?[PHImageCancelledKey] as? Bool ?? false) else {
-                        continuation.resume(throwing: CancellationError())
-                        return
-                    }
-
-                    // When degraded image is provided, the completion handler will be called again.
-                    guard !(info?[PHImageResultIsDegradedKey] as? Bool ?? false) else {
-                        return
-                    }
-
-                    guard let image else {
-                        // This should in theory not happen.
-                        continuation.resume(throwing: UnexpectedNilError())
-                        return
-                    }
-
-                    // According to the docs, the image is guaranteed at this point.
-                    continuation.resume(returning: image)
-                }
-            }
-        }
-    }
-}
-
-struct NewPhotoView_Previews: PreviewProvider {
-    static var previews: some View {
-        GellaryPickerView(selection: .constant([]))
-    }
-}
+//struct UnexpectedNilError: Error {}
+//
+//extension PHImageManager {
+//    func requestImage(
+//        for asset: PHAsset,
+//        targetSize: CGSize,
+//        contentMode: PHImageContentMode,
+//        options: PHImageRequestOptions?
+//    ) async throws -> UIImage {
+//        options?.isSynchronous = false
+//
+//        var requestID: PHImageRequestID?
+//
+//        return try await withTaskCancellationHandler(
+//            handler: { [requestID] in
+//                guard let requestID else {
+//                    return
+//                }
+//
+//                cancelImageRequest(requestID)
+//            }
+//        ) {
+//            try await withCheckedThrowingContinuation { continuation in
+//                requestID = requestImage(
+//                    for: asset,
+//                    targetSize: targetSize,
+//                    contentMode: contentMode,
+//                    options: options
+//                ) { image, info in
+//                    if let error = info?[PHImageErrorKey] as? Error {
+//                        continuation.resume(throwing: error)
+//                        return
+//                    }
+//
+//                    guard !(info?[PHImageCancelledKey] as? Bool ?? false) else {
+//                        continuation.resume(throwing: CancellationError())
+//                        return
+//                    }
+//
+//                    // When degraded image is provided, the completion handler will be called again.
+//                    guard !(info?[PHImageResultIsDegradedKey] as? Bool ?? false) else {
+//                        return
+//                    }
+//
+//                    guard let image else {
+//                        // This should in theory not happen.
+//                        continuation.resume(throwing: UnexpectedNilError())
+//                        return
+//                    }
+//
+//                    // According to the docs, the image is guaranteed at this point.
+//                    continuation.resume(returning: image)
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//struct NewPhotoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GellaryPickerView(selection: .constant([]))
+//    }
+//}
