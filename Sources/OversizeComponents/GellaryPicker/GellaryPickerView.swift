@@ -181,9 +181,9 @@ public struct GellaryPickerView: View {
     }
 }
 
-//struct UnexpectedNilError: Error {}
+// struct UnexpectedNilError: Error {}
 //
-//extension PHImageManager {
+// extension PHImageManager {
 //    func requestImage(
 //        for asset: PHAsset,
 //        targetSize: CGSize,
@@ -237,10 +237,10 @@ public struct GellaryPickerView: View {
 //            }
 //        }
 //    }
-//}
+// }
 //
-//struct NewPhotoView_Previews: PreviewProvider {
+// struct NewPhotoView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        GellaryPickerView(selection: .constant([]))
 //    }
-//}
+// }
