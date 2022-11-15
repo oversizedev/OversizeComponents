@@ -86,6 +86,7 @@ public struct GellaryPickerView: View {
                         .renderingMode(.template)
                         .foregroundColor(.white)
                 }
+                .frame(minHeight: gellaryImages.count > 0 ? nil : 200)
             }
             .buttonStyle(.scale)
 
