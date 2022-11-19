@@ -53,6 +53,7 @@ let package = Package(
         .target(
             name: "OversizePhotoComponents",
             dependencies: [
+                "OversizeComponents",
                 .product(name: "OversizeUI", package: "OversizeUI"),
                 .product(name: "OversizeCore", package: "OversizeCore"),
                 .product(name: "OversizeLocalizable", package: "OversizeLocalizable"),
@@ -62,6 +63,7 @@ let package = Package(
         .target(
             name: "OversizeHealthComponents",
             dependencies: [
+                "OversizeComponents",
                 .product(name: "OversizeUI", package: "OversizeUI"),
                 .product(name: "OversizeCore", package: "OversizeCore"),
             ]
