@@ -33,18 +33,10 @@ let package = Package(
         .watchOS(.v9),
     ],
     products: [
-        .library(
-            name: "OversizeComponents",
-            targets: ["OversizeComponents"]
-        ),
-        .library(
-            name: "OversizeHealthComponents",
-            targets: ["OversizeHealthComponents"]
-        ),
-        .library(
-            name: "OversizeWeatherComponents",
-            targets: ["OversizeWeatherComponents"]
-        ),
+        .library(name: "OversizeComponents", targets: ["OversizeComponents"]),
+        .library(name: "OversizePhotoComponents", targets: ["OversizePhotoComponents"]),
+        .library(name: "OversizeHealthComponents", targets: ["OversizeHealthComponents"]),
+        .library(name: "OversizeWeatherComponents", targets: ["OversizeWeatherComponents"]),
     ],
     dependencies: productionDependencies,
     targets: [
