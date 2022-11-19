@@ -59,10 +59,18 @@ let package = Package(
             ]
         ),
         .target(
+            name: "OversizePhotoComponents",
+            dependencies: [
+                .product(name: "OversizeUI", package: "OversizeUI"),
+                .product(name: "OversizeCore", package: "OversizeCore"),
+                .product(name: "OversizeLocalizable", package: "OversizeLocalizable"),
+                .product(name: "OversizeResources", package: "OversizeResources"),
+            ]
+        ),
+        .target(
             name: "OversizeHealthComponents",
             dependencies: [
                 .product(name: "OversizeUI", package: "OversizeUI"),
-                // .product(name: "SlidingRuler", package: "SlidingRuler"),
                 .product(name: "OversizeCore", package: "OversizeCore"),
             ]
         ),

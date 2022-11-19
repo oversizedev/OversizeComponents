@@ -43,7 +43,6 @@ public struct PhotoShowView: ViewModifier {
                         ForEach(0 ..< photos.count, id: \.self) { index in
                             photoWithOptions(image: photos[index])
                                 .tag(index)
-                                .id(index)
                         }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
