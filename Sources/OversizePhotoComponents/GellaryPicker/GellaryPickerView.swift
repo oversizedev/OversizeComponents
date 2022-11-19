@@ -9,6 +9,7 @@ import OversizeResources
 import OversizeUI
 import PhotosUI
 import SwiftUI
+import OversizeComponents
 
 public struct GellaryPickerView: View {
     @Environment(\.dismiss) var dismiss

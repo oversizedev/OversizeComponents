@@ -6,6 +6,7 @@
 import OversizeUI
 import SwiftUI
 import UIKit
+import OversizeComponents
 
 public struct WeightPicker: View {
     @Environment(\.dismiss) var dismiss
