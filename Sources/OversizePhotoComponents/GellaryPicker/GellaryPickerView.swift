@@ -54,7 +54,13 @@ public struct GellaryPickerView: View {
         .trailingBar {
             if !selectedImages.isEmpty, !isImportingPhotos {
                 BarButton(type: .accent(L10n.Button.add, action: {
-                    importPhotos()
+                    Task {
+                        let result = await importPhotos()
+                        selection += result.0
+                        selectionDate += result.1
+                        dismiss()
+                    }
+                    
                 }))
             }
             if isImportingPhotos {
@@ -133,13 +139,11 @@ public struct GellaryPickerView: View {
         }
     }
 
-    func importPhotos() {
+    func importPhotos() async -> ([UIImage], [Date]) {
         isImportingPhotos = true
         let selectedUiImages: [UIImage] = selectedImages.compactMap { getImageFromAsset(asset: $0) }
         let selectedImagesDates: [Date] = selectedImages.compactMap { $0.creationDate }
-        selection += selectedUiImages
-        selectionDate += selectedImagesDates
-        dismiss()
+        return (selectedUiImages, selectedImagesDates)
     }
 
     func upImportCounter() {
