@@ -15,7 +15,7 @@ public extension CGRect {
 
     /// Creates a rectangle with the specified center and size.
     init(center: CGPoint, size: CGSize) {
-        let r = CGRect(origin: .zero, size: size)
+        let r: CGRect = .init(origin: .zero, size: size)
         self = r.centered(at: center)
     }
 
@@ -154,7 +154,7 @@ public extension CGRect {
     func centered(in rect: CGRect) -> CGRect {
         guard !isEmpty, !isInfinite else { return self }
         let rectCenter = rect.center
-        let origin = CGPoint(x: rectCenter.x - width / 2.0, y: rectCenter.y - height / 2.0)
+        let origin: CGPoint = .init(x: rectCenter.x - width / 2.0, y: rectCenter.y - height / 2.0)
         return CGRect(origin: origin, size: size)
     }
 
@@ -168,7 +168,7 @@ public extension CGRect {
     @inlinable
     func centered(at point: CGPoint) -> CGRect {
         guard !isEmpty, !isInfinite else { return self }
-        let origin = CGPoint(x: point.x - width / 2.0, y: point.y - height / 2.0)
+        let origin: CGPoint = .init(x: point.x - width / 2.0, y: point.y - height / 2.0)
         return CGRect(origin: origin, size: size)
     }
 
@@ -187,7 +187,7 @@ public extension CGRect {
     /// Returns a copy of `self` centered at `(x,y)`.
     @inlinable
     func centered(atX x: CGFloat, y: CGFloat) -> CGRect {
-        let center = CGPoint(x: x, y: y)
+        let center: CGPoint = .init(x: x, y: y)
         return centered(at: center)
     }
 
@@ -244,7 +244,7 @@ public extension CGRect {
                 return $0.o
             }
         }
-        let newOrigin = CGPoint(x: coord[0], y: coord[1])
+        let newOrigin: CGPoint = .init(x: coord[0], y: coord[1])
 
         return CGRect(origin: newOrigin, size: size)
     }

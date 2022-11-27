@@ -3,13 +3,13 @@
 // GellaryPickerView.swift
 //
 
+import OversizeComponents
 import OversizeCore
 import OversizeLocalizable
 import OversizeResources
 import OversizeUI
 import PhotosUI
 import SwiftUI
-import OversizeComponents
 
 public struct GellaryPickerView: View {
     @Environment(\.dismiss) var dismiss
@@ -60,7 +60,7 @@ public struct GellaryPickerView: View {
                         selectionDate += result.1
                         dismiss()
                     }
-                    
+
                 }))
             }
             if isImportingPhotos {
@@ -153,7 +153,7 @@ public struct GellaryPickerView: View {
 
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
-        let option = PHImageRequestOptions()
+        let option: PHImageRequestOptions = .init()
         var thumbnail = UIImage()
         option.isSynchronous = true
         manager.requestImage(for: asset, targetSize: CGSize(width: 300, height: 300), contentMode: .aspectFit, options: option, resultHandler: { result, _ in
@@ -164,7 +164,7 @@ public struct GellaryPickerView: View {
 
     func getImageFromAsset(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
-        let option = PHImageRequestOptions()
+        let option: PHImageRequestOptions = .init()
         var thumbnail = UIImage()
         option.isSynchronous = true
         option.isNetworkAccessAllowed = true
@@ -177,7 +177,7 @@ public struct GellaryPickerView: View {
     }
 
     func getImages() {
-        let fetchOptions = PHFetchOptions()
+        let fetchOptions: PHFetchOptions = .init()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         fetchOptions.fetchLimit = 25000
         let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)

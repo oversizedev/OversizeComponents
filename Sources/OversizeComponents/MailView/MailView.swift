@@ -24,7 +24,7 @@
 
         public func makeUIViewController(context: Context) -> MFMailComposeViewController {
             if MFMailComposeViewController.canSendMail() {
-                let view = MFMailComposeViewController()
+                let view: MFMailComposeViewController = .init()
                 view.mailComposeDelegate = context.coordinator
                 view.setToRecipients([to])
                 view.setSubject(subject)

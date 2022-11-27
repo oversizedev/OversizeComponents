@@ -14,7 +14,7 @@ class CameraPreviewUIView: UIView {
         super.init(frame: .zero)
 
         var allowedAccess = false
-        let blocker = DispatchGroup()
+        let blocker: DispatchGroup = .init()
         blocker.enter()
         AVCaptureDevice.requestAccess(for: .video) { flag in
             allowedAccess = flag
@@ -28,7 +28,7 @@ class CameraPreviewUIView: UIView {
         }
 
         // setup session
-        let session = AVCaptureSession()
+        let session: AVCaptureSession = .init()
         session.beginConfiguration()
 
         let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,

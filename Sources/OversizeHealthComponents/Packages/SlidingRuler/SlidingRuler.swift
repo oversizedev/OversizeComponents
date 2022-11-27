@@ -385,7 +385,7 @@ extension SlidingRuler {
             let duration = Mechanic.Inertia.duration(forVelocity: initialVelocity, decelerationRate: rate)
 
             animationTimer = .init(duration: duration, animations: { progress, _ in
-                let distance = CGSize(horizontal: Mechanic.Inertia.distance(atTime: progress, v0: initialVelocity, decelerationRate: rate))
+                let distance: CGSize = .init(horizontal: Mechanic.Inertia.distance(atTime: progress, v0: initialVelocity, decelerationRate: rate))
                 shiftOffset(by: distance)
             }, completion: { completed in
                 if completed {
@@ -401,7 +401,7 @@ extension SlidingRuler {
             let allowedDistance = finalOffset.width.clamped(to: dragBounds) - referenceOffset.width
             let duration = Mechanic.Inertia.time(toReachDistance: allowedDistance, forVelocity: initialVelocity, decelerationRate: rate)
             animationTimer = .init(duration: duration, animations: { progress, _ in
-                let distance = CGSize(horizontal: Mechanic.Inertia.distance(atTime: progress, v0: initialVelocity, decelerationRate: rate))
+                let distance: CGSize = .init(horizontal: Mechanic.Inertia.distance(atTime: progress, v0: initialVelocity, decelerationRate: rate))
                 shiftOffset(by: distance)
             }, completion: { completed in
                 if completed {
@@ -443,7 +443,7 @@ extension SlidingRuler {
         let delta = abs(tx - limit)
         let factor: CGFloat = tx - limit < 0 ? -1 : 1
         let d = controlWidth ?? 0
-        let c = CGFloat(0.55)
+        let c: CGFloat = .init(0.55)
         let rubberDelta = (1 - (1 / ((c * delta / d) + 1))) * d * factor
         let rubberTx = limit + rubberDelta
 
@@ -484,7 +484,7 @@ extension SlidingRuler {
 
 extension SlidingRuler {
     private func boundaryMet() {
-        let fg = UIImpactFeedbackGenerator(style: .rigid)
+        let fg: UIImpactFeedbackGenerator = .init(style: .rigid)
         fg.impactOccurred(intensity: 0.667)
     }
 
@@ -512,7 +512,7 @@ extension SlidingRuler {
     }
 
     private func valueTick() {
-        let fg = UIImpactFeedbackGenerator(style: .light)
+        let fg: UIImpactFeedbackGenerator = .init(style: .light)
         fg.impactOccurred(intensity: 0.5)
     }
 }

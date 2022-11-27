@@ -91,8 +91,8 @@ private struct HorizontalPanGesture: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> UIView {
-        let view = HorizontalPanGestureReceiverView(frame: .init(size: .init(square: 42)))
-        let pgr = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.panGestureHandler(_:)))
+        let view: HorizontalPanGestureReceiverView = .init(frame: .init(size: .init(square: 42)))
+        let pgr: UIPanGestureRecognizer = .init(target: context.coordinator, action: #selector(Coordinator.panGestureHandler(_:)))
         view.delegate = context.coordinator
         pgr.delegate = context.coordinator
         view.addGestureRecognizer(pgr)

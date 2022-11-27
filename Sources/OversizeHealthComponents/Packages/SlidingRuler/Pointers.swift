@@ -7,7 +7,7 @@ import UIKit.UIBezierPath
 
 enum Pointers {
     static var standard: UIBezierPath {
-        let path = UIBezierPath()
+        let path: UIBezierPath = .init()
 
         path.move(to: CGPoint(x: 18.78348, y: 1.134168))
         path.addCurve(to: CGPoint(x: 19, y: 2.051366), controlPoint1: CGPoint(x: 18.925869, y: 1.418949), controlPoint2: CGPoint(x: 19, y: 1.732971))
