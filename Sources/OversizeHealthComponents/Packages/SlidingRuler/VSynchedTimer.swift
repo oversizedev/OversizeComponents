@@ -62,7 +62,7 @@ private final class SynchedTimer {
     @objc private func displayLinkTick(_: CADisplayLink) {
         guard isRunning else { return }
 
-        let currentTimeStamp: CACurrentMediaTime = .init()
+        let currentTimeStamp = CACurrentMediaTime()
         let progress = currentTimeStamp - startTimeStamp
         let elapsed = currentTimeStamp - lastTimeStamp
         lastTimeStamp = currentTimeStamp
