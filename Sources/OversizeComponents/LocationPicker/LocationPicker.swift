@@ -5,8 +5,8 @@
 
 import CoreLocation
 import MapKit
-import SwiftUI
 import OversizeUI
+import SwiftUI
 
 #if os(iOS)
     public struct LocationPicker: View {
