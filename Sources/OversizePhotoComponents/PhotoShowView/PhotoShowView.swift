@@ -52,15 +52,14 @@ public struct PhotoShowView: ViewModifier {
                         ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
                                            bigTitle: false,
                                            offset: .constant(CGPoint(x: 0, y: 0)),
-                                           modalityPresent: true,
                                            alwaysSlideSmallTile: false,
-                                           leadingBar: { BarButton(type: .backAction(action: {
+                                           leadingBar: { BarButton(.backAction {
                                                withAnimation {
                                                    isShowPhotoDetal = false
                                                }
 
-                                           })) },
-                                           trailingBar: { BarButton(type: .icon(.moreHorizontal, action: action)) })
+                                           }) },
+                                           trailingBar: { BarButton(.icon(.moreHorizontal, action: action)) })
                             .opacity(isShowOptions ? 1 : 0)
                             .background(.black.opacity(isShowOptions ? 0.1 : 0))
                         Spacer()

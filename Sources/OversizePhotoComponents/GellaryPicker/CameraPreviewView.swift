@@ -61,9 +61,13 @@ class CameraPreviewUIView: UIView {
         if superview != nil {
             videoPreviewLayer.session = captureSession
             videoPreviewLayer.videoGravity = .resizeAspectFill
-            captureSession?.startRunning()
+            DispatchQueue.global().async {
+                self.captureSession?.startRunning()
+            }
         } else {
-            captureSession?.stopRunning()
+            DispatchQueue.global().async {
+                self.captureSession?.stopRunning()
+            }
         }
     }
 }

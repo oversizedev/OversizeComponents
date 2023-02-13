@@ -42,10 +42,10 @@ public struct DatePickerSheet: View {
         }
         .backgroundSecondary()
         .leadingBar {
-            BarButton(type: .close)
+            BarButton(.close)
         }
         .trailingBar {
-            BarButton(type: .accent("Done", action: {
+            BarButton(.accent("Done", action: {
                 selection = date
                 dismiss()
             }))

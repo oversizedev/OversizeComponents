@@ -58,11 +58,11 @@ import SwiftUI
                 }.padding()
             }
             .navigationBar(label, style: .fixed($offset)) {
-                BarButton(type: .closeAction(action: {
+                BarButton(.closeAction {
                     closeView()
-                }))
+                })
             } trailingBar: {
-                BarButton(type: .secondary(saveButtonText ?? "Save", action: {
+                BarButton(.secondary(saveButtonText ?? "Save", action: {
                     closeView()
                 }))
             }

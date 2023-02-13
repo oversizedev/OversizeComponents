@@ -42,7 +42,7 @@ struct BMIHelpView: View {
         }
         .backgroundColor(.backgroundSecondary)
         .modalable()
-        .trailingBar(trailingBar: { BarButton(type: .close) })
+        .trailingBar(trailingBar: { BarButton(.close) })
     }
 
     var bmiView: some View {

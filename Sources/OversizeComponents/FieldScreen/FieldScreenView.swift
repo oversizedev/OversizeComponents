@@ -84,7 +84,7 @@ public struct FieldScreenView: View {
             .disabled(text.isEmpty)
         }
         .navigationBar(label, style: .fixed($offset)) {
-            BarButton(type: .close)
+            BarButton(.close)
         } trailingBar: {} bottomBar: {}
         .onAppear {
             isFocused = true

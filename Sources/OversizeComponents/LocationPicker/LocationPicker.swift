@@ -97,9 +97,9 @@ import SwiftUI
                 }.padding()
             }
             .navigationBar(label, style: .fixed($offset)) {
-                BarButton(type: .close)
+                BarButton(.close)
             } trailingBar: {
-                BarButton(type: .secondary(saveButtonText ?? "Save", action: {
+                BarButton(.secondary(saveButtonText ?? "Save", action: {
                     isSelected = true
                     showModal.toggle()
                 }))

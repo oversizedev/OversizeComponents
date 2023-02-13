@@ -1,6 +1,6 @@
 //
-// Copyright © 2022 Alexander Romanov
-// GellaryPickerView.swift
+// Copyright © 2023 Alexander Romanov
+// GellaryPhotoPickerView.swift
 //
 
 import OversizeComponents
@@ -11,22 +11,20 @@ import OversizeUI
 import PhotosUI
 import SwiftUI
 
-public struct GellaryPickerView: View {
+public struct GellaryPhotoPickerView: View {
     @Environment(\.dismiss) var dismiss
 
-    @State private var selectedImages: [PHAsset] = .init([])
     @State var gellaryImages: [PHAsset] = .init([])
     @State private var cameraImage: UIImage = .init()
 
     @State var isShowCamera: Bool = .init(false)
 
-    @Binding var selection: [UIImage]
-    @Binding var selectionDate: [Date]
+    @Binding var selection: UIImage?
+    @Binding var selectionDate: Date?
 
     @State var isImportingPhotos: Bool = false
 
     @State var importProgress = 0.0
-    @State var importImagesCount = 0.0
 
     private let threeColumnGrid = [
         GridItem(.flexible(minimum: 40), spacing: 2),
@@ -34,9 +32,9 @@ public struct GellaryPickerView: View {
         GridItem(.flexible(minimum: 40), spacing: 2),
     ]
 
-    public init(selection: Binding<[UIImage]>, selectionDate: Binding<[Date]>) {
+    public init(selection: Binding<UIImage?>, date: Binding<Date?> = .constant(nil)) {
         _selection = selection
-        _selectionDate = selectionDate
+        _selectionDate = date
     }
 
     public var body: some View {
@@ -51,25 +49,8 @@ public struct GellaryPickerView: View {
         .leadingBar {
             BarButton(.close)
         }
-        .trailingBar {
-            if !selectedImages.isEmpty, !isImportingPhotos {
-                BarButton(.accent(L10n.Button.add, action: {
-                    Task {
-                        let result = await importPhotos()
-                        selection += result.0
-                        selectionDate += result.1
-                        dismiss()
-                    }
-
-                }))
-            }
-            if isImportingPhotos {
-                ProgressView("", value: importProgress, total: importImagesCount)
-                    .progressViewStyle(.circular)
-            }
-        }
         .fullScreenCover(isPresented: $isShowCamera, onDismiss: {
-            selection.append(cameraImage)
+            selection = cameraImage
             dismiss()
         }) {
             ImagePicker(sourceType: .camera, selectedImage: self.$cameraImage)
@@ -98,7 +79,7 @@ public struct GellaryPickerView: View {
             .buttonStyle(.scale)
 
             ForEach(gellaryImages, id: \.self) { image in
-                let isSelected = selectedImages.contains(image)
+
                 Color.clear
                     .background(
                         Image(uiImage: getAssetThumbnail(asset: image))
@@ -108,46 +89,31 @@ public struct GellaryPickerView: View {
                     .aspectRatio(1, contentMode: .fill)
                     .clipped()
                     .contentShape(Rectangle())
-                    .overlay(alignment: .topTrailing) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: Radius.small, style: .continuous)
-                                .stroke(Color.white, lineWidth: 2)
-                                .frame(width: 24, height: 24)
-                                .shadow(radius: 4)
-                                .opacity(isSelected ? 0 : 1)
-
-                            RoundedRectangle(cornerRadius: Radius.small, style: .continuous).fill(Color.accent)
-                                .frame(width: 24, height: 24)
-                                .opacity(isSelected ? 1 : 0)
-
-                            Image(systemName: "checkmark")
-                                .font(.caption.weight(.black))
-                                .foregroundColor(.onPrimaryHighEmphasis)
-                                .opacity(isSelected ? 1 : 0)
+                    .overlay {
+                        if isImportingPhotos {
+                            ProgressView()
                         }
-                        .padding(.all, .xxSmall)
                     }
                     .onTapGesture {
-                        let isSelected = selectedImages.contains(image)
-                        if isSelected {
-                            selectedImages.remove(image)
-                        } else {
-                            selectedImages.append(image)
+                        Task {
+                            await importPhoto(image)
                         }
                     }
             }
         }
     }
 
-    func importPhotos() async -> ([UIImage], [Date]) {
+    @MainActor
+    func importPhoto(_ asset: PHAsset) async {
         isImportingPhotos = true
-        let selectedUiImages: [UIImage] = selectedImages.compactMap { getImageFromAsset(asset: $0) }
-        let selectedImagesDates: [Date] = selectedImages.compactMap { $0.creationDate }
-        return (selectedUiImages, selectedImagesDates)
+        let selectedUiImage: UIImage = getImageFromAsset(asset: asset)
+        let selectedImagesDate: Date = asset.creationDate ?? Date()
+        selection = selectedUiImage
+        selectionDate = selectedImagesDate
+        dismiss()
     }
 
     func upImportCounter() {
-        importImagesCount = Double(selectedImages.count)
         importProgress += 1
     }
 
