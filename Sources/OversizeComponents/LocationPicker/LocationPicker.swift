@@ -90,7 +90,7 @@ import SwiftUI
                                 .foregroundColor(.onSurfaceMediumEmphasis)
                         }
                     }
-                    .controlPadding(.small)
+                    .surfaceContentInsets(.small)
                     .controlRadius(.large)
                     .multilineTextAlignment(.center)
 
