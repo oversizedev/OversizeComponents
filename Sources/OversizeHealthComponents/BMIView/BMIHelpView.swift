@@ -56,7 +56,7 @@ struct BMIHelpView: View {
             // .shadowElevaton(.z3)
 
             Circle()
-                .trim(from: 0.3, to: CGFloat(self.state))
+                .trim(from: 0.3, to: CGFloat(state))
                 .stroke(style: StrokeStyle(lineWidth: 33, lineCap: .round, lineJoin: .round))
                 .fill(
                     AngularGradient(gradient: Gradient(colors:

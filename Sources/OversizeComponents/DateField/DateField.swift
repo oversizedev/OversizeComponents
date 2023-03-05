@@ -38,7 +38,7 @@ public struct DateField: View {
 
     public var body: some View {
         Button {
-            self.showModal.toggle()
+            showModal.toggle()
         } label: {
             HStack {
                 if isOptionalSelection, let optionalSelection {

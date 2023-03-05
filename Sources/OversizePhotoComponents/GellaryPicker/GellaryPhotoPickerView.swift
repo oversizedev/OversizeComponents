@@ -53,7 +53,7 @@ public struct GellaryPhotoPickerView: View {
             selection = cameraImage
             dismiss()
         }) {
-            ImagePicker(sourceType: .camera, selectedImage: self.$cameraImage)
+            ImagePicker(sourceType: .camera, selectedImage: $cameraImage)
                 .ignoresSafeArea(.all)
         }
     }
@@ -148,7 +148,7 @@ public struct GellaryPhotoPickerView: View {
         fetchOptions.fetchLimit = 25000
         let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
         assets.enumerateObjects { object, _, _ in
-            self.gellaryImages.append(object)
+            gellaryImages.append(object)
         }
     }
 }

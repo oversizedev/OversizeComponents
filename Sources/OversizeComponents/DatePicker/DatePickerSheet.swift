@@ -11,15 +11,24 @@ public struct DatePickerSheet: View {
     @Environment(\.dismiss) var dismiss
 
     @Binding private var selection: Date
+    @Binding private var optionalSelection: Date?
     @State private var date: Date
 
     private let title: String
     private var minimumDate: Date?
 
-    public init(title: String, date: Binding<Date>) {
+    public init(title: String, selection: Binding<Date>) {
         self.title = title
-        _selection = date
-        _date = State(wrappedValue: date.wrappedValue)
+        _selection = selection
+        _date = State(wrappedValue: selection.wrappedValue)
+        _optionalSelection = .constant(nil)
+    }
+
+    public init(title: String, selection: Binding<Date?>) {
+        self.title = title
+        _date = State(wrappedValue: selection.wrappedValue ?? Date())
+        _optionalSelection = selection
+        _selection = .constant(Date())
     }
 
     public var body: some View {
@@ -39,6 +48,7 @@ public struct DatePickerSheet: View {
                 .padding(.horizontal, .small)
                 .padding(.vertical, .xxxSmall)
             }
+            .surfaceContentInsets(.zero)
         }
         .backgroundSecondary()
         .leadingBar {
@@ -47,6 +57,7 @@ public struct DatePickerSheet: View {
         .trailingBar {
             BarButton(.accent("Done", action: {
                 selection = date
+                optionalSelection = date
                 dismiss()
             }))
         }

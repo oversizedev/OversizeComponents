@@ -123,18 +123,18 @@ public struct SlidingRuler<V>: View where V: BinaryFloatingPoint, V.Stride: Bina
 
         return FlexibleWidthContainer {
             ZStack(alignment: .init(horizontal: .center, vertical: .bottom)) {
-                Ruler(cells: self.cells, step: self.step, markOffset: self.markOffset, bounds: self.bounds, formatter: self.formatter)
+                Ruler(cells: cells, step: step, markOffset: markOffset, bounds: bounds, formatter: formatter)
                     .equatable()
                     .animation(nil)
-                    .modifier(InfiniteOffsetEffect(offset: renderedOffset, maxOffset: self.cellWidthOverflow))
-                self.style.makeCursorBody()
+                    .modifier(InfiniteOffsetEffect(offset: renderedOffset, maxOffset: cellWidthOverflow))
+                style.makeCursorBody()
             }
         }
         .modifier(InfiniteMarkOffsetModifier(renderedValue, step: step))
         .propagateWidth(ControlWidthPreferenceKey.self)
         .onPreferenceChange(MarkOffsetPreferenceKey.self, storeValueIn: $markOffset)
         .onPreferenceChange(ControlWidthPreferenceKey.self, storeValueIn: $controlWidth) {
-            self.updateCellsIfNeeded()
+            updateCellsIfNeeded()
         }
         .transaction {
             if $0.animation != nil { $0.animation = .easeIn(duration: 0.1) }
@@ -152,7 +152,7 @@ public struct SlidingRuler<V>: View where V: BinaryFloatingPoint, V.Stride: Bina
         case .flicking, .springing:
             if self.value != lastValueSet {
                 animationTimer?.cancel()
-                NextLoop { self.state = .idle }
+                NextLoop { state = .idle }
                 value = clampedValue ?? 0
                 offset = self.offset(fromValue: value)
             } else {
@@ -163,7 +163,7 @@ public struct SlidingRuler<V>: View where V: BinaryFloatingPoint, V.Stride: Bina
             value = self.value(fromOffset: offset)
         case .animating:
             if self.value != lastValueSet {
-                NextLoop { self.state = .idle }
+                NextLoop { state = .idle }
                 fallthrough
             }
             value = animatedValue

@@ -91,9 +91,9 @@ public struct PhotoShowView: ViewModifier {
     var magnificationGesture: some Gesture {
         MagnificationGesture()
             .onChanged { value in
-                let delta = value / self.previousScale
-                self.previousScale = value
-                self.currentScale = self.currentScale * delta
+                let delta = value / previousScale
+                previousScale = value
+                currentScale = currentScale * delta
             }
             .onEnded { value in
                 if value < 0.2 {
@@ -105,7 +105,7 @@ public struct PhotoShowView: ViewModifier {
                         currentOffset = CGSize.zero
                     }
                 }
-                self.previousScale = 1.0
+                previousScale = 1.0
             }
     }
 
@@ -132,21 +132,21 @@ public struct PhotoShowView: ViewModifier {
         DragGesture(minimumDistance: currentScale > 1.2 ? 0 : 20, coordinateSpace: .local)
             .onChanged { value in
 
-                let deltaX = value.translation.width - self.previousOffset.width
-                let deltaY = value.translation.height - self.previousOffset.height
-                self.previousOffset.width = value.translation.width
-                self.previousOffset.height = value.translation.height
+                let deltaX = value.translation.width - previousOffset.width
+                let deltaY = value.translation.height - previousOffset.height
+                previousOffset.width = value.translation.width
+                previousOffset.height = value.translation.height
 
-                let newOffsetWidth = self.currentOffset.width + deltaX / self.currentScale
+                let newOffsetWidth = currentOffset.width + deltaX / currentScale
                 // question 1: how to add horizontal constraint (but you need to think about scale)
                 if newOffsetWidth <= screenSize.width - 150.0, newOffsetWidth > -150.0, currentScale > 1 {
-                    self.currentOffset.width = self.currentOffset.width + deltaX / self.currentScale
+                    currentOffset.width = currentOffset.width + deltaX / currentScale
                 }
 
-                self.currentOffset.height = self.currentOffset.height + deltaY / self.currentScale
+                currentOffset.height = currentOffset.height + deltaY / currentScale
             }
             .onEnded { _ in
-                self.previousOffset = CGSize.zero
+                previousOffset = CGSize.zero
                 if currentOffset.height > screenSize.height / 5 ||
                     currentOffset.height < -(screenSize.height / 5)
                 {

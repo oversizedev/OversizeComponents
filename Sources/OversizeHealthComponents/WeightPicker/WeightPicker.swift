@@ -167,7 +167,7 @@ public struct WeightPicker: View {
                         .buttonStyle(.tertiary)
                         .controlBorderShape(.roundedRectangle(radius: .large))
                         .sheet(isPresented: $isShowCamera) {
-                            ImagePicker(sourceType: .camera, selectedImage: self.$image)
+                            ImagePicker(sourceType: .camera, selectedImage: $image)
                                 .ignoresSafeArea(.all)
                         }
 
@@ -180,7 +180,7 @@ public struct WeightPicker: View {
                         .buttonStyle(.tertiary)
                         .controlBorderShape(.roundedRectangle(radius: .large))
                         .sheet(isPresented: $isShowCamera) {
-                            ImagePicker(sourceType: .camera, selectedImage: self.$image)
+                            ImagePicker(sourceType: .camera, selectedImage: $image)
                                 .ignoresSafeArea(.all)
                         }
 
@@ -203,7 +203,7 @@ public struct WeightPicker: View {
                         .buttonStyle(.quaternary)
                         .controlBorderShape(.roundedRectangle(radius: .large))
                         .sheet(isPresented: $isShowCamera) {
-                            ImagePicker(sourceType: .camera, selectedImage: self.$image)
+                            ImagePicker(sourceType: .camera, selectedImage: $image)
                                 .ignoresSafeArea(.all)
                         }
                     }

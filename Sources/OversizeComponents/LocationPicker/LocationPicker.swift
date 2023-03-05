@@ -30,7 +30,7 @@ import SwiftUI
 
         public var body: some View {
             Button {
-                self.showModal.toggle()
+                showModal.toggle()
             } label: {
                 HStack(spacing: .xxSmall) {
                     Text(label)
@@ -118,12 +118,12 @@ import SwiftUI
                 if error != nil { return }
                 if let firstLocation = placemarks?.first as? CLPlacemark {
                     if let locality = firstLocation.locality {
-                        self.positionName = locality
+                        positionName = locality
 
                     } else if let subLocality = firstLocation.subLocality {
-                        self.positionName = subLocality
+                        positionName = subLocality
                     } else {
-                        self.positionName = firstLocation.name
+                        positionName = firstLocation.name
                     }
                 }
             }

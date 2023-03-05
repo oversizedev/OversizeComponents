@@ -11,7 +11,7 @@ public struct URLField: View {
     @Binding private var url: URL?
     @State private var urlString: String = ""
 
-    @State private var textFieldHelper: TextFieldHelperStyle = .none
+    @State private var textFieldHelper: FieldHelperStyle = .none
 
     public init(url: Binding<URL?>) {
         _url = url
@@ -32,6 +32,6 @@ public struct URLField: View {
         }
         .keyboardType(.URL)
         .textInputAutocapitalization(.never)
-        .helper(.constant("Invalid URL"), style: $textFieldHelper)
+        .fieldHelper(.constant("Invalid URL"), style: $textFieldHelper)
     }
 }

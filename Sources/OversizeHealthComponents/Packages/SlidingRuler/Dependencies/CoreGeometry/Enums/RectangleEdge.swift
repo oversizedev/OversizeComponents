@@ -11,7 +11,7 @@ public struct RectangleEdge: OptionSet {
     @usableFromInline
     var cgRectEdges: [CGRectEdge] {
         [Self.minXEdge, .minYEdge, .maxXEdge, .maxYEdge].lazy.compactMap {
-            self.contains($0) ? UInt32(log2(Double($0.rawValue))) : nil
+            contains($0) ? UInt32(log2(Double($0.rawValue))) : nil
         }.compactMap {
             CGRectEdge(rawValue: $0)
         }
