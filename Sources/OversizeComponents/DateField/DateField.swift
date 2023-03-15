@@ -9,6 +9,7 @@ import SwiftUI
 
 public struct DateField: View {
     @Environment(\.theme) private var theme: ThemeSettings
+    @Environment(\.fieldLabelPosition) private var fieldPlaceholderPosition: FieldLabelPosition
     @Binding private var selection: Date
     @Binding private var optionalSelection: Date?
     private let label: String
@@ -37,22 +38,41 @@ public struct DateField: View {
     }
 
     public var body: some View {
-        Button {
-            showModal.toggle()
-        } label: {
-            HStack {
-                if isOptionalSelection, let optionalSelection {
-                    Text(optionalSelection.formatted(date: .long, time: .shortened))
-                } else if isOptionalSelection {
+        VStack(alignment: .leading, spacing: .xSmall) {
+            if fieldPlaceholderPosition == .adjacent {
+                HStack {
                     Text(label)
-                } else {
-                    Text(selection.formatted(date: .long, time: .shortened))
+                        .subheadline(.medium)
+                        .foregroundColor(.onSurfaceHighEmphasis)
+                    Spacer()
                 }
-                Spacer()
-                Icon(.calendar, color: .onSurfaceHighEmphasis)
             }
+            Button {
+                showModal.toggle()
+            } label: {
+                VStack(alignment: .leading, spacing: .xxxSmall) {
+                    if fieldPlaceholderPosition == .overInput {
+                        Text(label)
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .onSurfaceDisabledForegroundColor()
+                    }
+
+                    HStack {
+                        if isOptionalSelection, let optionalSelection {
+                            Text(optionalSelection.formatted(date: .long, time: .shortened))
+                        } else if isOptionalSelection {
+                            Text(label)
+                        } else {
+                            Text(selection.formatted(date: .long, time: .shortened))
+                        }
+                        Spacer()
+                        Icon(.calendar, color: .onSurfaceHighEmphasis)
+                    }
+                }
+            }
+            .buttonStyle(.field)
         }
-        .buttonStyle(.field)
         .sheet(isPresented: $showModal) {
             if isOptionalSelection {
                 DatePickerSheet(title: label, selection: $optionalSelection)

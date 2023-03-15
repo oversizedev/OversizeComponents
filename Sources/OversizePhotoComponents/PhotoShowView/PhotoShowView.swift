@@ -10,25 +10,25 @@ import OversizeUI
 import SwiftUI
 
 public struct PhotoShowView: ViewModifier {
-    @Environment(\.screenSize) var screenSize
-    @Environment(\.theme) var theme
+    @Environment(\.screenSize) private var screenSize
+    @Environment(\.theme) private var theme
 
-    @State var currentScale: CGFloat = 1.0
-    @State var previousScale: CGFloat = 1.0
+    @State private var currentScale: CGFloat = 1.0
+    @State private var previousScale: CGFloat = 1.0
 
-    @State var currentOffset = CGSize.zero
-    @State var previousOffset = CGSize.zero
+    @State private var currentOffset = CGSize.zero
+    @State private var previousOffset = CGSize.zero
 
-    @State var isShowOptions: Bool = true
+    @State private var isShowOptions: Bool = true
 
-    @Binding var selectionIndex: Int
-    let photos: [Image]
+    @Binding private var selectionIndex: Int
+    private let photos: [Image]
 
-    @Binding var isShowPhotoDetal: Bool
+    @Binding private var isShowPhotoDetal: Bool
 
-    let action: () -> Void
+    private let action: (() -> Void)?
 
-    public init(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image], action: @escaping () -> Void) {
+    public init(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image], action: (() -> Void)? = nil) {
         _selectionIndex = selection
         self.photos = photos
         _isShowPhotoDetal = isPresent
@@ -38,17 +38,20 @@ public struct PhotoShowView: ViewModifier {
     public func body(content: Content) -> some View {
         content
             .overlay {
-                ZStack {
-                    TabView(selection: $selectionIndex) {
-                        ForEach(0 ..< photos.count, id: \.self) { index in
-                            photoWithOptions(image: photos[index])
-                                .tag(index)
-                        }
+                TabView(selection: $selectionIndex) {
+                    ForEach(0 ..< photos.count, id: \.self) { index in
+                        photoWithOptions(image: photos[index])
+                            .tag(index)
                     }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
-                    .indexViewStyle(.page(backgroundDisplayMode: .never))
-
-                    VStack {
+                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .indexViewStyle(.page(backgroundDisplayMode: .never))
+                .ignoresSafeArea(.all)
+                .navigationBarHidden(true)
+                .background(.black.opacity(backgroundOpacity))
+                .opacity(isShowPhotoDetal ? 1 : 0)
+                .safeAreaInset(edge: .top) {
+                    if #available(iOS 16.0, *) {
                         ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
                                            bigTitle: false,
                                            offset: .constant(CGPoint(x: 0, y: 0)),
@@ -59,17 +62,40 @@ public struct PhotoShowView: ViewModifier {
                                                }
 
                                            }) },
-                                           trailingBar: { BarButton(.icon(.moreHorizontal, action: action)) })
+                                           trailingBar: {
+                            if let action {
+                                BarButton(.icon(.moreHorizontal, action: action))
+                            }
+                            
+                            
+                           
+                            
+                            
+                        })
                             .opacity(isShowOptions ? 1 : 0)
                             .background(.black.opacity(isShowOptions ? 0.1 : 0))
-                        Spacer()
+                            .opacity(optionsOpacity)
+                            .toolbar(isShowPhotoDetal ? .hidden : .visible, for: .tabBar)
+                    } else {
+                        ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
+                                           bigTitle: false,
+                                           offset: .constant(CGPoint(x: 0, y: 0)),
+                                           alwaysSlideSmallTile: false,
+                                           leadingBar: { BarButton(.backAction {
+                                               withAnimation {
+                                                   isShowPhotoDetal = false
+                                               }
+
+                                           }) },
+                                           trailingBar: {  if let action {
+                                               BarButton(.icon(.moreHorizontal, action: action))
+                                           }
+                                            })
+                            .opacity(isShowOptions ? 1 : 0)
+                            .background(.black.opacity(isShowOptions ? 0.1 : 0))
+                            .opacity(optionsOpacity)
                     }
-                    .opacity(optionsOpacity)
                 }
-                .ignoresSafeArea(.all)
-                .navigationBarHidden(true)
-                .background(.black.opacity(backgroundOpacity))
-                .opacity(isShowPhotoDetal ? 1 : 0)
                 .statusBar(hidden: isShowPhotoDetal)
                 .colorScheme(.dark)
             }
@@ -85,7 +111,6 @@ public struct PhotoShowView: ViewModifier {
             .gesture(tapGestue.sequenced(before: doubleTapGestue))
             .simultaneousGesture(dragGestue)
             .gesture(magnificationGesture)
-        // .vCenter()
     }
 
     var magnificationGesture: some Gesture {
@@ -138,7 +163,6 @@ public struct PhotoShowView: ViewModifier {
                 previousOffset.height = value.translation.height
 
                 let newOffsetWidth = currentOffset.width + deltaX / currentScale
-                // question 1: how to add horizontal constraint (but you need to think about scale)
                 if newOffsetWidth <= screenSize.width - 150.0, newOffsetWidth > -150.0, currentScale > 1 {
                     currentOffset.width = currentOffset.width + deltaX / currentScale
                 }
@@ -205,7 +229,7 @@ public struct PhotoShowView: ViewModifier {
 }
 
 public extension View {
-    func photoOverlay(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image], action: @escaping () -> Void) -> some View {
+    func photoOverlay(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image], action: (() -> Void)? = nil) -> some View {
         modifier(PhotoShowView(isPresent: isPresent, selection: selection, photos: photos, action: action))
     }
 }

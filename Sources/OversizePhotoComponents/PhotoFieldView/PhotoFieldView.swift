@@ -43,7 +43,7 @@ public struct PhotoFieldView: View {
             .buttonStyle(.field)
         } else {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: .xSmall) {
+                LazyHStack(alignment: .top, spacing: .xSmall) {
                     addPhotoSurface
 
                     ForEach(selection, id: \.self) { photo in

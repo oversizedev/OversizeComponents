@@ -30,7 +30,7 @@ public struct AvatarPickerView: View {
     @ViewBuilder
     private var avatarLabel: some View {
         if let avatar {
-            AvatarView(avatar: Image(uiImage: avatar))
+            Avatar(avatar: Image(uiImage: avatar))
                 .controlSize(.large)
         } else {
             ZStack {

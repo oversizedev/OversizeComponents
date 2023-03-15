@@ -23,18 +23,14 @@ class CameraPreviewUIView: UIView {
         blocker.wait()
 
         if !allowedAccess {
-            print("!!! NO ACCESS TO CAMERA")
             return
         }
-
-        // setup session
         let session: AVCaptureSession = .init()
         session.beginConfiguration()
 
         let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                   for: .video, position: .unspecified) // alternate AVCaptureDevice.default(for: .video)
         guard videoDevice != nil, let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!), session.canAddInput(videoDeviceInput) else {
-            print("!!! NO CAMERA DETECTED")
             return
         }
         session.addInput(videoDeviceInput)
