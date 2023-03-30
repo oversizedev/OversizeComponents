@@ -53,7 +53,7 @@ public struct PhotoShowView: ViewModifier {
                 .safeAreaInset(edge: .top) {
                     if #available(iOS 16.0, *) {
                         ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
-                                           bigTitle: false,
+                                           largeTitle: false,
                                            offset: .constant(CGPoint(x: 0, y: 0)),
                                            alwaysSlideSmallTile: false,
                                            leadingBar: { BarButton(.backAction {
@@ -63,22 +63,18 @@ public struct PhotoShowView: ViewModifier {
 
                                            }) },
                                            trailingBar: {
-                            if let action {
-                                BarButton(.icon(.moreHorizontal, action: action))
-                            }
-                            
-                            
-                           
-                            
-                            
-                        })
-                            .opacity(isShowOptions ? 1 : 0)
-                            .background(.black.opacity(isShowOptions ? 0.1 : 0))
-                            .opacity(optionsOpacity)
-                            .toolbar(isShowPhotoDetal ? .hidden : .visible, for: .tabBar)
+                                               if let action {
+                                                   BarButton(.icon(.moreHorizontal, action: action))
+                                               }
+
+                                           })
+                                           .opacity(isShowOptions ? 1 : 0)
+                                           .background(.black.opacity(isShowOptions ? 0.1 : 0))
+                                           .opacity(optionsOpacity)
+                                           .toolbar(isShowPhotoDetal ? .hidden : .visible, for: .tabBar)
                     } else {
                         ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
-                                           bigTitle: false,
+                                           largeTitle: false,
                                            offset: .constant(CGPoint(x: 0, y: 0)),
                                            alwaysSlideSmallTile: false,
                                            leadingBar: { BarButton(.backAction {
@@ -87,13 +83,13 @@ public struct PhotoShowView: ViewModifier {
                                                }
 
                                            }) },
-                                           trailingBar: {  if let action {
+                                           trailingBar: { if let action {
                                                BarButton(.icon(.moreHorizontal, action: action))
                                            }
-                                            })
-                            .opacity(isShowOptions ? 1 : 0)
-                            .background(.black.opacity(isShowOptions ? 0.1 : 0))
-                            .opacity(optionsOpacity)
+                                           })
+                                           .opacity(isShowOptions ? 1 : 0)
+                                           .background(.black.opacity(isShowOptions ? 0.1 : 0))
+                                           .opacity(optionsOpacity)
                     }
                 }
                 .statusBar(hidden: isShowPhotoDetal)
@@ -107,7 +103,7 @@ public struct PhotoShowView: ViewModifier {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .offset(x: currentOffset.width, y: currentOffset.height)
-            .scaleEffect(max(currentScale, 0.01)) // the second question
+            .scaleEffect(max(currentScale, 0.01))
             .gesture(tapGestue.sequenced(before: doubleTapGestue))
             .simultaneousGesture(dragGestue)
             .gesture(magnificationGesture)
@@ -233,9 +229,3 @@ public extension View {
         modifier(PhotoShowView(isPresent: isPresent, selection: selection, photos: photos, action: action))
     }
 }
-
-// struct PhotoDetalView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PhotoDetalView()
-//    }
-// }
