@@ -12,7 +12,7 @@ public struct PhoneField: View {
 
     @State private var textFieldHelper: FieldHelperStyle = .none
 
-    public init(phone: Binding<String>) {
+    public init(_ phone: Binding<String>) {
         _phone = phone
     }
 
