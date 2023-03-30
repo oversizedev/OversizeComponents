@@ -32,7 +32,7 @@ import SwiftUI
         public var body: some View {
             ZStack {
                 if !isClosing {
-                    MapView(centerCoordinate: $coordinates)
+                    MapViewDepecated(centerCoordinate: $coordinates)
                         .ignoresSafeArea()
                 }
 

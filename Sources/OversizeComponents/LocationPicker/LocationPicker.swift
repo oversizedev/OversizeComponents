@@ -72,7 +72,7 @@ import SwiftUI
 
         public var modal: some View {
             ZStack {
-                MapView(centerCoordinate: $coordinates)
+                MapViewDepecated(centerCoordinate: $coordinates)
                     .ignoresSafeArea()
 
                 VStack {
