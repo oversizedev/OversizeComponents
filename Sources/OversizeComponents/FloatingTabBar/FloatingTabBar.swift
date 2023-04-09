@@ -55,8 +55,9 @@ public struct FloatingTabBar<Content: View>: View {
     }
 
     private func tabItem(tabItem: TabItem, index: Int) -> some View {
-        Group {
-            if plusAction != nil, let number = tabs.count % 2, number == index {
+        let number = tabs.count % 2
+        return Group {
+            if plusAction != nil, number == index {
                 Group {
                     Button {
                         withAnimation {

@@ -1,6 +1,6 @@
 //
 // Copyright © 2023 Alexander Romanov
-// PhotoSliderView2.swift
+// PhotoSliderView.swift
 //
 
 import OversizeCore
