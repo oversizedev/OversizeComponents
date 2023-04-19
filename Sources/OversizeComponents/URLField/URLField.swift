@@ -11,14 +11,14 @@ public struct URLField: View {
     @Binding private var url: URL?
     @State private var urlString: String = ""
     let title: String
-    
+
     @State private var textFieldHelper: FieldHelperStyle = .none
-    
+
     public init(_ title: String = "URL", url: Binding<URL?>) {
         self.title = title
         _url = url
     }
-    
+
     public var body: some View {
         if #available(iOS 16.0, *) {
             TextField(title, value: $url, format: .url)

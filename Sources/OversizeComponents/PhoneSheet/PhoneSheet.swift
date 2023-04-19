@@ -30,17 +30,22 @@ public struct PhoneSheet: View {
             SectionView {
                 VStack(spacing: .zero) {
                     ForEach(numbers, id: \.self) { number in
-                        if let numberURL = URL(string: number.phone) {
+                        if let numberURL = URL(string: "tel:\(number.phone)") {
                             Link(destination: numberURL) {
                                 Row(number.phone, subtitle: number.name)
+                                    .multilineTextAlignment(.leading)
                             }
+                            .buttonStyle(.row)
                         }
                     }
                 }
             }
-            .hLeading()
+            .surfaceContentRowInsets()
         }
         .backgroundSecondary()
+        .leadingBar {
+            BarButton(.close)
+        }
     }
 }
 

@@ -3,9 +3,9 @@
 // CalendarMonthView.swift
 //
 
-import SwiftUI
-import OversizeUI
 import OversizeCore
+import OversizeUI
+import SwiftUI
 
 public struct CalendarMonthView<DateView>: View where DateView: View {
     @Environment(\.sizeCategory) private var contentSize
@@ -13,17 +13,17 @@ public struct CalendarMonthView<DateView>: View where DateView: View {
     @Binding var selectedMonth: Date
     @State private var months: [Date] = []
     @State private var days: [Date: [Date]] = [:]
-    
+
     private let interval: DateInterval
     private let showHeaders: Bool
     private let onHeaderAppear: (Date) -> Void
     private let content: (Date) -> DateView
-    
+
     private var columns: [GridItem] {
         let spacing: CGFloat = contentSize.isAccessibilityCategory ? 2 : 8
         return Array(repeating: GridItem(spacing: spacing), count: 7)
     }
-    
+
     public init(
         interval: DateInterval,
         showHeaders: Bool = false,
@@ -33,7 +33,7 @@ public struct CalendarMonthView<DateView>: View where DateView: View {
     ) {
         self.interval = interval
         self.showHeaders = showHeaders
-        self._selectedMonth = selectedMonth
+        _selectedMonth = selectedMonth
         self.onHeaderAppear = onHeaderAppear
         self.content = content
     }
@@ -95,4 +95,3 @@ public struct CalendarMonthView<DateView>: View where DateView: View {
         }
     }
 }
-
