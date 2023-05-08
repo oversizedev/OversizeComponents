@@ -107,7 +107,7 @@ public struct BMIView: View {
                     .foregroundColor(.onBackgroundMediumEmphasis)
 
                 Button { isShowHelp.toggle() } label: {
-                    Icon(.helpCircle, size: .medium, color: .onBackgroundDisabled)
+                   IconDeprecated(.helpCircle, size: .medium, color: .onBackgroundDisabled)
                 }
             }
             .unredacted()

@@ -54,7 +54,7 @@ import SwiftUI
                 if let imageName = selection {
                     Image(imageName, bundle: .main)
                 }
-                OversizeUI.Icon(.chevronDown, color: .onSurfaceHighEmphasis)
+                OversizeUI.IconDeprecated(.chevronDown, color: .onSurfaceHighEmphasis)
             }
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding()

@@ -223,9 +223,9 @@ public struct WeightPicker: View {
                     .frame(width: 48, height: 48)
                     .overlay {
                         HStack(spacing: -4) {
-                            Icon(.chevronLeft, color: .onSurfaceDisabled)
+                           IconDeprecated(.chevronLeft, color: .onSurfaceDisabled)
 
-                            Icon(.chevronRight, color: .onSurfaceDisabled)
+                           IconDeprecated(.chevronRight, color: .onSurfaceDisabled)
                         }
                     }
                     // .matchedGeometryEffect(id: "Weight", in: animation)

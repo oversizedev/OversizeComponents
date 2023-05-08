@@ -82,7 +82,7 @@ public struct DayСolumnView: View {
                 .frame(width: 16, height: 16)
                 .rotationEffect(Angle(degrees: Double(windDegrees + 180)))
 
-            // Icon(.arrowUp, size: .small, color: textColor.opacity(0.7))
+            //IconDeprecated(.arrowUp, size: .small, color: textColor.opacity(0.7))
 
             Text(L10n.Common.wind)
                 .padding(.top, .xSmall)

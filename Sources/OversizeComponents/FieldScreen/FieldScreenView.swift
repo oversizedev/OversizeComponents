@@ -52,7 +52,7 @@ public struct FieldScreenView: View {
             VStack(spacing: 0) {
                 HStack {
                     if leadingImage != .none {
-                        Icon(leadingImage)
+                       IconDeprecated(leadingImage)
                     }
 
                     TextField(placeholder, text: $text)
@@ -62,7 +62,7 @@ public struct FieldScreenView: View {
                         .focused($isFocused)
 
                     if trallingImage != .none {
-                        Icon(trallingImage)
+                       IconDeprecated(trallingImage)
                     }
                 }
 

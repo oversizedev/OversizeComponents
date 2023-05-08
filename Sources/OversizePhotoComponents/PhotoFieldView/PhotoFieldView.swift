@@ -37,7 +37,7 @@ public struct PhotoFieldView: View {
 
                     Spacer()
 
-                    Icon(.camera)
+                   IconDeprecated(.camera)
                 }
             }
             .buttonStyle(.field)
@@ -60,7 +60,7 @@ public struct PhotoFieldView: View {
                                     }
 
                                 } label: {
-                                    Icon(.xMini)
+                                   IconDeprecated(.xMini)
                                         .iconColor(.white)
                                         .padding(.xxxSmall)
                                         .background {
@@ -88,7 +88,7 @@ public struct PhotoFieldView: View {
                     .frame(width: 48, height: 48)
                     .shadowElevaton(.z1)
                     .overlay {
-                        Icon(.plus, color: .onSurfaceHighEmphasis)
+                       IconDeprecated(.plus, color: .onSurfaceHighEmphasis)
                             .shadowElevaton(.z1)
                     }
                 Text(L10n.Button.add)

@@ -10,8 +10,7 @@ import SwiftUI
 
 public struct PriceField: View {
     @Binding private var amount: Decimal
-    @State private var textFieldHelper: FieldHelperStyle = .none
-    @State var currency = "USD"
+    private let currency = "USD"
 
     public init(amount: Binding<Decimal>) {
         _amount = amount
@@ -19,11 +18,11 @@ public struct PriceField: View {
 
     public var body: some View {
         TextField(
-            "Amount",
+            "0",
             value: $amount,
             format: .currency(code: currency)
         )
-        .keyboardType(.numberPad)
+        .keyboardType(.decimalPad)
         .textFieldStyle(.default)
     }
 }
