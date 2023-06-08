@@ -124,7 +124,7 @@ struct BMIHelpView: View {
 
     var infoListView: some View {
         VStack(spacing: 2) {
-            bmiRow(value: "16.0", title: "Underweight", description: "Severe thinness", color: .blue, icon:IconDeprecated(.chevronLeft, color: .onPrimaryHighEmphasis))
+            bmiRow(value: "16.0", title: "Underweight", description: "Severe thinness", color: .blue, icon: IconDeprecated(.chevronLeft, color: .onPrimaryHighEmphasis))
 
             bmiRow(value: "16.0–16.9", title: "Underweight", description: "Moderate thinness", color: .cyan)
 
@@ -139,7 +139,7 @@ struct BMIHelpView: View {
 
             bmiRow(value: "35.0–39.9", title: "Obese", description: "Class II", color: .orange)
 
-            bmiRow(value: "40", title: "Obese", description: "Class III", color: .red, icon:IconDeprecated(.chevronRight, color: .onPrimaryHighEmphasis))
+            bmiRow(value: "40", title: "Obese", description: "Class III", color: .red, icon: IconDeprecated(.chevronRight, color: .onPrimaryHighEmphasis))
         }
     }
 

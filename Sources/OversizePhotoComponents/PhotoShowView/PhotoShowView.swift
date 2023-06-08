@@ -37,6 +37,7 @@ public struct PhotoShowView: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
+            .scaleEffect(isShowPhotoDetal ? 0.95 : 1)
             .overlay {
                 TabView(selection: $selectionIndex) {
                     ForEach(0 ..< photos.count, id: \.self) { index in
@@ -52,44 +53,49 @@ public struct PhotoShowView: ViewModifier {
                 .opacity(isShowPhotoDetal ? 1 : 0)
                 .safeAreaInset(edge: .top) {
                     if #available(iOS 16.0, *) {
-                        ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
-                                           largeTitle: false,
-                                           offset: .constant(CGPoint(x: 0, y: 0)),
-                                           alwaysSlideSmallTile: false,
-                                           leadingBar: { BarButton(.backAction {
-                                               withAnimation {
-                                                   isShowPhotoDetal = false
-                                               }
+                        ModalNavigationBar(
+                            title: "\(selectionIndex + 1) of \(photos.count)",
+                            largeTitle: false,
+                            offset: .constant(CGPoint(x: 0, y: 0)),
+                            alwaysSlideSmallTile: false,
+                            leadingBar: {
+                                BarButton(.backAction {
+                                    withAnimation {
+                                        isShowPhotoDetal = false
+                                    }
 
-                                           }) },
-                                           trailingBar: {
-                                               if let action {
-                                                   BarButton(.icon(.moreHorizontal, action: action))
-                                               }
-
-                                           })
-                                           .opacity(isShowOptions ? 1 : 0)
-                                           .background(.black.opacity(isShowOptions ? 0.1 : 0))
-                                           .opacity(optionsOpacity)
-                                           .toolbar(isShowPhotoDetal ? .hidden : .visible, for: .tabBar)
+                                })
+                            },
+                            trailingBar: {
+                                if let action {
+                                    BarButton(.icon(.moreHorizontal, action: action))
+                                }
+                            }
+                        )
+                        .opacity(isShowOptions ? 1 : 0)
+                        .background(.black.opacity(isShowOptions ? 0.1 : 0))
+                        .opacity(optionsOpacity)
+                        .toolbar(isShowPhotoDetal ? .hidden : .visible, for: .tabBar)
                     } else {
-                        ModalNavigationBar(title: "\(selectionIndex + 1) of \(photos.count)",
-                                           largeTitle: false,
-                                           offset: .constant(CGPoint(x: 0, y: 0)),
-                                           alwaysSlideSmallTile: false,
-                                           leadingBar: { BarButton(.backAction {
-                                               withAnimation {
-                                                   isShowPhotoDetal = false
-                                               }
+                        ModalNavigationBar(
+                            title: "\(selectionIndex + 1) of \(photos.count)",
+                            largeTitle: false,
+                            offset: .constant(CGPoint(x: 0, y: 0)),
+                            alwaysSlideSmallTile: false,
+                            leadingBar: { BarButton(.backAction {
+                                withAnimation {
+                                    isShowPhotoDetal = false
+                                }
 
-                                           }) },
-                                           trailingBar: { if let action {
-                                               BarButton(.icon(.moreHorizontal, action: action))
-                                           }
-                                           })
-                                           .opacity(isShowOptions ? 1 : 0)
-                                           .background(.black.opacity(isShowOptions ? 0.1 : 0))
-                                           .opacity(optionsOpacity)
+                            }) },
+                            trailingBar: { if let action {
+                                BarButton(.icon(.moreHorizontal, action: action))
+                            }
+                            }
+                        )
+                        .opacity(isShowOptions ? 1 : 0)
+                        .background(.black.opacity(isShowOptions ? 0.1 : 0))
+                        .opacity(optionsOpacity)
                     }
                 }
                 .statusBar(hidden: isShowPhotoDetal)

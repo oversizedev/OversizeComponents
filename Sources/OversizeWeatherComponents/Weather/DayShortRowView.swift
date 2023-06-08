@@ -97,7 +97,7 @@ public struct DayShortRowView: View {
                             .frame(minWidth: 44)
                             .multilineTextAlignment(.center)
                     } else {
-                       IconDeprecated(.chevronUp)
+                        IconDeprecated(.chevronUp)
                     }
                 }
                 .padding(.vertical, .small)

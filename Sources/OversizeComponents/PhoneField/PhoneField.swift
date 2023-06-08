@@ -21,7 +21,7 @@ public struct PhoneField: View {
             textFieldHelper = .none
         }) {}
             .keyboardType(.phonePad)
-            .textContentType(.telephoneNumber)
+            .textContentType(.nickname)
             .fieldHelper(.constant("Invalid Phone"), style: $textFieldHelper)
     }
 }

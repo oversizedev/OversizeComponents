@@ -46,7 +46,7 @@ import SwiftUI
                         .foregroundColor(.onPrimaryMediumEmphasis)
                 }
 
-               IconDeprecated(.chevronDown, color: .onSurfaceHighEmphasis)
+                IconDeprecated(.chevronDown, color: .onSurfaceHighEmphasis)
             }
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding()

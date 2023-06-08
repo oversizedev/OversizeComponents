@@ -67,7 +67,7 @@ public struct DateField: View {
                             Text(selection.formatted(date: .long, time: .shortened))
                         }
                         Spacer()
-                        Icon.Base.calendar.outline
+                        Icons.Base.calendar.outline
                         // Icon(.calendar, color: .onSurfaceHighEmphasis)
                     }
                 }
