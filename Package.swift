@@ -32,7 +32,7 @@ let package = Package(
         .library(name: "OversizeHealthComponents", targets: ["OversizeHealthComponents"]),
         .library(name: "OversizeWeatherComponents", targets: ["OversizeWeatherComponents"]),
     ],
-    dependencies: developmentDependencies,
+    dependencies: productionDependencies,
     targets: [
         .target(
             name: "OversizeComponents",
