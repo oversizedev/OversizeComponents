@@ -7,6 +7,10 @@ import OversizeCore
 import OversizeUI
 import SwiftUI
 
+@available(iOS 15.0, *)
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public struct CalendarMonthView<DateView>: View where DateView: View {
     @Environment(\.sizeCategory) private var contentSize
     @Environment(\.calendar) private var calendar

@@ -7,6 +7,11 @@ import OversizeCore
 import OversizeUI
 import SwiftUI
 
+#if os(iOS)
+@available(iOS 15.0, *)
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public struct DateField: View {
     @Environment(\.theme) private var theme: ThemeSettings
     @Environment(\.fieldLabelPosition) private var fieldPlaceholderPosition: FieldLabelPosition
@@ -87,3 +92,4 @@ public struct DateField: View {
         }
     }
 }
+#endif

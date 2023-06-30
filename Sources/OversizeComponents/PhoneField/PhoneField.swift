@@ -7,6 +7,11 @@ import OversizeCore
 import OversizeUI
 import SwiftUI
 
+#if os(iOS)
+@available(iOS 15.0, *)
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public struct PhoneField: View {
     @Binding private var phone: String
 
@@ -25,3 +30,4 @@ public struct PhoneField: View {
             .fieldHelper(.constant("Invalid Phone"), style: $textFieldHelper)
     }
 }
+#endif

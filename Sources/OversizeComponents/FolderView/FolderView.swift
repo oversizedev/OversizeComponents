@@ -7,11 +7,20 @@ import OversizeResources
 import OversizeUI
 import SwiftUI
 
+#if os(iOS)
+@available(iOS 15.0, *)
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public enum FolderViewContentType {
     case photos([Image])
     case icon(Image)
 }
 
+@available(iOS 15.0, *)
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public struct FolderView: View {
     @Environment(\.controlSize) var controlSize
     let color: Color
@@ -89,6 +98,10 @@ public struct FolderView: View {
 
 // MARK: - Folder midificators
 
+@available(iOS 15.0, *)
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public extension FolderView {
     func lock(_ lock: Bool = true) -> FolderView {
         var control = self
@@ -105,6 +118,10 @@ public extension FolderView {
 
 // MARK: - Folder sizes
 
+@available(iOS 15.0, *)
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 extension FolderView {
     var iconSize: CGFloat {
         if controlSize == .mini {
@@ -250,6 +267,10 @@ extension FolderView {
     }
 }
 
+@available(iOS 15.0, *)
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 struct FolderView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -289,3 +310,4 @@ struct FolderView_Previews: PreviewProvider {
         .previewLayout(.sizeThatFits)
     }
 }
+#endif

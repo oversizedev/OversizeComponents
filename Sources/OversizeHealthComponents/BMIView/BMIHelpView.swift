@@ -41,7 +41,6 @@ struct BMIHelpView: View {
             }
         }
         .backgroundColor(.backgroundSecondary)
-        .modalable()
         .trailingBar(trailingBar: { BarButton(.close) })
     }
 
@@ -143,7 +142,7 @@ struct BMIHelpView: View {
         }
     }
 
-    func bmiRow(value: String, title: String, description: String, color: Color, icon: Icon? = nil) -> some View {
+    func bmiRow(value: String, title: String, description: String, color: Color, icon: IconDeprecated? = nil) -> some View {
         HStack(spacing: 16) {
             HStack(spacing: 0) {
                 if icon != nil {

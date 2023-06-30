@@ -17,6 +17,7 @@ public struct PriceField: View {
     }
 
     public var body: some View {
+        #if os(iOS)
         TextField(
             "0",
             value: $amount,
@@ -24,5 +25,13 @@ public struct PriceField: View {
         )
         .keyboardType(.decimalPad)
         .textFieldStyle(.default)
+        #else
+        TextField(
+            "0",
+            value: $amount,
+            format: .currency(code: currency)
+        )
+        .textFieldStyle(.default)
+        #endif
     }
 }

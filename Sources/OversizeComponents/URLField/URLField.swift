@@ -7,6 +7,11 @@ import OversizeCore
 import OversizeUI
 import SwiftUI
 
+#if os(iOS)
+@available(iOS 15.0, *)
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public struct URLField: View {
     @Binding private var url: URL?
     @State private var urlString: String = ""
@@ -36,3 +41,4 @@ public struct URLField: View {
         }
     }
 }
+#endif
