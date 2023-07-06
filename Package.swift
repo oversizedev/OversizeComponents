@@ -8,6 +8,7 @@ let productionDependencies: [PackageDescription.Package.Dependency] = { [
     .package(url: "https://github.com/oversizedev/OversizeCore.git", .upToNextMajor(from: "1.3.0")),
     .package(url: "https://github.com/oversizedev/OversizeLocalizable.git", .upToNextMajor(from: "1.4.0")),
     .package(url: "https://github.com/oversizedev/OversizeResources.git", .upToNextMajor(from: "1.3.0")),
+    .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git", .upToNextMajor(from: "2.1.1")),
 ] }()
 
 let developmentDependencies: [PackageDescription.Package.Dependency] = { [
@@ -15,6 +16,7 @@ let developmentDependencies: [PackageDescription.Package.Dependency] = { [
     .package(name: "OversizeCore", path: "../OversizeCore"),
     .package(name: "OversizeLocalizable", path: "../OversizeLocalizable"),
     .package(name: "OversizeResources", path: "../OversizeResources"),
+    .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git", .upToNextMajor(from: "2.1.1")),
 ] }()
 
 let package = Package(
@@ -41,6 +43,7 @@ let package = Package(
                 .product(name: "OversizeCore", package: "OversizeCore"),
                 .product(name: "OversizeLocalizable", package: "OversizeLocalizable"),
                 .product(name: "OversizeResources", package: "OversizeResources"),
+                .product(name: "CachedAsyncImage", package: "swiftui-cached-async-image"),
             ]
         ),
         .target(

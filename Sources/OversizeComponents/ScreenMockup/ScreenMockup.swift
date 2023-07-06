@@ -3,6 +3,8 @@
 // ScreenMockup.swift
 //
 
+import CachedAsyncImage
+import OversizeCore
 import SwiftUI
 
 public struct ScreenMockup: View {
@@ -14,7 +16,7 @@ public struct ScreenMockup: View {
 
     public var body: some View {
         ZStack {
-            AsyncImage(url: url) { image in
+            CachedAsyncImage(url: url) { image in
                 image
                     .resizable()
                     .scaledToFill()
@@ -28,7 +30,7 @@ public struct ScreenMockup: View {
                 }
             }
 
-            AsyncImage(url: URL(string: "https://cdn.oversize.design/assets/mocks/iphone13/iPhone13.png")) { image in
+            CachedAsyncImage(url: URL(string: "https://cdn.oversize.design/assets/mocks/iphone13/iPhone13.png"), urlCache: .imageCache) { image in
                 image
                     .resizable()
                     .scaledToFill()

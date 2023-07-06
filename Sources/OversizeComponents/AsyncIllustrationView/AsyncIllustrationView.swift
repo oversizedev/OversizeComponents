@@ -3,6 +3,8 @@
 // AsyncIllustrationView.swift
 //
 
+import CachedAsyncImage
+import OversizeCore
 import OversizeUI
 import SwiftUI
 
@@ -26,7 +28,7 @@ public struct AsyncIllustrationView: View {
     public var body: some View {
         let url = URL(string: "https://cdn.oversize.design/assets/illustrations/\(path)")
 
-        AsyncImage(url: url, scale: scale) {
+        CachedAsyncImage(url: url, urlCache: .imageCache, scale: scale) {
             $0
                 .resizable()
                 .scaledToFit()

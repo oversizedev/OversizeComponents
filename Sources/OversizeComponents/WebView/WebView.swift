@@ -60,10 +60,9 @@ import WebKit
         }
     }
 
-
-struct WebView_Previews: PreviewProvider {
-    static var previews: some View {
-        WebView(url: URL(string: "https://www.apple.com")!)
+    struct WebView_Previews: PreviewProvider {
+        static var previews: some View {
+            WebView(url: URL(string: "https://www.apple.com")!)
+        }
     }
-}
 #endif
