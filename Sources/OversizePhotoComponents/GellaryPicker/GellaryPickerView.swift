@@ -70,6 +70,7 @@ public struct GellaryPickerView: View {
         }
         .fullScreenCover(isPresented: $isShowCamera, onDismiss: {
             selection.append(cameraImage)
+            selectionDate.append(Date())
             dismiss()
         }) {
             ImagePicker(sourceType: .camera, selectedImage: $cameraImage)
