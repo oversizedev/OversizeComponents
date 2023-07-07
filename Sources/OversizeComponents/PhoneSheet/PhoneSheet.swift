@@ -30,7 +30,7 @@ public struct PhoneSheet: View {
             SectionView {
                 VStack(spacing: .zero) {
                     ForEach(numbers, id: \.self) { number in
-                        if let numberURL = URL(string: "tel:\(number.phone)") {
+                        if let numberURL = URL(string: "tel:\(number.phone.filter("0123456789.+".contains))") {
                             Link(destination: numberURL) {
                                 Row(number.phone, subtitle: number.name)
                                     .multilineTextAlignment(.leading)
