@@ -16,7 +16,7 @@ public struct PhoneSheetNumber: Hashable {
     }
 }
 
-public struct PhoneSheet: View {
+public struct PhoneCallSheet: View {
     private let numbers: [PhoneSheetNumber]
     private let title: String
 
@@ -49,9 +49,9 @@ public struct PhoneSheet: View {
     }
 }
 
-struct PhoneSheet_Previews: PreviewProvider {
+struct PhoneCallSheet_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneSheet("Phones", numbers: [
+        PhoneCallSheet("Phones", numbers: [
             PhoneSheetNumber(name: "Mobile", phone: "+1 (342) 345 45 42"),
             PhoneSheetNumber(name: "Home", phone: "+1 (435) 234 34 23"),
         ])
