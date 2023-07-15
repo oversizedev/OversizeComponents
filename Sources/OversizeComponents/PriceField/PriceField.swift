@@ -8,12 +8,14 @@ import OversizeCore
 import OversizeUI
 import SwiftUI
 
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
 public struct PriceField: View {
     @Binding private var amount: Decimal
-    private let currency = "USD"
+    private let currency: Locale.Currency
 
-    public init(amount: Binding<Decimal>) {
+    public init(amount: Binding<Decimal>, currency: Locale.Currency) {
         _amount = amount
+        self.currency = currency
     }
 
     public var body: some View {
@@ -21,7 +23,7 @@ public struct PriceField: View {
             TextField(
                 "0",
                 value: $amount,
-                format: .currency(code: currency)
+                format: .currency(code: currency.identifier)
             )
             .keyboardType(.decimalPad)
             .textFieldStyle(.default)
@@ -29,7 +31,7 @@ public struct PriceField: View {
             TextField(
                 "0",
                 value: $amount,
-                format: .currency(code: currency)
+                format: .currency(code: currency.identifier)
             )
             .textFieldStyle(.default)
         #endif
