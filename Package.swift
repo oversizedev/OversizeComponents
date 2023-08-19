@@ -30,7 +30,7 @@ let package = Package(
     ],
     products: [
         .library(name: "OversizeComponents", targets: ["OversizeComponents"]),
-        .library(name: "OversizeBankComponents", targets: ["OversizeBankComponents"])
+        .library(name: "OversizeBankComponents", targets: ["OversizeBankComponents"]),
         .library(name: "OversizePhotoComponents", targets: ["OversizePhotoComponents"]),
         .library(name: "OversizeHealthComponents", targets: ["OversizeHealthComponents"]),
         .library(name: "OversizeWeatherComponents", targets: ["OversizeWeatherComponents"]),
