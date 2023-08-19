@@ -30,6 +30,7 @@ let package = Package(
     ],
     products: [
         .library(name: "OversizeComponents", targets: ["OversizeComponents"]),
+        .library(name: "OversizeBankComponents", targets: ["OversizeBankComponents"])
         .library(name: "OversizePhotoComponents", targets: ["OversizePhotoComponents"]),
         .library(name: "OversizeHealthComponents", targets: ["OversizeHealthComponents"]),
         .library(name: "OversizeWeatherComponents", targets: ["OversizeWeatherComponents"]),
@@ -71,6 +72,11 @@ let package = Package(
                 .product(name: "OversizeUI", package: "OversizeUI"),
                 .product(name: "OversizeCore", package: "OversizeCore"),
                 .product(name: "OversizeResources", package: "OversizeResources"),
+            ]
+        ),
+        .target(
+            name: "OversizeBankComponents",
+            dependencies: [
             ]
         ),
         .testTarget(

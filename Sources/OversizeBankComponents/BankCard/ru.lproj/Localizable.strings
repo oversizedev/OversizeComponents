@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  PINWalletMX
+
+  Created by Александр Романов on 06.08.2021.
+  
+*/
+
+"card.textureIridescent" = "Переливающийся";
+"card.textureMetal" = "Металл";
+"card.textureNoise" = "Шум";
+"card.texturePaper" = "Бумага";
+"card.textureWaves" = "Волны";
+
+"card.materialClay" = "Алюминий";
+"card.materialGlass" = "Стекло";
+"card.materialSolid" = "Заливка";
+"card.materialGold" = "Золото";
+"card.materialColor" = "Цвет";
+"card.materialGrayscale" = "Алюминий";
+"card.materialSolidDark" = "Тёмная";
+"card.materialSolidLight" = "Светлая";
+"card.materialStrokeMetal" = "Металл";
+"card.materialSilver" = "Серебряный";
+
+"card.backgroundGradient" = "Градиент";
+"card.backgroundImage" = "Картинка";
+"card.backgroundShape" = "Узор";
+
+"card.paymentTypeMasterCard" = "MasterCard";
+"card.paymentTypeVisa" = "Visa";
+"card.paymentTypeMIR" = "МИР";
+
+
+
+"card.paymentTypeMaestro" = "Мaestro";
+"card.paymentTypeAmericanExpress" = "AmericanExpress";
+"card.paymentTypeDinersClub" = "DinersClub";
+"card.paymentTypeDiscover" = "Discover";
+"card.paymentTypeUnionPay" = "UnionPay";
+"card.paymentTypeJcb" = "JCB";
+"card.paymentTypeElo" = "Elo";
+"card.paymentTypeHiper" = "Hiper";
+"card.paymentTypeHipercard" = "Hipercard";
+
+"card.fontTypeDefault" = "Обычный";
+"card.fontTypeSans" = "Санс";
+"card.fontTypeRounded" = "Раунд";
+"card.fontTypeSerif" = "Засечки";
+
+"card.gradientSideHorizontal" = "Горизонтальный";
+"card.gradientSideVertical" = "Вертикальный";
+"card.gradientSideDeiganal" = "Deiganal";
+
+"card.templatesClassic" = "Классический";
+"card.templatesMinimal" = "Минимальный";
+"card.templatesTypo" = "Типографика";
+"card.templatesVerti" = "Вертикальный";

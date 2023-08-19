@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  PINWalletMX
+
+  Created by Александр Романов on 06.08.2021.
+  
+*/
+
+"card.textureIridescent" = "Irifallande";
+"card.textureMetal" = "Metall";
+"card.textureNoise" = "Buller";
+"card.texturePaper" = "Papper";
+"card.textureWaves" = "Vågor";
+
+"card.materialClay" = "Lera";
+"card.materialGlass" = "Glas";
+"card.materialSolid" = "Solid";
+"card.materialGold" = "Guld";
+"card.materialColor" = "Färg";
+"card.materialGrayscale" = "Grå";
+"card.materialSolidDark" = "Mörk";
+"card.materialSolidLight" = "Ljus";
+"card.materialStrokeMetal" = "Mtal";
+"card.materialSilver" = "Silver";
+
+"card.backgroundGradient" = "Gradient";
+"card.backgroundImage" = "Bild";
+"card.backgroundShape" = "Form";
+
+"card.paymentTypeMasterCard" = "MasterCard";
+"card.paymentTypeVisa" = "Visa";
+"card.paymentTypeMIR" = "MIR";
+
+
+
+"card.paymentTypeMaestro" = "Мaestro";
+"card.paymentTypeAmericanExpress" = "AmericanExpress";
+"card.paymentTypeDinersClub" = "DinersClub";
+"card.paymentTypeDiscover" = "Upptäck";
+"card.paymentTypeUnionPay" = "UnionPay";
+"card.paymentTypeJcb" = "JCB";
+"card.paymentTypeElo" = "Elo";
+"card.paymentTypeHiper" = "Hiper";
+"card.paymentTypeHipercard" = "Hipercard";
+
+"card.fontTypeDefault" = "Standard";
+"card.fontTypeSans" = "Sans";
+"card.fontTypeRounded" = "Rund";
+"card.fontTypeSerif" = "Serie";
+
+"card.gradientSideHorizontal" = "Horisontell";
+"card.gradientSideVertical" = "Vertikal";
+"card.gradientSideDeiganal" = "Deiganal";
+
+"card.templatesClassic" = "Klassisk";
+"card.templatesMinimal" = "Minimal";
+"card.templatesTypo" = "Typo";
+"card.templatesVerti" = "Verti";
