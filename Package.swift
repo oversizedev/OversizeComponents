@@ -77,6 +77,7 @@ let package = Package(
         .target(
             name: "OversizeBankComponents",
             dependencies: [
+                .product(name: "OversizeUI", package: "OversizeUI"),
             ]
         ),
         .testTarget(
