@@ -4,7 +4,6 @@
 //
 
 import OversizeCore
-import OversizeResources
 import OversizeUI
 import SwiftUI
 
@@ -28,7 +27,7 @@ public struct RatingPickerView: View {
                         HStack {
                             Spacer()
 
-                            Icon.Solid.UserInterface.star
+                            Image.Base.Star.fill
                                 .renderingMode(.template)
                                 .foregroundColor(rating ?? 0 >= Double(score) ? .warning : .onSurfaceDisabled)
 
@@ -40,7 +39,7 @@ public struct RatingPickerView: View {
             }
         }
         .surfaceBackgroundColor(.surfaceSecondary)
-        .surfaceContentInsets(.medium)
+        .surfaceContentMargins(.medium)
     }
 }
 

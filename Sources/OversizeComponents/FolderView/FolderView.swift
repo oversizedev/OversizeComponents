@@ -3,7 +3,6 @@
 // FolderView.swift
 //
 
-import OversizeResources
 import OversizeUI
 import SwiftUI
 
@@ -64,7 +63,7 @@ import SwiftUI
                                 .fill(Color.black.opacity(0.2))
                                 .frame(width: 54, height: 54)
                         }
-                        Icon.Solid.UserInterface.lock
+                        Image.Base.lock
                             .renderingMode(.template)
                             .resizable()
                             .frame(width: iconSize, height: iconSize)
