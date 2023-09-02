@@ -3,7 +3,6 @@
 // AvatarPickerView.swift
 //
 
-import OversizeResources
 import OversizeUI
 import SwiftUI
 
@@ -38,7 +37,7 @@ public struct AvatarPickerView: View {
                     .fill(Color.surfaceSecondary)
                     .frame(width: Space.xxxLarge.rawValue, height: Space.xxxLarge.rawValue)
 
-                Icon.Solid.DevicesandElectronics.camera
+                Image.Base.camera
                     .renderingMode(.template)
                     .resizable()
                     .foregroundColor(Color.onSurfaceMediumEmphasis)

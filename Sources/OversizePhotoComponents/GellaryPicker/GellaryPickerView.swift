@@ -6,7 +6,6 @@
 import OversizeComponents
 import OversizeCore
 import OversizeLocalizable
-import OversizeResources
 import OversizeUI
 import PhotosUI
 import SwiftUI
@@ -90,7 +89,7 @@ public struct GellaryPickerView: View {
                         .fill(.black.opacity(0.2))
                         .frame(width: 48, height: 48)
 
-                    Icon.Solid.DevicesandElectronics.camera
+                    Image.Base.camera
                         .renderingMode(.template)
                         .foregroundColor(.white)
                 }

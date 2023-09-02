@@ -37,7 +37,7 @@ public struct MediaPickerView: View {
                     Label {
                         Text("Gellary")
                     } icon: {
-                        Icon.Line.DevicesandElectronics.camera
+                        Image.Base.camera
                             .renderingMode(.template)
                     }
                 }
@@ -47,7 +47,7 @@ public struct MediaPickerView: View {
                     Label {
                         Text("File")
                     } icon: {
-                        Icon.Line.UserInterface.folder
+                        Image.Base.folder
                             .renderingMode(.template)
                     }
                 }
@@ -57,7 +57,7 @@ public struct MediaPickerView: View {
                     Label {
                         Text("Link")
                     } icon: {
-                        Icon.Line.NavigationandTravel.globe
+                        Image.Editor.clear
                             .renderingMode(.template)
                     }
                 }
