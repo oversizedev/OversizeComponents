@@ -75,7 +75,7 @@ public struct DayСolumnView: View {
 
             // nightIcon
 
-            Icon.Plumpy.gps
+            Image.Location.nearMe
                 .resizable()
                 .renderingMode(.template)
                 .foregroundColor(textColor.opacity(0.7))
