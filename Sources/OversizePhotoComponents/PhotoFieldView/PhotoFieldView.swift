@@ -4,7 +4,6 @@
 //
 
 import OversizeLocalizable
-import OversizeResources
 import OversizeUI
 import SwiftUI
 
@@ -37,7 +36,8 @@ public struct PhotoFieldView: View {
 
                     Spacer()
 
-                    IconDeprecated(.camera)
+                    Image.Base.camera
+                        .icon()
                 }
             }
             .buttonStyle(.field)

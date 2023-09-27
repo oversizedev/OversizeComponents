@@ -3,7 +3,6 @@
 // SorticngPicker.swift
 //
 
-import OversizeResources
 import OversizeUI
 import SwiftUI
 
@@ -48,7 +47,7 @@ public struct SortingPicker<Element, Content>: View
                 sortView
                 ascendingView
             }
-            .surfaceContentRowInsets()
+            .surfaceContentRowMargins()
         }
         .leadingBar {
             BarButton(.close)

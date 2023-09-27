@@ -37,7 +37,7 @@ public struct AvatarPickerView: View {
                     .fill(Color.surfaceSecondary)
                     .frame(width: Space.xxxLarge.rawValue, height: Space.xxxLarge.rawValue)
 
-                Image.Base.camera
+                Image.Base.Camera.fill
                     .renderingMode(.template)
                     .resizable()
                     .foregroundColor(Color.onSurfaceMediumEmphasis)

@@ -3,7 +3,6 @@
 // MediaPickerView.swift
 //
 
-import OversizeResources
 import OversizeUI
 import SwiftUI
 
@@ -57,7 +56,7 @@ public struct MediaPickerView: View {
                     Label {
                         Text("Link")
                     } icon: {
-                        Image.Editor.clear
+                        Image.Base.clear
                             .renderingMode(.template)
                     }
                 }

@@ -69,7 +69,7 @@ public struct GellaryPhotoPickerView: View {
                         .fill(.black.opacity(0.2))
                         .frame(width: 48, height: 48)
 
-                    Image.Base.camera
+                    Image.Base.Camera.fill
                         .renderingMode(.template)
                         .foregroundColor(.white)
                 }

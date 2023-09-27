@@ -5,7 +5,6 @@
 
 import OversizeCore
 import OversizeLocalizable
-import OversizeResources
 import OversizeUI
 import SwiftUI
 

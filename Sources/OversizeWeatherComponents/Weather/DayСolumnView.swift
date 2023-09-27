@@ -5,7 +5,6 @@
 
 import OversizeCore
 import OversizeLocalizable
-import OversizeResources
 import OversizeUI
 import SwiftUI
 
@@ -75,7 +74,7 @@ public struct DayСolumnView: View {
 
             // nightIcon
 
-            Image.Location.nearMe
+            Image.Base.nearMe
                 .resizable()
                 .renderingMode(.template)
                 .foregroundColor(textColor.opacity(0.7))

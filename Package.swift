@@ -7,7 +7,6 @@ let productionDependencies: [PackageDescription.Package.Dependency] = { [
     .package(url: "https://github.com/oversizedev/OversizeUI.git", .upToNextMajor(from: "3.0.2")),
     .package(url: "https://github.com/oversizedev/OversizeCore.git", .upToNextMajor(from: "1.3.0")),
     .package(url: "https://github.com/oversizedev/OversizeLocalizable.git", .upToNextMajor(from: "1.4.0")),
-    .package(url: "https://github.com/oversizedev/OversizeResources.git", .upToNextMajor(from: "2.0.0")),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git", .upToNextMajor(from: "2.1.1")),
 ] }()
 
@@ -15,7 +14,6 @@ let developmentDependencies: [PackageDescription.Package.Dependency] = { [
     .package(name: "OversizeUI", path: "../OversizeUI"),
     .package(name: "OversizeCore", path: "../OversizeCore"),
     .package(name: "OversizeLocalizable", path: "../OversizeLocalizable"),
-    .package(name: "OversizeResources", path: "../OversizeResources"),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git", .upToNextMajor(from: "2.1.1")),
 ] }()
 
@@ -30,7 +28,6 @@ let package = Package(
     ],
     products: [
         .library(name: "OversizeComponents", targets: ["OversizeComponents"]),
-        .library(name: "OversizeBankComponents", targets: ["OversizeBankComponents"]),
         .library(name: "OversizePhotoComponents", targets: ["OversizePhotoComponents"]),
         .library(name: "OversizeHealthComponents", targets: ["OversizeHealthComponents"]),
         .library(name: "OversizeWeatherComponents", targets: ["OversizeWeatherComponents"]),
@@ -43,7 +40,6 @@ let package = Package(
                 .product(name: "OversizeUI", package: "OversizeUI"),
                 .product(name: "OversizeCore", package: "OversizeCore"),
                 .product(name: "OversizeLocalizable", package: "OversizeLocalizable"),
-                .product(name: "OversizeResources", package: "OversizeResources"),
                 .product(name: "CachedAsyncImage", package: "swiftui-cached-async-image"),
             ]
         ),
@@ -54,7 +50,6 @@ let package = Package(
                 .product(name: "OversizeUI", package: "OversizeUI"),
                 .product(name: "OversizeCore", package: "OversizeCore"),
                 .product(name: "OversizeLocalizable", package: "OversizeLocalizable"),
-                .product(name: "OversizeResources", package: "OversizeResources"),
             ]
         ),
         .target(
@@ -71,13 +66,6 @@ let package = Package(
                 .product(name: "OversizeLocalizable", package: "OversizeLocalizable"),
                 .product(name: "OversizeUI", package: "OversizeUI"),
                 .product(name: "OversizeCore", package: "OversizeCore"),
-                .product(name: "OversizeResources", package: "OversizeResources"),
-            ]
-        ),
-        .target(
-            name: "OversizeBankComponents",
-            dependencies: [
-                .product(name: "OversizeUI", package: "OversizeUI"),
             ]
         ),
         .testTarget(
