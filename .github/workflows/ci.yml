@@ -7,14 +7,43 @@ on:
   
 jobs:
 
-  build-swiftpm:
-    name: Build SwiftPM
-    uses: ./.github/workflows/build-swiftpm.yml
+  build-oversizeComponents:
+    name: Build OversizeComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
+    with:
+      package: "OversizeComponents"
+    secrets: inherit
+    
+  build-healthComponents:
+    name: Build HealthComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
+    with:
+      package: "OversizeHealthComponents"
+    secrets: inherit
+    
+  build-photoComponents:
+    name: Build PhotoComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
+    with:
+      package: "OversizePhotoComponents"
+    secrets: inherit
+    
+  build-weatherComponents:
+    name: Build WeatherComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
+    with:
+      package: "OversizeWeatherComponents"
+    secrets: inherit
+    
+  tests:
+    name: Test
+    needs: [build-oversizeComponents, build-healthComponents, build-photoComponents, build-weatherComponents]
+    uses: oversizedev/GithubWorkflows/.github/workflows/test.yml@main
     secrets: inherit
     
   bump:
     name: Bump version
-    needs: build-swiftpm
-    uses: ./.github/workflows/bump.yml
+    needs: tests
+    uses: oversizedev/GithubWorkflows/.github/workflows/bump.yml@main
     secrets: inherit
     
