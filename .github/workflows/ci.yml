@@ -46,4 +46,3 @@ jobs:
     needs: tests
     uses: oversizedev/GithubWorkflows/.github/workflows/bump.yml@main
     secrets: inherit
-    
