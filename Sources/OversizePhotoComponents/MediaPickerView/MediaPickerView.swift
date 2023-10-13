@@ -6,6 +6,7 @@
 import OversizeUI
 import SwiftUI
 
+#if os(iOS)
 public struct MediaPickerView: View {
     @State var isShowPicker: Bool = false
 
@@ -70,3 +71,4 @@ public struct MediaPickerView: View {
 //    }
 // }
 //
+#endif

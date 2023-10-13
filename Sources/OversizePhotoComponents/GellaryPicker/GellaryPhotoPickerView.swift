@@ -10,6 +10,7 @@ import OversizeUI
 import PhotosUI
 import SwiftUI
 
+#if os(iOS)
 public struct GellaryPhotoPickerView: View {
     @Environment(\.dismiss) var dismiss
 
@@ -157,3 +158,4 @@ public struct GellaryPhotoPickerView: View {
 //        GellaryPickerView(selection: .constant([]))
 //    }
 // }
+#endif

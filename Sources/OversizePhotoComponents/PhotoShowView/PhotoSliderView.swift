@@ -8,6 +8,7 @@ import OversizeLocalizable
 import OversizeUI
 import SwiftUI
 
+#if os(iOS)
 public struct PhotoSliderView: View {
     @Environment(\.screenSize) private var screenSize
     @Environment(\.theme) private var theme
@@ -226,3 +227,4 @@ public struct PhotoSliderView: View {
         }
     }
 }
+#endif

@@ -5,7 +5,11 @@
 
 import OversizeUI
 import SwiftUI
+#if canImport(UIKit)
+    import UIKit
+#endif
 
+#if os(iOS)
 public struct AvatarPickerView: View {
     @Binding private var avatar: UIImage?
     @State var isShowPicker: Bool = false
@@ -52,3 +56,4 @@ public struct AvatarPickerView: View {
 //        AvatarPickerView()
 //    }
 // }
+#endif

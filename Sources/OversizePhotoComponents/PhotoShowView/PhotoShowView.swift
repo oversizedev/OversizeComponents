@@ -8,6 +8,7 @@ import OversizeLocalizable
 import OversizeUI
 import SwiftUI
 
+#if os(iOS)
 public struct PhotoShowView: ViewModifier {
     @Environment(\.screenSize) private var screenSize
     @Environment(\.theme) private var theme
@@ -234,3 +235,4 @@ public extension View {
         modifier(PhotoShowView(isPresent: isPresent, selection: selection, photos: photos, action: action))
     }
 }
+#endif

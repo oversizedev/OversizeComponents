@@ -5,8 +5,11 @@
 
 import AVFoundation
 import SwiftUI
-import UIKit
+#if canImport(UIKit)
+    import UIKit
+#endif
 
+#if os(iOS)
 class CameraPreviewUIView: UIView {
     private var captureSession: AVCaptureSession?
 
@@ -87,3 +90,4 @@ struct DemoVideoStreaming: View {
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
 }
+#endif

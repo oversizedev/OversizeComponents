@@ -7,6 +7,7 @@ import OversizeLocalizable
 import OversizeUI
 import SwiftUI
 
+#if os(iOS)
 public struct PhotoFieldView: View {
     @Binding var selection: [UIImage]
     @Binding var selectionDate: [Date]
@@ -100,7 +101,7 @@ public struct PhotoFieldView: View {
         .surfaceBackgroundColor(.surfacePrimary)
         .surfaceBorderColor(.surfaceSecondary)
         .surfaceBorderWidth(2)
-        .surfaceContentInsets(EdgeSpaceInsets(top: .medium, leading: .xxSmall, bottom: .medium, trailing: .xxSmall))
+        .surfaceContentMargins(EdgeSpaceInsets(top: .medium, leading: .xxSmall, bottom: .medium, trailing: .xxSmall))
     }
 }
 
@@ -110,3 +111,4 @@ struct PhotoFieldView_Previews: PreviewProvider {
             .previewComponent()
     }
 }
+#endif

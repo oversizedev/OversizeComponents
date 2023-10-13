@@ -4,8 +4,11 @@
 //
 
 import AVFoundation
-import UIKit
+#if canImport(UIKit)
+    import UIKit
+#endif
 
+#if os(iOS)
 class CameraController: NSObject {
     var captureSession: AVCaptureSession?
     var frontCamera: AVCaptureDevice?
@@ -76,3 +79,4 @@ enum CameraControllerError: Swift.Error {
     case noCamerasAvailable
     case unknown
 }
+#endif

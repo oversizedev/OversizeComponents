@@ -4,8 +4,11 @@
 //
 
 import SwiftUI
-import UIKit
+#if canImport(UIKit)
+    import UIKit
+#endif
 
+#if os(iOS)
 final class CameraViewController: UIViewController {
     let cameraController: CameraController = .init()
     var previewView: UIView!
@@ -34,3 +37,4 @@ extension CameraViewController: UIViewControllerRepresentable {
 
     public func updateUIViewController(_: CameraViewController, context _: UIViewControllerRepresentableContext<CameraViewController>) {}
 }
+#endif
