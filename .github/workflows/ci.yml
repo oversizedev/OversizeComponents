@@ -22,7 +22,7 @@ jobs:
 
       - name: Build All Targets
         run: |
-          xcodebuild clean build -skipPackagePluginValidation -alltargets -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' | xcpretty && exit ${PIPESTATUS[0]}
+          run: xcodebuild clean build -skipPackagePluginValidation -scheme "OversizeComponents" -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' | xcpretty && exit ${PIPESTATUS[0]}
 
 # jobs:
 #   build-oversizeComponents:
