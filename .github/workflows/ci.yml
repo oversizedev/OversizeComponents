@@ -6,61 +6,42 @@ on:
   workflow_dispatch:
 
 jobs:
-  swiftpm:
-    name: Build
-    runs-on: macOS-14
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Set up SwiftPM Plugin
-        run: |
-          echo "https://github.com/:username=${{ secrets.ACTIONS_TOKEN }}" >> ~/.netrc
-          set -euo pipefail
-          defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidation -bool YES
-
-      - name: Build All Targets
-        run: |
-          xcodebuild clean build -skipPackagePluginValidation -scheme "OversizeComponents" -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' | xcpretty && exit ${PIPESTATUS[0]}
-
-# jobs:
-#   build-oversizeComponents:
-#     name: Build OversizeComponents
-#     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
-#     with:
-#       package: "OversizeComponents"
-#     secrets: inherit
+  build-oversizeComponents:
+    name: Build OversizeComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
+    with:
+      package: "OversizeComponents"
+    secrets: inherit
     
-#   build-healthComponents:
-#     name: Build HealthComponents
-#     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
-#     with:
-#       package: "OversizeHealthComponents"
-#     secrets: inherit
+  build-healthComponents:
+    name: Build HealthComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
+    with:
+      package: "OversizeHealthComponents"
+    secrets: inherit
     
-#   build-photoComponents:
-#     name: Build PhotoComponents
-#     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
-#     with:
-#       package: "OversizePhotoComponents"
-#     secrets: inherit
+  build-photoComponents:
+    name: Build PhotoComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
+    with:
+      package: "OversizePhotoComponents"
+    secrets: inherit
     
-#   build-weatherComponents:
-#     name: Build WeatherComponents
-#     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
-#     with:
-#       package: "OversizeWeatherComponents"
-#     secrets: inherit
+  build-weatherComponents:
+    name: Build WeatherComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
+    with:
+      package: "OversizeWeatherComponents"
+    secrets: inherit
     
-#   tests:
-#     name: Test
-#     needs: [build-oversizeComponents, build-healthComponents, build-photoComponents, build-weatherComponents]
-#     uses: oversizedev/GithubWorkflows/.github/workflows/test.yml@main
-#     secrets: inherit
+  tests:
+    name: Test
+    needs: [build-oversizeComponents, build-healthComponents, build-photoComponents, build-weatherComponents]
+    uses: oversizedev/GithubWorkflows/.github/workflows/test.yml@main
+    secrets: inherit
     
-#   bump:
-#     name: Bump version
-#     needs: tests
-#     uses: oversizedev/GithubWorkflows/.github/workflows/bump.yml@main
-#     secrets: inherit
+  bump:
+    name: Bump version
+    needs: tests
+    uses: oversizedev/GithubWorkflows/.github/workflows/bump.yml@main
+    secrets: inherit
