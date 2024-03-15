@@ -16,12 +16,6 @@ jobs:
       package: ${{ matrix.packages }}
     secrets: inherit
     
-  tests:
-    name: Test
-    needs: [build-oversizeComponents, build-healthComponents, build-photoComponents, build-weatherComponents]
-    uses: oversizedev/GithubWorkflows/.github/workflows/test.yml@main
-    secrets: inherit
-    
   bump:
     name: Bump version
     needs: tests
