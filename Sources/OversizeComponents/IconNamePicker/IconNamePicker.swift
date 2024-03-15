@@ -88,7 +88,6 @@ import SwiftUI
                                            Group {
                                                Image(icons[index], bundle: .main)
                                                    .resizable()
-
                                                    .frame(width: 24, height: 24, alignment: .center)
                                            }
                                            .overlay(

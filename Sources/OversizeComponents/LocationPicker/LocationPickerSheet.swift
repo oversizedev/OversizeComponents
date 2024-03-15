@@ -51,7 +51,7 @@ import SwiftUI
                                 .foregroundColor(.onSurfaceMediumEmphasis)
                         }
                     }
-                    .surfaceContentInsets(.small)
+                    .surfaceContentMargins(.small)
                     .controlRadius(.large)
                     .multilineTextAlignment(.center)
 

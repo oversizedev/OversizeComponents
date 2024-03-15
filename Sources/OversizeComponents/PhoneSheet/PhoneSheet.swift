@@ -40,7 +40,7 @@ public struct PhoneCallSheet: View {
                     }
                 }
             }
-            .surfaceContentRowInsets()
+            .surfaceContentRowMargins()
         }
         .backgroundSecondary()
         .leadingBar {

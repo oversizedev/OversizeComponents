@@ -38,7 +38,7 @@ public struct MapPreviewView: View {
                 }
             }
         }
-        .surfaceContentInsets(.zero)
+        .surfaceContentMargins(.zero)
     }
 }
 

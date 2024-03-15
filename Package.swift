@@ -1,28 +1,28 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
-let productionDependencies: [PackageDescription.Package.Dependency] = { [
+let productionDependencies: [PackageDescription.Package.Dependency] = [
     .package(url: "https://github.com/oversizedev/OversizeUI.git", .upToNextMajor(from: "3.0.2")),
     .package(url: "https://github.com/oversizedev/OversizeCore.git", .upToNextMajor(from: "1.3.0")),
     .package(url: "https://github.com/oversizedev/OversizeLocalizable.git", .upToNextMajor(from: "1.4.0")),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git", .upToNextMajor(from: "2.1.1")),
-] }()
+]
 
-let developmentDependencies: [PackageDescription.Package.Dependency] = { [
+let developmentDependencies: [PackageDescription.Package.Dependency] = [
     .package(name: "OversizeUI", path: "../OversizeUI"),
     .package(name: "OversizeCore", path: "../OversizeCore"),
     .package(name: "OversizeLocalizable", path: "../OversizeLocalizable"),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git", .upToNextMajor(from: "2.1.1")),
-] }()
+]
 
 let package = Package(
     name: "OversizeComponents",
     defaultLocalization: "en",
     platforms: [
         .iOS(.v15),
-        .macOS(.v12),
+        .macOS(.v13),
         .tvOS(.v15),
         .watchOS(.v9),
     ],

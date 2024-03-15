@@ -55,7 +55,7 @@ public struct AsyncIllustrationView: View {
                 return 24
             case .regular:
                 return 32
-            case .large:
+            case .large, .extraLarge:
                 return 48
             @unknown default:
                 return 24
