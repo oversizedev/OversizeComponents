@@ -32,7 +32,7 @@ public struct NoteEditor: View {
                     }
                 }
 
-                ToolbarItem(placement: .topBarLeading) {
+                ToolbarItem(placement: .cancellationAction) {
                     Button {
                         dismiss()
                     } label: {
@@ -40,7 +40,9 @@ public struct NoteEditor: View {
                     }
                 }
             }
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .onAppear {
                 isFocus = true
             }
