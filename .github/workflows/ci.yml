@@ -6,32 +6,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-oversizeComponents:
-    name: Build OversizeComponents
+  build-swiftpm:
+    name: Build packages
     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
+    strategy:
+      matrix:
+        packages: [OversizeComponents, OversizeHealthComponents, OversizePhotoComponents, OversizeWeatherComponents]
     with:
-      package: "OversizeComponents"
-    secrets: inherit
-    
-  build-healthComponents:
-    name: Build HealthComponents
-    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
-    with:
-      package: "OversizeHealthComponents"
-    secrets: inherit
-    
-  build-photoComponents:
-    name: Build PhotoComponents
-    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
-    with:
-      package: "OversizePhotoComponents"
-    secrets: inherit
-    
-  build-weatherComponents:
-    name: Build WeatherComponents
-    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
-    with:
-      package: "OversizeWeatherComponents"
+      package: ${{ matrix.packages }}
     secrets: inherit
     
   tests:
