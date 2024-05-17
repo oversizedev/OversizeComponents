@@ -3,8 +3,8 @@
 // NoteEditor.swift, created on 03.03.2024
 //
 
-import SwiftUI
 import OversizeUI
+import SwiftUI
 
 @available(iOS 16.0, *)
 public struct NoteEditor: View {
@@ -40,9 +40,9 @@ public struct NoteEditor: View {
                     }
                 }
             }
-            #if os(iOS)
+        #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
-            #endif
+        #endif
             .onAppear {
                 isFocus = true
             }
