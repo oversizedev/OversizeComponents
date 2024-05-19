@@ -27,12 +27,15 @@ public struct MapPreviewView: View {
             Map(coordinateRegion: .constant(region), interactionModes: .zoom, annotationItems: annotations) {
                 MapMarker(coordinate: $0.coordinate)
             }
+
             .onTapGesture {
                 if action == nil {
-                    let placemark = MKPlacemark(coordinate: location, addressDictionary: nil)
-                    let mapItem = MKMapItem(placemark: placemark)
-                    mapItem.name = annotation
-                    mapItem.openInMaps()
+                    #if !os(tvOS)
+                        let placemark = MKPlacemark(coordinate: location, addressDictionary: nil)
+                        let mapItem = MKMapItem(placemark: placemark)
+                        mapItem.name = annotation
+                        mapItem.openInMaps()
+                    #endif
                 } else {
                     action?()
                 }

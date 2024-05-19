@@ -5,7 +5,9 @@
 
 import OversizeUI
 import SwiftUI
-import WebKit
+#if canImport(WebKit)
+    import WebKit
+#endif
 
 public struct WebView: View {
     @State var tabBarVisibility: Visibility = .hidden
