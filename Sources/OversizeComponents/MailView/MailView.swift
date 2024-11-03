@@ -39,13 +39,14 @@
             Coordinator(self)
         }
 
-        public class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
+        public class Coordinator: NSObject, @preconcurrency MFMailComposeViewControllerDelegate {
             var parent: MailView
 
             public init(_ parent: MailView) {
                 self.parent = parent
             }
 
+            @MainActor
             public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith _: MFMailComposeResult, error _: Error?) {
                 controller.dismiss(animated: true)
             }

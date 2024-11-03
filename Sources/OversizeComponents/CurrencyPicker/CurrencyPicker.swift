@@ -7,7 +7,7 @@ import OversizeCore
 import OversizeUI
 import SwiftUI
 
-@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+@available(macOS 14, iOS 16, tvOS 16, watchOS 9, *)
 public struct CurrencyPicker: View {
     @Environment(\.theme) private var theme: ThemeSettings
     @Binding private var selection: Locale.Currency
@@ -41,7 +41,7 @@ public struct CurrencyPicker: View {
     }
 }
 
-@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+@available(macOS 14, iOS 16, tvOS 16, watchOS 9, *)
 struct CurrencyPicker_Previews: PreviewProvider {
     static var previews: some View {
         CurrencyPicker(selection: .constant("USD"))

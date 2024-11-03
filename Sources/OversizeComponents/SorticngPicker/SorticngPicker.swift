@@ -6,6 +6,7 @@
 import OversizeUI
 import SwiftUI
 
+@available(iOS 15.0, macOS 14, tvOS 15.0, watchOS 9.0, *)
 public struct SortingPicker<Element, Content>: View
     where
     Content: View,

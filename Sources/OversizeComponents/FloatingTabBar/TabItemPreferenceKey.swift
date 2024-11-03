@@ -6,7 +6,9 @@
 import SwiftUI
 
 struct TabItemPreferenceKey: PreferenceKey {
-    static var defaultValue: [TabItem] = []
+    static var defaultValue: [TabItem] {
+        []
+    }
 
     static func reduce(value: inout [TabItem], nextValue: () -> [TabItem]) {
         value += nextValue()

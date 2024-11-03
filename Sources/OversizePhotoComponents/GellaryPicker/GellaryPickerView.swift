@@ -85,7 +85,7 @@ import SwiftUI
                     isShowCamera.toggle()
                 } label: {
                     ZStack {
-                        CmeraPreviewVideo()
+                        CameraPreviewVideo()
                         Circle()
                             .fill(.black.opacity(0.2))
                             .frame(width: 48, height: 48)

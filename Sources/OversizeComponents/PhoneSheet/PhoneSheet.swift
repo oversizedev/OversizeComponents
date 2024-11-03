@@ -6,6 +6,7 @@
 import OversizeUI
 import SwiftUI
 
+@available(iOS 15.0, macOS 14, tvOS 15.0, watchOS 9.0, *)
 public struct PhoneSheetNumber: Hashable {
     public let name: String?
     public let phone: String
@@ -16,6 +17,7 @@ public struct PhoneSheetNumber: Hashable {
     }
 }
 
+@available(iOS 15.0, macOS 14, tvOS 15.0, watchOS 9.0, *)
 public struct PhoneCallSheet: View {
     private let numbers: [PhoneSheetNumber]
     private let title: String
@@ -49,6 +51,7 @@ public struct PhoneCallSheet: View {
     }
 }
 
+@available(iOS 15.0, macOS 14, tvOS 15.0, watchOS 9.0, *)
 struct PhoneCallSheet_Previews: PreviewProvider {
     static var previews: some View {
         PhoneCallSheet("Phones", numbers: [

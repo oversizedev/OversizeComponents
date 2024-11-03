@@ -30,6 +30,8 @@ public struct WebView: View {
             } else {
                 webView
             }
+        #elseif os(macOS)
+            webView
         #else
             EmptyView()
         #endif
@@ -44,7 +46,7 @@ public struct WebView: View {
                     openURL(url)
                 }))
             })
-            #if os(iOS)
+            #if os(iOS) || os(macOS)
                 WebViewRepresentable(url: url)
             #endif
         }
@@ -64,6 +66,24 @@ public struct WebView: View {
         }
 
         public func updateUIView(_ uiView: WKWebView, context _: Context) {
+            uiView.load(request)
+        }
+    }
+#endif
+
+#if os(macOS)
+    public struct WebViewRepresentable: NSViewRepresentable {
+        private let request: URLRequest
+
+        public init(url: URL) {
+            request = URLRequest(url: url)
+        }
+
+        public func makeNSView(context _: Context) -> WKWebView {
+            WKWebView()
+        }
+
+        public func updateNSView(_ uiView: WKWebView, context _: Context) {
             uiView.load(request)
         }
     }
