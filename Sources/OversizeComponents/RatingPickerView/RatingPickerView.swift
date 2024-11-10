@@ -29,7 +29,7 @@ public struct RatingPickerView: View {
 
                             Image.Base.Star.fill
                                 .renderingMode(.template)
-                                .foregroundColor(rating ?? 0 >= Double(score) ? .warning : .onSurfaceDisabled)
+                                .foregroundColor(rating ?? 0 >= Double(score) ? .warning : .onSurfaceTertiary)
 
                             Spacer()
                         }

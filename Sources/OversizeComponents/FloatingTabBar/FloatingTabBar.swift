@@ -66,7 +66,7 @@ public struct FloatingTabBar<Content: View>: View {
                     } label: {
                         tabItem.icon
                             .renderingMode(.template)
-                            .foregroundColor(index == selection ? Color.onSurfaceHighEmphasis : Color.onSurfaceMediumEmphasis)
+                            .foregroundColor(index == selection ? Color.onSurfacePrimary : Color.onSurfaceSecondary)
                     }
                     .buttonStyle(ScaleRoundButtonStyle())
 
@@ -92,7 +92,7 @@ public struct FloatingTabBar<Content: View>: View {
                 } label: {
                     tabItem.icon
                         .renderingMode(.template)
-                        .foregroundColor(index == selection ? Color.onSurfaceHighEmphasis : Color.onSurfaceMediumEmphasis)
+                        .foregroundColor(index == selection ? Color.onSurfacePrimary : Color.onSurfaceSecondary)
                 }
                 .buttonStyle(ScaleRoundButtonStyle())
             }

@@ -36,17 +36,17 @@ import SwiftUI
                     Text(label)
                         .bold()
                         .headline()
-                        .foregroundColor(.onSurfaceHighEmphasis)
+                        .foregroundColor(.onSurfacePrimary)
                 }
                 Spacer()
 
                 if let positionName {
                     Text(positionName)
                         .subheadline()
-                        .foregroundColor(.onPrimaryMediumEmphasis)
+                        .foregroundColor(.onPrimarySecondary)
                 }
 
-                IconDeprecated(.chevronDown, color: .onSurfaceHighEmphasis)
+                IconDeprecated(.chevronDown, color: .onSurfacePrimary)
             }
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding()
@@ -83,11 +83,11 @@ import SwiftUI
                             if let positionName {
                                 Text(positionName)
                                     .title3()
-                                    .foregroundColor(.onSurfaceHighEmphasis)
+                                    .foregroundColor(.onSurfacePrimary)
                             }
                             Text("\(coordinates.latitude), \(coordinates.longitude)")
                                 .subheadline()
-                                .foregroundColor(.onSurfaceMediumEmphasis)
+                                .foregroundColor(.onSurfaceSecondary)
                         }
                     }
                     .surfaceContentMargins(.small)

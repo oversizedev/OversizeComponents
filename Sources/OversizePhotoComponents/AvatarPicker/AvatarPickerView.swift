@@ -44,7 +44,7 @@ import SwiftUI
                     Image.Base.Camera.fill
                         .renderingMode(.template)
                         .resizable()
-                        .foregroundColor(Color.onSurfaceMediumEmphasis)
+                        .foregroundColor(Color.onSurfaceSecondary)
                         .frame(width: 48, height: 48)
                 }
             }

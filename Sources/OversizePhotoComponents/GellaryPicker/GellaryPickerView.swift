@@ -123,7 +123,7 @@ import SwiftUI
 
                                 Image(systemName: "checkmark")
                                     .font(.caption.weight(.black))
-                                    .foregroundColor(.onPrimaryHighEmphasis)
+                                    .foregroundColor(.onPrimary)
                                     .opacity(isSelected ? 1 : 0)
                             }
                             .padding(.all, .xxSmall)

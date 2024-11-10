@@ -88,12 +88,12 @@ import SwiftUI
                         .frame(width: 48, height: 48)
                         .shadowElevaton(.z1)
                         .overlay {
-                            IconDeprecated(.plus, color: .onSurfaceHighEmphasis)
+                            IconDeprecated(.plus, color: .onSurfacePrimary)
                                 .shadowElevaton(.z1)
                         }
                     Text(L10n.Button.add)
                         .headline(.semibold)
-                        .onSurfaceHighEmphasisForegroundColor()
+                        .onSurfacePrimaryForeground()
                 }
                 .frame(width: 104)
             }

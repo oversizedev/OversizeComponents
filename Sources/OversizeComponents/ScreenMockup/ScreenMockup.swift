@@ -24,7 +24,7 @@ public struct ScreenMockup: View {
             } placeholder: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 28, style: .continuous)
-                        .fillOnPrimaryDisabled()
+                        .fillOnPrimaryTertiary()
 
                     ProgressView()
                 }
@@ -37,7 +37,7 @@ public struct ScreenMockup: View {
 
             } placeholder: {
                 RoundedRectangle(cornerRadius: 28, style: .continuous)
-                    .fillOnPrimaryDisabled()
+                    .fillOnPrimaryTertiary()
             }
         }
     }

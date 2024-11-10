@@ -10,9 +10,6 @@ import SwiftUI
 
 public struct DayСolumnView: View {
     @Environment(\.weatherTextColor) var textColor
-
-    // private var textColor: Color = .onSurfaceHighEmphasis
-
     private let day: String
     private let dayDescription: String
     private let dayIcon: Image
@@ -47,12 +44,14 @@ public struct DayСolumnView: View {
         VStack(spacing: .zero) {
             Text(day)
                 .padding(.top, .small)
-                .fontStyle(.headline, color: textColor)
+                .font(.headline)
+                .foregroundStyle(textColor)
                 .multilineTextAlignment(.center)
 
             Text(dayDescription)
                 .padding(.top, .xxxSmall)
-                .fontStyle(.subheadline, color: textColor.opacity(0.7))
+                .font(.subheadline)
+                .foregroundStyle(textColor.opacity(0.7))
                 .multilineTextAlignment(.center)
 
             dayIcon
@@ -62,13 +61,15 @@ public struct DayСolumnView: View {
 
             Text(dayTemperature.toStringTemperature)
                 .padding(.top, 20)
-                .fontStyle(.subheadline, color: textColor.opacity(0.7))
+                .font(.subheadline)
+                .foregroundStyle(textColor.opacity(0.7))
                 .multilineTextAlignment(.center)
 
             Spacer()
 
             Text(nightTemperature.toStringTemperature)
-                .fontStyle(.subheadline, color: textColor.opacity(0.7))
+                .font(.subheadline)
+                .foregroundStyle(textColor.opacity(0.7))
                 .multilineTextAlignment(.center)
                 .padding(.bottom, .medium)
 
@@ -85,12 +86,14 @@ public struct DayСolumnView: View {
 
             Text(L10n.Common.wind)
                 .padding(.top, .xSmall)
-                .fontStyle(.caption, color: textColor.opacity(0.7))
+                .font(.caption)
+                .foregroundStyle(textColor.opacity(0.7))
                 .multilineTextAlignment(.center)
 
             Text(String(format: "%.0f", windSpeed) + " " + L10n.Common.metereSec)
                 .padding(.top, .xxxSmall)
-                .fontStyle(.caption, color: textColor)
+                .font(.caption)
+                .foregroundStyle(textColor)
                 .multilineTextAlignment(.center)
         }
     }
@@ -117,7 +120,7 @@ struct DayСolumnView_Previews: PreviewProvider {
                           windSpeed: 20,
                           windDegrees: 0)
                 .loading(true)
-            // .environment(\.weatherTextColor, Color.onSurfaceHighEmphasis)
+            // .environment(\.weatherTextColor, Color.onSurfacePrimary)
             // .weatherTextColor()
         }
         // .previewLayout(.sizeThatFits)

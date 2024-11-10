@@ -76,7 +76,8 @@ public struct DayShortRowView: View {
                         .frame(width: 32, height: 32, alignment: .center)
 
                     Text(day)
-                        .fontStyle(.headline, color: textColor)
+                        .font(.headline)
+                        .foregroundStyle(textColor.opacity(0.7))
                         .padding(.leading, .medium)
 
                     Spacer()
@@ -88,12 +89,14 @@ public struct DayShortRowView: View {
                         .padding(.horizontal, .small)
 
                         Text(dayTemperature.toStringTemperature)
-                            .fontStyle(.headline, color: textColor)
+                            .font(.headline)
+                            .foregroundStyle(textColor.opacity(0.7))
                             .frame(minWidth: 44)
                             .multilineTextAlignment(.center)
 
                         Text(nightTemperature.toStringTemperature)
-                            .fontStyle(.headline, color: textColor.opacity(0.7))
+                            .font(.headline)
+                            .foregroundStyle(textColor.opacity(0.7))
                             .frame(minWidth: 44)
                             .multilineTextAlignment(.center)
                     } else {
@@ -114,7 +117,8 @@ public struct DayShortRowView: View {
 
                         HStack {
                             Text("\(L10n.Common.morning) \(mornTemperature.toStringTemperature)")
-                                .fontStyle(.headline, color: textColor)
+                                .font(.headline)
+                                .foregroundStyle(textColor.opacity(0.7))
 
                             Text("\(L10n.Common.feelsLike.lowercased()) \(mornTemperatureFeelLike.toStringTemperature)")
                                 .font(.system(size: 16))
@@ -124,7 +128,8 @@ public struct DayShortRowView: View {
 
                         HStack {
                             Text("\(L10n.Common.day) \(dayTemperature.toStringTemperature)")
-                                .fontStyle(.headline, color: textColor)
+                                .font(.headline)
+                                .foregroundStyle(textColor)
 
                             Text("\(L10n.Common.feelsLike.lowercased()) \(dayTemperatureFeelLike.toStringTemperature)")
                                 .font(.system(size: 16))
@@ -134,7 +139,8 @@ public struct DayShortRowView: View {
 
                         HStack {
                             Text("\(L10n.Common.evening) \(eveTemperature.toStringTemperature)")
-                                .fontStyle(.headline, color: textColor)
+                                .font(.headline)
+                                .foregroundStyle(textColor)
 
                             Text("\(L10n.Common.feelsLike.lowercased()) \(eveTemperatureFeelLike.toStringTemperature)")
                                 .font(.system(size: 16))
@@ -144,7 +150,8 @@ public struct DayShortRowView: View {
 
                         HStack {
                             Text("\(L10n.Common.night) \(nightTemperature.toStringTemperature)")
-                                .fontStyle(.headline, color: textColor)
+                                .font(.headline)
+                                .foregroundStyle(textColor)
 
                             // swiftlint:disable line_length
                             Text("\(L10n.Common.feelsLike.lowercased()) \(nightTemperatureFeelLike.toStringTemperature)")
@@ -158,7 +165,7 @@ public struct DayShortRowView: View {
                         } label: {
                             Text(L10n.Button.details)
                         }
-                        .style(.gray, size: .large, shadow: false)
+                        .buttonStyle(.secondary)
 
                         // }
                     }
@@ -168,7 +175,7 @@ public struct DayShortRowView: View {
             }
         }
         .surfaceStyle(isShowDetail ? .primary : .clear)
-        .controlPadding(.zero)
+        .controlMargin(.zero)
         .controlRadius(.large)
         .elevation(isShowDetail ? .z0 : .z3)
     }

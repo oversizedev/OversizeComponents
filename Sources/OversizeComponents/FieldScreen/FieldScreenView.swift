@@ -57,7 +57,7 @@ public struct FieldScreenView: View {
 
                     TextField(placeholder, text: $text)
                         .largeTitle()
-                        .foregroundColor(.onSurfaceHighEmphasis)
+                        .foregroundColor(.onSurfacePrimary)
                         .multilineTextAlignment(.center)
                         .focused($isFocused)
 
@@ -71,7 +71,7 @@ public struct FieldScreenView: View {
             if helperText != "" {
                 Text(helperText)
                     .subheadline()
-                    .foregroundColor(.onSurfaceMediumEmphasis)
+                    .foregroundColor(.onSurfaceSecondary)
             }
 
             Spacer()

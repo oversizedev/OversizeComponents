@@ -48,13 +48,13 @@ import SwiftUI
                 HStack(spacing: .xxSmall) {
                     Text(label)
                         .headline()
-                        .foregroundColor(.onSurfaceHighEmphasis)
+                        .foregroundColor(.onSurfacePrimary)
                 }
                 Spacer()
                 if let imageName = selection {
                     Image(imageName, bundle: .main)
                 }
-                OversizeUI.IconDeprecated(.chevronDown, color: .onSurfaceHighEmphasis)
+                OversizeUI.IconDeprecated(.chevronDown, color: .onSurfacePrimary)
             }
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding()

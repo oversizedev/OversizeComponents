@@ -99,15 +99,15 @@ public struct BMIView: View {
         VStack(spacing: .xxSmall) {
             Text(bmi.toStringWithoutPoint)
                 .font(.system(size: 70, weight: .heavy, design: .rounded))
-                .foregroundColor(.onBackgroundHighEmphasis)
+                .foregroundColor(.onBackgroundPrimary)
 
             HStack(spacing: .xxxSmall) {
                 Text("Body mass index")
                     .headline()
-                    .foregroundColor(.onBackgroundMediumEmphasis)
+                    .foregroundColor(.onBackgroundSecondary)
 
                 Button { isShowHelp.toggle() } label: {
-                    IconDeprecated(.helpCircle, size: .medium, color: .onBackgroundDisabled)
+                    IconDeprecated(.helpCircle, size: .medium, color: .onBackgroundTertiary)
                 }
             }
             .unredacted()

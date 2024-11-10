@@ -44,11 +44,11 @@ import SwiftUI
                             if let positionName {
                                 Text(positionName)
                                     .title3()
-                                    .foregroundColor(.onSurfaceHighEmphasis)
+                                    .foregroundColor(.onSurfacePrimary)
                             }
                             Text("\(coordinates.latitude), \(coordinates.longitude)")
                                 .subheadline()
-                                .foregroundColor(.onSurfaceMediumEmphasis)
+                                .foregroundColor(.onSurfaceSecondary)
                         }
                     }
                     .surfaceContentMargins(.small)

@@ -108,7 +108,7 @@ struct BMIHelpView: View {
         VStack(spacing: .xxSmall) {
             Text(bmi.toStringWithoutPoint)
                 .font(.system(size: 70, weight: .heavy, design: .rounded))
-                .foregroundColor(.onBackgroundHighEmphasis)
+                .foregroundColor(.onBackgroundPrimary)
         }
     }
 
@@ -116,14 +116,14 @@ struct BMIHelpView: View {
         VStack(spacing: .xxSmall) {
             Text("Body mass index is a value\nderived from the mass and height")
                 .headline()
-                .foregroundColor(.onBackgroundMediumEmphasis)
+                .foregroundColor(.onBackgroundSecondary)
                 .multilineTextAlignment(.center)
         }
     }
 
     var infoListView: some View {
         VStack(spacing: 2) {
-            bmiRow(value: "16.0", title: "Underweight", description: "Severe thinness", color: .blue, icon: IconDeprecated(.chevronLeft, color: .onPrimaryHighEmphasis))
+            bmiRow(value: "16.0", title: "Underweight", description: "Severe thinness", color: .blue, icon: IconDeprecated(.chevronLeft, color: .onPrimary))
 
             bmiRow(value: "16.0–16.9", title: "Underweight", description: "Moderate thinness", color: .cyan)
 
@@ -138,7 +138,7 @@ struct BMIHelpView: View {
 
             bmiRow(value: "35.0–39.9", title: "Obese", description: "Class II", color: .orange)
 
-            bmiRow(value: "40", title: "Obese", description: "Class III", color: .red, icon: IconDeprecated(.chevronRight, color: .onPrimaryHighEmphasis))
+            bmiRow(value: "40", title: "Obese", description: "Class III", color: .red, icon: IconDeprecated(.chevronRight, color: .onPrimary))
         }
     }
 
@@ -149,7 +149,7 @@ struct BMIHelpView: View {
                     icon
                 }
                 Text(value)
-                    .foregroundColor(.onPrimaryHighEmphasis)
+                    .foregroundColor(.onPrimary)
                     .font(.system(size: 17, weight: .bold, design: .rounded))
                     .padding(.vertical, .xSmall)
                     .padding(.trailing, icon != nil ? 8 : 0)
@@ -163,12 +163,12 @@ struct BMIHelpView: View {
             VStack(alignment: .leading, spacing: .xxxSmall) {
                 Text(title)
                     .callout(true)
-                    .foregroundColor(.onSurfaceHighEmphasis)
+                    .foregroundColor(.onSurfacePrimary)
 
                 if !description.isEmpty {
                     Text(description)
                         .subheadline()
-                        .foregroundColor(.onSurfaceMediumEmphasis)
+                        .foregroundColor(.onSurfaceSecondary)
                 }
             }
 
