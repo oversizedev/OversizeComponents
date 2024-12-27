@@ -12,10 +12,11 @@ public struct SelectableSurface<SelectedContnet: View, UnselectedContnet: View>:
 
     @Binding var isSelected: Bool
 
-    public init(isSelected: Binding<Bool>,
-                @ViewBuilder selectedContnet: () -> SelectedContnet,
-                @ViewBuilder unselectedContnet: () -> UnselectedContnet)
-    {
+    public init(
+        isSelected: Binding<Bool>,
+        @ViewBuilder selectedContnet: () -> SelectedContnet,
+        @ViewBuilder unselectedContnet: () -> UnselectedContnet
+    ) {
         self.selectedContnet = selectedContnet()
         self.unselectedContnet = unselectedContnet()
         _isSelected = isSelected

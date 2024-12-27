@@ -13,11 +13,12 @@ public struct ImageGridView: View {
     private let tapAction: ((Image) -> Void)?
     private let longPressAction: ((Image) -> Void)?
 
-    public init(_ images: [Image],
-                columnCount: Binding<Int>,
-                tapAction: ((Image) -> Void)? = nil,
-                longPressAction: ((Image) -> Void)? = nil)
-    {
+    public init(
+        _ images: [Image],
+        columnCount: Binding<Int>,
+        tapAction: ((Image) -> Void)? = nil,
+        longPressAction: ((Image) -> Void)? = nil
+    ) {
         self.images = images
         _columnCount = columnCount
         self.tapAction = tapAction

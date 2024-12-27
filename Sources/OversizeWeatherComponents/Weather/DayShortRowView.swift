@@ -30,19 +30,20 @@ public struct DayShortRowView: View {
 
     let action: () -> Void
 
-    public init(icon: Image,
-                day: String,
-                humidity: Int = 0,
-                mornTemperature: Double,
-                mornTemperatureFeelLike: Double,
-                dayTemperature: Double,
-                dayTemperatureFeelLike: Double,
-                eveTemperature: Double,
-                eveTemperatureFeelLike: Double,
-                nightTemperature: Double,
-                nightTemperatureFeelLike: Double,
-                action: @escaping () -> Void)
-    {
+    public init(
+        icon: Image,
+        day: String,
+        humidity: Int = 0,
+        mornTemperature: Double,
+        mornTemperatureFeelLike: Double,
+        dayTemperature: Double,
+        dayTemperatureFeelLike: Double,
+        eveTemperature: Double,
+        eveTemperatureFeelLike: Double,
+        nightTemperature: Double,
+        nightTemperatureFeelLike: Double,
+        action: @escaping () -> Void
+    ) {
         self.icon = icon
         self.day = day
         self.humidity = humidity

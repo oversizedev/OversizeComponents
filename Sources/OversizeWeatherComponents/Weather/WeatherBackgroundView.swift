@@ -16,12 +16,13 @@ public struct WeatherBackgroundView: View {
     private let backgroundColor: Color
     private let type: WeatherBackgroundViewType
 
-    public init(topLeadingColor: Color,
-                topTrallingColor: Color,
-                centerColor: Color,
-                backgroundColor: Color,
-                type: WeatherBackgroundViewType)
-    {
+    public init(
+        topLeadingColor: Color,
+        topTrallingColor: Color,
+        centerColor: Color,
+        backgroundColor: Color,
+        type: WeatherBackgroundViewType
+    ) {
         self.topLeadingColor = topLeadingColor
         self.topTrallingColor = topTrallingColor
         self.centerColor = centerColor

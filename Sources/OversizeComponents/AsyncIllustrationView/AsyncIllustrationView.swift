@@ -10,13 +10,13 @@ import SwiftUI
 
 public struct AsyncIllustrationView: View {
     #if os(iOS) || os(macOS)
-        @Environment(\.controlSize) var controlSize: ControlSize
+    @Environment(\.controlSize) var controlSize: ControlSize
     #endif
 
     #if os(iOS)
-        let scale = UIScreen.main.scale
+    let scale = UIScreen.main.scale
     #else
-        let scale: CGFloat = 2
+    let scale: CGFloat = 2
     #endif
 
     let path: String
@@ -40,28 +40,28 @@ public struct AsyncIllustrationView: View {
 
     var scaleLabel: String {
         if scale == 3 {
-            return "@\(String(format: "%.0f", scale))x"
+            "@\(String(format: "%.0f", scale))x"
         } else {
-            return ""
+            ""
         }
     }
 
     var illustrationSize: CGFloat {
         #if os(iOS) || os(macOS)
-            switch controlSize {
-            case .mini:
-                return 16
-            case .small:
-                return 24
-            case .regular:
-                return 32
-            case .large, .extraLarge:
-                return 48
-            @unknown default:
-                return 24
-            }
-        #else
+        switch controlSize {
+        case .mini:
+            return 16
+        case .small:
             return 24
+        case .regular:
+            return 32
+        case .large, .extraLarge:
+            return 48
+        @unknown default:
+            return 24
+        }
+        #else
+        return 24
         #endif
     }
 }

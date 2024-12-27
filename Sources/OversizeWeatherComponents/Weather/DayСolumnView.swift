@@ -21,15 +21,16 @@ public struct DayСolumnView: View {
     private let windSpeed: Double
     private let windDegrees: Int
 
-    public init(day: String,
-                dayDescription: String,
-                dayIcon: Image,
-                dayTemperature: Double = 0,
-                nightIcon: Image?,
-                nightTemperature: Double = 0,
-                windSpeed: Double = 0,
-                windDegrees: Int = 0)
-    {
+    public init(
+        day: String,
+        dayDescription: String,
+        dayIcon: Image,
+        dayTemperature: Double = 0,
+        nightIcon: Image?,
+        nightTemperature: Double = 0,
+        windSpeed: Double = 0,
+        windDegrees: Int = 0
+    ) {
         self.day = day
         self.dayDescription = dayDescription
         self.dayIcon = dayIcon
@@ -102,24 +103,28 @@ public struct DayСolumnView: View {
 struct DayСolumnView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            DayСolumnView(day: "Sn",
-                          dayDescription: "Today",
-                          dayIcon: Image(""),
-                          dayTemperature: 31,
-                          nightIcon: Image(""),
-                          nightTemperature: 27,
-                          windSpeed: 20,
-                          windDegrees: 0)
+            DayСolumnView(
+                day: "Sn",
+                dayDescription: "Today",
+                dayIcon: Image(""),
+                dayTemperature: 31,
+                nightIcon: Image(""),
+                nightTemperature: 27,
+                windSpeed: 20,
+                windDegrees: 0
+            )
 
-            DayСolumnView(day: "Sn",
-                          dayDescription: "Today",
-                          dayIcon: Image(""),
-                          dayTemperature: 31,
-                          nightIcon: Image(""),
-                          nightTemperature: 27,
-                          windSpeed: 20,
-                          windDegrees: 0)
-                .loading(true)
+            DayСolumnView(
+                day: "Sn",
+                dayDescription: "Today",
+                dayIcon: Image(""),
+                dayTemperature: 31,
+                nightIcon: Image(""),
+                nightTemperature: 27,
+                windSpeed: 20,
+                windDegrees: 0
+            )
+            .loading(true)
             // .environment(\.weatherTextColor, Color.onSurfacePrimary)
             // .weatherTextColor()
         }

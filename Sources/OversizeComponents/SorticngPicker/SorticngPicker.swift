@@ -27,13 +27,14 @@ public struct SortingPicker<Element, Content>: View
     @State private var isSelected = false
     private let action: ((Data.Element) -> Void)?
 
-    public init(_ label: Text,
-                _ data: Data,
-                selection: Binding<Data.Element>,
-                ascending: Binding<Bool>,
-                @ViewBuilder content: @escaping (Data.Element, Bool) -> Content,
-                action: ((Data.Element) -> Void)? = nil)
-    {
+    public init(
+        _ label: Text,
+        _ data: Data,
+        selection: Binding<Data.Element>,
+        ascending: Binding<Bool>,
+        @ViewBuilder content: @escaping (Data.Element, Bool) -> Content,
+        action: ((Data.Element) -> Void)? = nil
+    ) {
         self.label = label
         self.data = data
         _ascending = ascending

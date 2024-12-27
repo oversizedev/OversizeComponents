@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-public struct TabItem: Identifiable, Equatable {
+public struct TabItem: Identifiable, Equatable, Sendable {
     public var id = UUID()
     public var text: String?
     public var icon: Image

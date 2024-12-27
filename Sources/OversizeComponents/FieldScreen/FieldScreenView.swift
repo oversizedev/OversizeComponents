@@ -24,16 +24,17 @@ public struct FieldScreenView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    public init(_ label: String,
-                placeholder: String,
-                text: Binding<String>,
-                helperText: Binding<String> = .constant(""),
-                showHelper: Binding<Bool> = .constant(false),
-                leadingImage: IconsNames = .none,
-                trallingImage: IconsNames = .none,
-                buttonText: String = "Save",
-                buttonAction: @escaping () -> Void)
-    {
+    public init(
+        _ label: String,
+        placeholder: String,
+        text: Binding<String>,
+        helperText: Binding<String> = .constant(""),
+        showHelper: Binding<Bool> = .constant(false),
+        leadingImage: IconsNames = .none,
+        trallingImage: IconsNames = .none,
+        buttonText: String = "Save",
+        buttonAction: @escaping () -> Void
+    ) {
         self.label = label
         self.placeholder = placeholder
         _text = text

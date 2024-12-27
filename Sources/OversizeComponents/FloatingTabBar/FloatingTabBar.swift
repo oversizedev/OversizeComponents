@@ -44,7 +44,9 @@ public struct FloatingTabBar<Content: View>: View {
         }
         .ignoresSafeArea()
         .onPreferenceChange(TabItemPreferenceKey.self) { value in
-            tabs = value
+            Task { @MainActor in
+                tabs = value
+            }
         }
     }
 
