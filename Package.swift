@@ -3,19 +3,21 @@
 
 import PackageDescription
 
-let productionDependencies: [PackageDescription.Package.Dependency] = [
+let localDependencies: [PackageDescription.Package.Dependency] = [
     .package(url: "https://github.com/oversizedev/OversizeUI.git", .upToNextMajor(from: "3.0.2")),
     .package(url: "https://github.com/oversizedev/OversizeCore.git", .upToNextMajor(from: "1.3.0")),
     .package(url: "https://github.com/oversizedev/OversizeLocalizable.git", .upToNextMajor(from: "1.5.0")),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git", .upToNextMajor(from: "2.1.1")),
 ]
 
-let developmentDependencies: [PackageDescription.Package.Dependency] = [
+let remoteDependencies: [PackageDescription.Package.Dependency] = [
     .package(name: "OversizeUI", path: "../OversizeUI"),
     .package(name: "OversizeCore", path: "../OversizeCore"),
     .package(name: "OversizeLocalizable", path: "../OversizeLocalizable"),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git", .upToNextMajor(from: "2.1.1")),
 ]
+
+let dependencies: [PackageDescription.Package.Dependency] = remoteDependencies
 
 let package = Package(
     name: "OversizeComponents",
@@ -32,7 +34,7 @@ let package = Package(
         .library(name: "OversizeHealthComponents", targets: ["OversizeHealthComponents"]),
         .library(name: "OversizeWeatherComponents", targets: ["OversizeWeatherComponents"]),
     ],
-    dependencies: productionDependencies,
+    dependencies: dependencies,
     targets: [
         .target(
             name: "OversizeComponents",

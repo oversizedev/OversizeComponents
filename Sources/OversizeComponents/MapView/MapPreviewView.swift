@@ -31,10 +31,10 @@ public struct MapPreviewView: View {
             .onTapGesture {
                 if action == nil {
                     #if !os(tvOS)
-                    let placemark = MKPlacemark(coordinate: location, addressDictionary: nil)
-                    let mapItem = MKMapItem(placemark: placemark)
-                    mapItem.name = annotation
-                    mapItem.openInMaps()
+                        let placemark = MKPlacemark(coordinate: location, addressDictionary: nil)
+                        let mapItem = MKMapItem(placemark: placemark)
+                        mapItem.name = annotation
+                        mapItem.openInMaps()
                     #endif
                 } else {
                     action?()

@@ -8,37 +8,37 @@ import OversizeUI
 import SwiftUI
 
 #if os(iOS)
-public struct PhotoFieldView: View {
-    @Binding var selection: UIImage?
-    @State var isShowSelector: Bool = false
+    public struct PhotoFieldView: View {
+        @Binding var selection: UIImage?
+        @State var isShowSelector: Bool = false
 
-    public init(_ selection: Binding<UIImage?>) {
-        _selection = selection
-    }
-
-    public var body: some View {
-        field
-            .animation(.default, value: selection)
-            .sheet(isPresented: $isShowSelector) {
-                GellaryPhotoPickerView(selection: $selection)
-            }
-    }
-
-    @ViewBuilder
-    private var field: some View {
-        Button {
-            isShowSelector.toggle()
-        } label: {
-            HStack {
-                Text("Add photo")
-
-                Spacer()
-
-                Image.Base.camera
-                    .icon()
-            }
+        public init(_ selection: Binding<UIImage?>) {
+            _selection = selection
         }
-        .buttonStyle(.field)
+
+        public var body: some View {
+            field
+                .animation(.default, value: selection)
+                .sheet(isPresented: $isShowSelector) {
+                    GellaryPhotoPickerView(selection: $selection)
+                }
+        }
+
+        @ViewBuilder
+        private var field: some View {
+            Button {
+                isShowSelector.toggle()
+            } label: {
+                HStack {
+                    Text("Add photo")
+
+                    Spacer()
+
+                    Image.Base.camera
+                        .icon()
+                }
+            }
+            .buttonStyle(.field)
+        }
     }
-}
 #endif
