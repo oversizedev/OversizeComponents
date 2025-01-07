@@ -17,6 +17,7 @@ jobs:
   oversize-components:
     name: Build OversizeComponents
     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
+    if: "!startsWith(github.ref, 'refs/tags/')"
     with:
       package: OversizeComponents
     secrets: inherit
@@ -24,6 +25,7 @@ jobs:
   oversize-health-components:
     name: Build OversizeHealthComponents
     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
+    if: "!startsWith(github.ref, 'refs/tags/')"
     with:
       package: OversizeHealthComponents
     secrets: inherit
@@ -31,6 +33,7 @@ jobs:
   oversize-photo-components:
     name: Build OversizePhotoComponents
     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
+    if: "!startsWith(github.ref, 'refs/tags/')"
     with:
       package: OversizePhotoComponents
     secrets: inherit
@@ -38,6 +41,7 @@ jobs:
   oversize-weather-components:
     name: Build OversizeWeatherComponents
     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
+    if: "!startsWith(github.ref, 'refs/tags/')"
     with:
       package: OversizeWeatherComponents
     secrets: inherit
