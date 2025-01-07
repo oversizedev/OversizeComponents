@@ -1,29 +1,66 @@
-name: CI - Push
+name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - '**'
+    tags:
+      - "*.*.*"
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build-swiftpm:
-    name: Build packages
-    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm.yml@main
-    strategy:
-      matrix:
-        packages: [OversizeComponents, OversizeHealthComponents, OversizePhotoComponents, OversizeWeatherComponents]
+
+  oversize-components:
+    name: Build OversizeComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
     with:
-      package: ${{ matrix.packages }}
+      package: OversizeComponents
     secrets: inherit
     
+  oversize-health-components:
+    name: Build OversizeHealthComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
+    with:
+      package: OversizeHealthComponents
+    secrets: inherit
+    
+  oversize-photo-components:
+    name: Build OversizePhotoComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
+    with:
+      package: OversizePhotoComponents
+    secrets: inherit
+    
+  oversize-weather-components:
+    name: Build OversizeWeatherComponents
+    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
+    with:
+      package: OversizeWeatherComponents
+    secrets: inherit
+
   tests:
     name: Test
-    needs: build-swiftpm
+    needs:
+      - oversize-components
+      - oversize-health-components
+      - oversize-photo-components
+      - oversize-weather-components
     uses: oversizedev/GithubWorkflows/.github/workflows/test.yml@main
     secrets: inherit
     
   bump:
     name: Bump version
     needs: tests
+    if: github.ref == 'refs/heads/main'
     uses: oversizedev/GithubWorkflows/.github/workflows/bump.yml@main
+    secrets: inherit
+
+  release:
+    name: Create Release
+    if: github.ref != 'refs/heads/main' && startsWith(github.ref, 'refs/tags/')
+    uses: oversizedev/GithubWorkflows/.github/workflows/release.yml@main
     secrets: inherit
