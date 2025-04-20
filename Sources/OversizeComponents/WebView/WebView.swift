@@ -6,7 +6,7 @@
 import OversizeUI
 import SwiftUI
 #if canImport(WebKit)
-    import WebKit
+import WebKit
 #endif
 
 public struct WebView: View {
@@ -21,19 +21,19 @@ public struct WebView: View {
 
     public var body: some View {
         #if os(iOS)
-            if #available(iOS 16.0, *) {
-                webView
-                    .toolbar(tabBarVisibility, for: .tabBar)
-                    .onDisappear {
-                        tabBarVisibility = .automatic
-                    }
-            } else {
-                webView
-            }
-        #elseif os(macOS)
+        if #available(iOS 16.0, *) {
             webView
+                .toolbar(tabBarVisibility, for: .tabBar)
+                .onDisappear {
+                    tabBarVisibility = .automatic
+                }
+        } else {
+            webView
+        }
+        #elseif os(macOS)
+        webView
         #else
-            EmptyView()
+        EmptyView()
         #endif
     }
 
@@ -47,46 +47,46 @@ public struct WebView: View {
                 }))
             })
             #if os(iOS) || os(macOS)
-                WebViewRepresentable(url: url)
+            WebViewRepresentable(url: url)
             #endif
         }
     }
 }
 
 #if os(iOS)
-    public struct WebViewRepresentable: UIViewRepresentable {
-        private let request: URLRequest
+public struct WebViewRepresentable: UIViewRepresentable {
+    private let request: URLRequest
 
-        public init(url: URL) {
-            request = URLRequest(url: url)
-        }
-
-        public func makeUIView(context _: Context) -> WKWebView {
-            WKWebView()
-        }
-
-        public func updateUIView(_ uiView: WKWebView, context _: Context) {
-            uiView.load(request)
-        }
+    public init(url: URL) {
+        request = URLRequest(url: url)
     }
+
+    public func makeUIView(context _: Context) -> WKWebView {
+        WKWebView()
+    }
+
+    public func updateUIView(_ uiView: WKWebView, context _: Context) {
+        uiView.load(request)
+    }
+}
 #endif
 
 #if os(macOS)
-    public struct WebViewRepresentable: NSViewRepresentable {
-        private let request: URLRequest
+public struct WebViewRepresentable: NSViewRepresentable {
+    private let request: URLRequest
 
-        public init(url: URL) {
-            request = URLRequest(url: url)
-        }
-
-        public func makeNSView(context _: Context) -> WKWebView {
-            WKWebView()
-        }
-
-        public func updateNSView(_ uiView: WKWebView, context _: Context) {
-            uiView.load(request)
-        }
+    public init(url: URL) {
+        request = URLRequest(url: url)
     }
+
+    public func makeNSView(context _: Context) -> WKWebView {
+        WKWebView()
+    }
+
+    public func updateNSView(_ uiView: WKWebView, context _: Context) {
+        uiView.load(request)
+    }
+}
 #endif
 
 struct WebView_Previews: PreviewProvider {
