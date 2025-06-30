@@ -184,19 +184,10 @@ struct CalendarView: View {
 }
 ```
 
-## Dependencies
-
-OversizeComponents builds upon several foundational libraries:
-
-- **[OversizeUI](https://github.com/oversizedev/OversizeUI)** - Core UI framework and design system
-- **[OversizeCore](https://github.com/oversizedev/OversizeCore)** - Utility functions and extensions
-- **[OversizeLocalizable](https://github.com/oversizedev/OversizeLocalizable)** - Localization support
-- **[CachedAsyncImage](https://github.com/lorenzofiamingo/swiftui-cached-async-image)** - Async image loading with caching
-
 ## Requirements
 
 - Swift 6.0+
-- Xcode 15.0+
+- Xcode 16.4+
 - iOS Deployment Target: 15.0+
 - macOS Deployment Target: 14.0+
 - tvOS Deployment Target: 16.0+
@@ -204,12 +195,12 @@ OversizeComponents builds upon several foundational libraries:
 
 ## License
 
-OversizeComponents is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
-
-## Author
-
-Copyright © 2023 Alexander Romanov
+OversizeModels is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
 
 ---
 
-For more information about the Oversize ecosystem of libraries, visit [oversizedev](https://github.com/oversizedev).
+<div align="center">
+
+**Made with ❤️ by the Oversize**
+
+</div>
