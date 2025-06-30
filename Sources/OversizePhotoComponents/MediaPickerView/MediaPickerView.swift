@@ -35,7 +35,7 @@ public struct MediaPickerView: View {
             GalleryPickerView(selection: $selectionPhotos, selectionDate: $selectionPhotosDate)
                 .tabItem {
                     Label {
-                        Text("Gellary")
+                        Text("Gallery")
                     } icon: {
                         Image.Base.camera
                             .renderingMode(.template)
