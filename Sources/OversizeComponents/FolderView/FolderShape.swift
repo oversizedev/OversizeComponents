@@ -26,12 +26,12 @@ public struct FolderShape: Shape {
         // Folder Bend
         path.addQuadCurve(
             to: CGPoint(x: (width / 2.5) - (folderTopInset / 2), y: folderTopInset / 2),
-            control: CGPoint(x: (width / 2.5) - (folderTopInset / 1.5), y: 0)
+            control: CGPoint(x: (width / 2.5) - (folderTopInset / 1.5), y: 0),
         )
 
         path.addQuadCurve(
             to: CGPoint(x: (width / 2.5) + (folderTopInset / 2), y: folderTopInset),
-            control: CGPoint(x: (width / 2.5) - (folderTopInset / 3), y: folderTopInset)
+            control: CGPoint(x: (width / 2.5) - (folderTopInset / 3), y: folderTopInset),
         )
 
         // Top trailing
@@ -40,17 +40,17 @@ public struct FolderShape: Shape {
 
         path.addQuadCurve(
             to: CGPoint(x: width, y: folderTopInset + (radius * 1.2)),
-            control: CGPoint(x: width, y: folderTopInset)
+            control: CGPoint(x: width, y: folderTopInset),
         )
 
         path.addQuadCurve(
             to: CGPoint(x: width, y: height),
-            control: CGPoint(x: width, y: height)
+            control: CGPoint(x: width, y: height),
         )
 
         path.addQuadCurve(
             to: CGPoint(x: 0, y: height),
-            control: CGPoint(x: 0, y: height)
+            control: CGPoint(x: 0, y: height),
         )
 
         path.closeSubpath()

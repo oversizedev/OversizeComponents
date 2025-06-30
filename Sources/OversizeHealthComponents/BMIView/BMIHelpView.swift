@@ -63,8 +63,8 @@ struct BMIHelpView: View {
                             [.blue, .cyan, .mint, .green, .green, .yellow, .orange, .red]),
                         center: .center,
                         startAngle: .degrees(100),
-                        endAngle: .degrees(320)
-                    )
+                        endAngle: .degrees(320),
+                    ),
                 )
                 .rotationEffect(.degrees(54.5))
 

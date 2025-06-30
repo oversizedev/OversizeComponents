@@ -71,7 +71,7 @@ public struct PhotoSliderView: View {
                         if let optionsAction {
                             BarButton(.icon(.moreHorizontal, action: optionsAction))
                         }
-                    }
+                    },
                 )
                 .opacity(isShowOptions ? 1 : 0)
                 .background(.black.opacity(isShowOptions ? 0.1 : 0))
@@ -92,7 +92,7 @@ public struct PhotoSliderView: View {
                     trailingBar: { if let optionsAction {
                         BarButton(.icon(.moreHorizontal, action: optionsAction))
                     }
-                    }
+                    },
                 )
                 .opacity(isShowOptions ? 1 : 0)
                 .background(.black.opacity(isShowOptions ? 0.1 : 0))
@@ -158,7 +158,6 @@ public struct PhotoSliderView: View {
     private var dragGestue: some Gesture {
         DragGesture(minimumDistance: currentScale > 1.2 ? 0 : 20, coordinateSpace: .local)
             .onChanged { value in
-
                 let deltaX = value.translation.width - previousOffset.width
                 let deltaY = value.translation.height - previousOffset.height
                 previousOffset.width = value.translation.width

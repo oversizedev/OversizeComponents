@@ -62,21 +62,21 @@ public struct IconNamePicker: View {
         .background(
             RoundedRectangle(
                 cornerRadius: Radius.medium.rawValue,
-                style: .continuous
+                style: .continuous,
             )
             .fill(Color.surfaceSecondary)
             .overlay(
                 RoundedRectangle(
                     cornerRadius: Radius.medium.rawValue,
-                    style: .continuous
+                    style: .continuous,
                 )
                 .stroke(
                     theme.borderTextFields
                         ? Color.border
                         : Color.surfaceSecondary,
-                    lineWidth: CGFloat(theme.borderSize)
-                )
-            )
+                    lineWidth: CGFloat(theme.borderSize),
+                ),
+            ),
         )
         .sheet(isPresented: $showModal) {
             modal
@@ -102,7 +102,7 @@ public struct IconNamePicker: View {
                                     .overlay(
                                         RoundedRectangle(cornerRadius: Radius.medium.rawValue, style: .continuous)
                                             .strokeBorder(Color.border, lineWidth: 1)
-                                            .frame(width: 48, height: 48, alignment: .center)
+                                            .frame(width: 48, height: 48, alignment: .center),
                                     )
 
                                 } else {
@@ -110,7 +110,7 @@ public struct IconNamePicker: View {
                                         .resizable()
                                         .frame(width: 24, height: 24, alignment: .center)
                                 }
-                            }
+                            },
                         )
                         .padding(.vertical, horizontalSizeClass == .compact ? 12 : 20)
                     }

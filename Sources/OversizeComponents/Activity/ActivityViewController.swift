@@ -21,14 +21,14 @@ public struct ActivityViewController: UIViewControllerRepresentable {
     {
         let controller = UIActivityViewController(
             activityItems: activityItems,
-            applicationActivities: applicationActivities
+            applicationActivities: applicationActivities,
         )
         return controller
     }
 
     public func updateUIViewController(
         _: UIActivityViewController,
-        context _: UIViewControllerRepresentableContext<ActivityViewController>
+        context _: UIViewControllerRepresentableContext<ActivityViewController>,
     ) {}
 }
 #endif

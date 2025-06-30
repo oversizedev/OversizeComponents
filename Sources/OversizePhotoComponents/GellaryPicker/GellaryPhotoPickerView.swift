@@ -79,12 +79,11 @@ public struct GellaryPhotoPickerView: View {
             .buttonStyle(.scale)
 
             ForEach(gellaryImages, id: \.self) { image in
-
                 Color.clear
                     .background(
                         Image(uiImage: getAssetThumbnail(asset: image))
                             .resizable()
-                            .scaledToFill()
+                            .scaledToFill(),
                     )
                     .aspectRatio(1, contentMode: .fill)
                     .clipped()

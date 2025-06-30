@@ -111,7 +111,7 @@ struct DayСolumnView_Previews: PreviewProvider {
                 nightIcon: Image(""),
                 nightTemperature: 27,
                 windSpeed: 20,
-                windDegrees: 0
+                windDegrees: 0,
             )
 
             DayСolumnView(
@@ -122,7 +122,7 @@ struct DayСolumnView_Previews: PreviewProvider {
                 nightIcon: Image(""),
                 nightTemperature: 27,
                 windSpeed: 20,
-                windDegrees: 0
+                windDegrees: 0,
             )
             .loading(true)
             // .environment(\.weatherTextColor, Color.onSurfacePrimary)

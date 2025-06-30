@@ -74,7 +74,7 @@ public struct LocationPickerSheet: View {
     private func updateCityName(coordinate: CLLocationCoordinate2D) {
         let loc = CLLocation(
             latitude: coordinate.latitude,
-            longitude: coordinate.longitude
+            longitude: coordinate.longitude,
         )
 
         let geocoder: CLGeocoder = .init()
@@ -82,13 +82,14 @@ public struct LocationPickerSheet: View {
         geocoder.reverseGeocodeLocation(loc) { placemarks, error in
             if error != nil { return }
             if let firstLocation = placemarks?.first as? CLPlacemark {
-                if let locality = firstLocation.locality {
-                    positionName = locality
-
-                } else if let subLocality = firstLocation.subLocality {
-                    positionName = subLocality
-                } else {
-                    positionName = firstLocation.name
+                Task { @MainActor in
+                    if let locality = firstLocation.locality {
+                        positionName = locality
+                    } else if let subLocality = firstLocation.subLocality {
+                        positionName = subLocality
+                    } else {
+                        positionName = firstLocation.name
+                    }
                 }
             }
         }

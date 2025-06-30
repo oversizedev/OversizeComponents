@@ -40,7 +40,7 @@ public struct ImageGridView: View {
                         .background(
                             images[index]
                                 .resizable()
-                                .scaledToFill()
+                                .scaledToFill(),
                         )
                         .aspectRatio(1, contentMode: .fill)
                         .clipped()

@@ -104,7 +104,7 @@ public struct GellaryPickerView: View {
                     .background(
                         Image(uiImage: getAssetThumbnail(asset: image))
                             .resizable()
-                            .scaledToFill()
+                            .scaledToFill(),
                     )
                     .aspectRatio(1, contentMode: .fill)
                     .clipped()

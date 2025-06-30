@@ -45,7 +45,6 @@ public struct CalendarMonthView<DateView>: View where DateView: View {
     public var body: some View {
         TabView(selection: $selectedMonth) {
             ForEach(months, id: \.self) { month in
-
                 LazyVGrid(columns: columns) {
                     Section(header: header(for: month)) {
                         ForEach(days[month, default: []], id: \.self) { date in
@@ -68,7 +67,7 @@ public struct CalendarMonthView<DateView>: View where DateView: View {
         .onAppear {
             months = calendar.generateDates(
                 inside: interval,
-                matching: DateComponents(day: 1, hour: 0, minute: 0, second: 0)
+                matching: DateComponents(day: 1, hour: 0, minute: 0, second: 0),
             )
 
             days = months.reduce(into: [:]) { current, month in
@@ -83,7 +82,7 @@ public struct CalendarMonthView<DateView>: View where DateView: View {
 
                 current[month] = calendar.generateDates(
                     inside: DateInterval(start: monthFirstWeek.start, end: daysInCalendar < 42 ? nextMonthFirstWeek.end : monthLastWeek.end),
-                    matching: DateComponents(hour: 0, minute: 0, second: 0)
+                    matching: DateComponents(hour: 0, minute: 0, second: 0),
                 )
             }
         }

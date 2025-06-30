@@ -70,7 +70,7 @@ public struct PhotoShowView: ViewModifier {
                                 if let action {
                                     BarButton(.icon(.moreHorizontal, action: action))
                                 }
-                            }
+                            },
                         )
                         .opacity(isShowOptions ? 1 : 0)
                         .background(.black.opacity(isShowOptions ? 0.1 : 0))
@@ -91,7 +91,7 @@ public struct PhotoShowView: ViewModifier {
                             trailingBar: { if let action {
                                 BarButton(.icon(.moreHorizontal, action: action))
                             }
-                            }
+                            },
                         )
                         .opacity(isShowOptions ? 1 : 0)
                         .background(.black.opacity(isShowOptions ? 0.1 : 0))
@@ -158,7 +158,6 @@ public struct PhotoShowView: ViewModifier {
     var dragGestue: some Gesture {
         DragGesture(minimumDistance: currentScale > 1.2 ? 0 : 20, coordinateSpace: .local)
             .onChanged { value in
-
                 let deltaX = value.translation.width - previousOffset.width
                 let deltaY = value.translation.height - previousOffset.height
                 previousOffset.width = value.translation.width
