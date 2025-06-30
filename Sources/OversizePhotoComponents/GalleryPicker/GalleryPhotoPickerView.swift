@@ -174,7 +174,7 @@ public struct GalleryPhotoPickerView: View {
 
 // struct NewPhotoView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        GalleryPickerView(selection: .constant([]))
+//        GalleryPhotoPickerView(selection: .constant([]))
 //    }
 // }
 #endif
