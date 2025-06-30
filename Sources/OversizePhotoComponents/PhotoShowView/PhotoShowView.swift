@@ -24,20 +24,20 @@ public struct PhotoShowView: ViewModifier {
     @Binding private var selectionIndex: Int
     private let photos: [Image]
 
-    @Binding private var isShowPhotoDetal: Bool
+    @Binding private var isShowPhotoDetail: Bool
 
     private let action: (() -> Void)?
 
     public init(isPresent: Binding<Bool>, selection: Binding<Int>, photos: [Image], action: (() -> Void)? = nil) {
         _selectionIndex = selection
         self.photos = photos
-        _isShowPhotoDetal = isPresent
+        _isShowPhotoDetail = isPresent
         self.action = action
     }
 
     public func body(content: Content) -> some View {
         content
-            .scaleEffect(isShowPhotoDetal ? 0.95 : 1)
+            .scaleEffect(isShowPhotoDetail ? 0.95 : 1)
             .overlay {
                 TabView(selection: $selectionIndex) {
                     ForEach(0 ..< photos.count, id: \.self) { index in
@@ -50,7 +50,7 @@ public struct PhotoShowView: ViewModifier {
                 .ignoresSafeArea(.all)
                 .navigationBarHidden(true)
                 .background(.black.opacity(backgroundOpacity))
-                .opacity(isShowPhotoDetal ? 1 : 0)
+                .opacity(isShowPhotoDetail ? 1 : 0)
                 .safeAreaInset(edge: .top) {
                     if #available(iOS 16.0, *) {
                         ModalNavigationBar(
@@ -61,7 +61,7 @@ public struct PhotoShowView: ViewModifier {
                             leadingBar: {
                                 BarButton(.backAction {
                                     withAnimation {
-                                        isShowPhotoDetal = false
+                                        isShowPhotoDetail = false
                                     }
 
                                 })
@@ -75,7 +75,7 @@ public struct PhotoShowView: ViewModifier {
                         .opacity(isShowOptions ? 1 : 0)
                         .background(.black.opacity(isShowOptions ? 0.1 : 0))
                         .opacity(optionsOpacity)
-                        .toolbar(isShowPhotoDetal ? .hidden : .visible, for: .tabBar)
+                        .toolbar(isShowPhotoDetail ? .hidden : .visible, for: .tabBar)
                     } else {
                         ModalNavigationBar(
                             title: "\(selectionIndex + 1) of \(photos.count)",
@@ -84,7 +84,7 @@ public struct PhotoShowView: ViewModifier {
                             alwaysSlideSmallTile: false,
                             leadingBar: { BarButton(.backAction {
                                 withAnimation {
-                                    isShowPhotoDetal = false
+                                    isShowPhotoDetail = false
                                 }
 
                             }) },
@@ -98,7 +98,7 @@ public struct PhotoShowView: ViewModifier {
                         .opacity(optionsOpacity)
                     }
                 }
-                .statusBar(hidden: isShowPhotoDetal)
+                .statusBar(hidden: isShowPhotoDetail)
                 .colorScheme(.dark)
             }
     }
@@ -192,12 +192,12 @@ public struct PhotoShowView: ViewModifier {
             previousScale = 1.0
             currentOffset = CGSize.zero
             previousOffset = CGSize.zero
-            isShowPhotoDetal = false
+            isShowPhotoDetail = false
         }
     }
 
     var backgroundOpacity: CGFloat {
-        if isShowPhotoDetal {
+        if isShowPhotoDetail {
             if currentOffset.height == 0 {
                 1
             } else if currentOffset.height > 0 {
@@ -211,7 +211,7 @@ public struct PhotoShowView: ViewModifier {
     }
 
     var optionsOpacity: CGFloat {
-        if isShowPhotoDetal {
+        if isShowPhotoDetail {
             if currentScale > 1.2 {
                 return 1
             }

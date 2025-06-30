@@ -21,17 +21,17 @@
 //    private let day: String
 //    private let dayDescription: String
 //
-//    private let mornTemperature: Double
-//    private let mornTemperatureFeelLike: Double
+//    private let morningTemperature: Double
+//    private let morningTemperatureFeelLike: Double
 //
 //    private let dayTemperature: Double
-//    private let dayTemperatureFeelLike: Double
+//    private let dayTemperatureFeelsLike: Double
 //
-//    private let eveTemperature: Double
-//    private let eveTemperatureFeelLike: Double
+//    private let eveningTemperature: Double
+//    private let eveningTemperatureFeelLike: Double
 //
 //    private let nightTemperature: Double
-//    private let nightTemperatureFeelLike: Double
+//    private let nightTemperatureFeelsLike: Double
 //
 //    private let humidity: Int
 //    private let windSpeed: Double
@@ -40,18 +40,18 @@
 //    private let action: () -> Void
 //
 //    // swiftlint:disable line_length
-//    public init(icon: Image, day: String, dayDescription: String, mornTemperature: Double, mornTemperatureFeelLike: Double, dayTemperature: Double, dayTemperatureFeelLike: Double, eveTemperature: Double, eveTemperatureFeelLike: Double, nightTemperature: Double, nightTemperatureFeelLike: Double, humidity: Int, windSpeed: Double, uvIndex: Double, action: @escaping () -> Void) {
+//    public init(icon: Image, day: String, dayDescription: String, morningTemperature: Double, morningTemperatureFeelLike: Double, dayTemperature: Double, dayTemperatureFeelsLike: Double, eveningTemperature: Double, eveningTemperatureFeelLike: Double, nightTemperature: Double, nightTemperatureFeelsLike: Double, humidity: Int, windSpeed: Double, uvIndex: Double, action: @escaping () -> Void) {
 //        self.icon = icon
 //        self.day = day
 //        self.dayDescription = dayDescription
-//        self.mornTemperature = mornTemperature
-//        self.mornTemperatureFeelLike = mornTemperatureFeelLike
+//        self.morningTemperature = morningTemperature
+//        self.morningTemperatureFeelLike = morningTemperatureFeelLike
 //        self.dayTemperature = dayTemperature
-//        self.dayTemperatureFeelLike = dayTemperatureFeelLike
-//        self.eveTemperature = eveTemperature
-//        self.eveTemperatureFeelLike = eveTemperatureFeelLike
+//        self.dayTemperatureFeelsLike = dayTemperatureFeelsLike
+//        self.eveningTemperature = eveningTemperature
+//        self.eveningTemperatureFeelLike = eveningTemperatureFeelLike
 //        self.nightTemperature = nightTemperature
-//        self.nightTemperatureFeelLike = nightTemperatureFeelLike
+//        self.nightTemperatureFeelsLike = nightTemperatureFeelsLike
 //        self.humidity = humidity
 //        self.windSpeed = windSpeed
 //        self.uvIndex = uvIndex
@@ -110,10 +110,10 @@
 //
 //            VStack(alignment: .leading, spacing: .medium) {
 //                HStack {
-//                    Text("\(L10n.Common.morning) \(mornTemperature.toStringTemperature)")
+//                    Text("\(L10n.Common.morning) \(morningTemperature.toStringTemperature)")
 //                        .fontStyle(.subtitle1, color: textColor)
 //
-//                    Text("\(L10n.Common.feelsLike.lowercased()) \(mornTemperatureFeelLike.toStringTemperature)")
+//                    Text("\(L10n.Common.feelsLike.lowercased()) \(morningTemperatureFeelLike.toStringTemperature)")
 //                        .font(.system(size: 16))
 //                        .fontWeight(.regular)
 //                        .foregroundColor(textColor.opacity(0.7))
@@ -123,17 +123,17 @@
 //                    Text("\(L10n.Common.day) \(dayTemperature.toStringTemperature)")
 //                        .fontStyle(.subtitle1, color: textColor)
 //
-//                    Text("\(L10n.Common.feelsLike.lowercased()) \(dayTemperatureFeelLike.toStringTemperature)")
+//                    Text("\(L10n.Common.feelsLike.lowercased()) \(dayTemperatureFeelsLike.toStringTemperature)")
 //                        .font(.system(size: 16))
 //                        .fontWeight(.regular)
 //                        .foregroundColor(textColor.opacity(0.7))
 //                }
 //
 //                HStack {
-//                    Text("\(L10n.Common.evening) \(eveTemperature.toStringTemperature)")
+//                    Text("\(L10n.Common.evening) \(eveningTemperature.toStringTemperature)")
 //                        .fontStyle(.subtitle1, color: textColor)
 //
-//                    Text("\(L10n.Common.feelsLike.lowercased()) \(eveTemperatureFeelLike.toStringTemperature)")
+//                    Text("\(L10n.Common.feelsLike.lowercased()) \(eveningTemperatureFeelLike.toStringTemperature)")
 //                        .font(.system(size: 16))
 //                        .fontWeight(.regular)
 //                        .foregroundColor(textColor.opacity(0.7))
@@ -143,7 +143,7 @@
 //                    Text("\(L10n.Common.night) \(nightTemperature.toStringTemperature)")
 //                        .fontStyle(.subtitle1, color: textColor)
 //
-//                    Text("\(L10n.Common.feelsLike.lowercased()) \(nightTemperatureFeelLike.toStringTemperature)")
+//                    Text("\(L10n.Common.feelsLike.lowercased()) \(nightTemperatureFeelsLike.toStringTemperature)")
 //                        .font(.system(size: 16))
 //                        .fontWeight(.regular)
 //                        .foregroundColor(textColor.opacity(0.7))
@@ -193,7 +193,7 @@
 //        case 6 ... 8:
 //            return L10n.Common.high
 //        case 8 ... 11:
-//            return L10n.Common.veriHigh
+//            return L10n.Common.veryHigh
 //        case 11...:
 //            return L10n.Common.extreme
 //        default:
