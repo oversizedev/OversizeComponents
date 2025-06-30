@@ -39,7 +39,7 @@ public struct FloatingTabBar<Content: View>: View {
                 Capsule()
                     .foregroundColor(Color.surfacePrimary)
             }
-            .shadowElevaton(.z2)
+            .shadowElevation(.z2)
             .padding(.bottom, screenSize.safeAreaBottom + 24)
         }
         .ignoresSafeArea()

@@ -26,7 +26,7 @@ public struct AvatarPickerView: View {
         }
         .buttonStyle(.scale)
         .sheet(isPresented: $isShowPicker) {
-            GellaryPhotoPickerView(selection: $avatar)
+            GalleryPhotoPickerView(selection: $avatar)
         }
     }
 

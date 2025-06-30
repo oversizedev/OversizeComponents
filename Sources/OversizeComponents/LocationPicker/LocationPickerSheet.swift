@@ -32,7 +32,7 @@ public struct LocationPickerSheet: View {
     public var body: some View {
         ZStack {
             if !isClosing {
-                MapViewDepecated(centerCoordinate: $coordinates)
+                MapViewDeprecated(centerCoordinate: $coordinates)
                     .ignoresSafeArea()
             }
 
@@ -67,11 +67,11 @@ public struct LocationPickerSheet: View {
             }))
         }
         .onChange(of: coordinates) {
-            updateCityName(coordinate: $0)
+            updateLocationName(coordinate: $0)
         }
     }
 
-    private func updateCityName(coordinate: CLLocationCoordinate2D) {
+    private func updateLocationName(coordinate: CLLocationCoordinate2D) {
         let loc = CLLocation(
             latitude: coordinate.latitude,
             longitude: coordinate.longitude,

@@ -17,7 +17,7 @@ public struct FieldScreenView: View {
     @FocusState private var isFocused: Bool
 
     public var leadingImage: IconsNames
-    public var trallingImage: IconsNames
+    public var trailingImage: IconsNames
 
     public var buttonText: String
     public var action: () -> Void
@@ -31,7 +31,7 @@ public struct FieldScreenView: View {
         helperText: Binding<String> = .constant(""),
         showHelper: Binding<Bool> = .constant(false),
         leadingImage: IconsNames = .none,
-        trallingImage: IconsNames = .none,
+        trailingImage: IconsNames = .none,
         buttonText: String = "Save",
         buttonAction: @escaping () -> Void
     ) {
@@ -41,7 +41,7 @@ public struct FieldScreenView: View {
         _helperText = helperText
         _showHelper = showHelper
         self.leadingImage = leadingImage
-        self.trallingImage = trallingImage
+        self.trailingImage = trailingImage
         self.buttonText = buttonText
         action = buttonAction
     }
@@ -62,8 +62,8 @@ public struct FieldScreenView: View {
                         .multilineTextAlignment(.center)
                         .focused($isFocused)
 
-                    if trallingImage != .none {
-                        IconDeprecated(trallingImage)
+                    if trailingImage != .none {
+                        IconDeprecated(trailingImage)
                     }
                 }
 

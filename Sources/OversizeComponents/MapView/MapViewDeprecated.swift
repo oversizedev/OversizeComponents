@@ -1,6 +1,6 @@
 //
 // Copyright © 2022 Alexander Romanov
-// MapViewDepecated.swift
+// MapViewDeprecated.swift
 //
 
 import CoreLocation
@@ -9,7 +9,7 @@ import MapKit
 import SwiftUI
 
 #if os(iOS)
-public struct MapViewDepecated: UIViewRepresentable {
+public struct MapViewDeprecated: UIViewRepresentable {
     @Binding var centerCoordinate: CLLocationCoordinate2D
 
     let mapView: MKMapView = .init()
@@ -38,11 +38,11 @@ public struct MapViewDepecated: UIViewRepresentable {
     }
 
     public class Coordinator: NSObject, MKMapViewDelegate, UIGestureRecognizerDelegate {
-        var parent: MapViewDepecated
+        var parent: MapViewDeprecated
 
         var gRecognizer = UITapGestureRecognizer()
 
-        init(_ parent: MapViewDepecated) {
+        init(_ parent: MapViewDeprecated) {
             self.parent = parent
             super.init()
             gRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapHandler))

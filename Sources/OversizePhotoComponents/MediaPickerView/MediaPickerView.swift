@@ -32,7 +32,7 @@ public struct MediaPickerView: View {
 
     private var tabedSheet: some View {
         TabView {
-            GellaryPickerView(selection: $selectionPhotos, selectionDate: $selectionPhotosDate)
+            GalleryPickerView(selection: $selectionPhotos, selectionDate: $selectionPhotosDate)
                 .tabItem {
                     Label {
                         Text("Gellary")

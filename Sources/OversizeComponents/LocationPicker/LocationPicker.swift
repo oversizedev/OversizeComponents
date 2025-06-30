@@ -73,13 +73,13 @@ public struct LocationPicker: View {
             modal
         }
         .onChange(of: coordinates) {
-            updateCityName(coordinate: $0)
+            updateLocationName(coordinate: $0)
         }
     }
 
     public var modal: some View {
         ZStack {
-            MapViewDepecated(centerCoordinate: $coordinates)
+            MapViewDeprecated(centerCoordinate: $coordinates)
                 .ignoresSafeArea()
 
             VStack {
@@ -113,7 +113,7 @@ public struct LocationPicker: View {
         }
     }
 
-    private func updateCityName(coordinate: CLLocationCoordinate2D) {
+    private func updateLocationName(coordinate: CLLocationCoordinate2D) {
         let loc = CLLocation(
             latitude: coordinate.latitude,
             longitude: coordinate.longitude,
