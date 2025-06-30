@@ -11,20 +11,20 @@ public enum WeatherBackgroundViewType {
 
 public struct WeatherBackgroundView: View {
     private let topLeadingColor: Color
-    private let topTrallingColor: Color
+    private let topTrailingColor: Color
     private let centerColor: Color
     private let backgroundColor: Color
     private let type: WeatherBackgroundViewType
 
     public init(
         topLeadingColor: Color,
-        topTrallingColor: Color,
+        topTrailingColor: Color,
         centerColor: Color,
         backgroundColor: Color,
         type: WeatherBackgroundViewType
     ) {
         self.topLeadingColor = topLeadingColor
-        self.topTrallingColor = topTrallingColor
+        self.topTrailingColor = topTrailingColor
         self.centerColor = centerColor
         self.backgroundColor = backgroundColor
         self.type = type
@@ -35,7 +35,7 @@ public struct WeatherBackgroundView: View {
             Rectangle().foregroundColor(backgroundColor)
 
             RadialGradient(
-                gradient: Gradient(colors: [topTrallingColor, topTrallingColor.opacity(0)]),
+                gradient: Gradient(colors: [topTrailingColor, topTrailingColor.opacity(0)]),
                 center: .topTrailing,
                 startRadius: 1,
                 endRadius: type == .fullScreen ? 600 : type == .widgetBig ? 300 : 110,

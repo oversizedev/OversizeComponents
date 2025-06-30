@@ -14,17 +14,17 @@ public struct DayShortRowView: View {
     private let day: String
     private let humidity: Int
 
-    private let mornTemperature: Double
-    private let mornTemperatureFeelLike: Double
+    private let morningTemperature: Double
+    private let morningTemperatureFeelLike: Double
 
     private let dayTemperature: Double
-    private let dayTemperatureFeelLike: Double
+    private let dayTemperatureFeelsLike: Double
 
-    private let eveTemperature: Double
-    private let eveTemperatureFeelLike: Double
+    private let eveningTemperature: Double
+    private let eveningTemperatureFeelLike: Double
 
     private let nightTemperature: Double
-    private let nightTemperatureFeelLike: Double
+    private let nightTemperatureFeelsLike: Double
 
     @State var isShowDetail = false
 
@@ -34,28 +34,28 @@ public struct DayShortRowView: View {
         icon: Image,
         day: String,
         humidity: Int = 0,
-        mornTemperature: Double,
-        mornTemperatureFeelLike: Double,
+        morningTemperature: Double,
+        morningTemperatureFeelLike: Double,
         dayTemperature: Double,
-        dayTemperatureFeelLike: Double,
-        eveTemperature: Double,
-        eveTemperatureFeelLike: Double,
+        dayTemperatureFeelsLike: Double,
+        eveningTemperature: Double,
+        eveningTemperatureFeelLike: Double,
         nightTemperature: Double,
-        nightTemperatureFeelLike: Double,
+        nightTemperatureFeelsLike: Double,
         action: @escaping () -> Void
     ) {
         self.icon = icon
         self.day = day
         self.humidity = humidity
 
-        self.mornTemperature = mornTemperature
-        self.mornTemperatureFeelLike = mornTemperatureFeelLike
+        self.morningTemperature = morningTemperature
+        self.morningTemperatureFeelLike = morningTemperatureFeelLike
         self.dayTemperature = dayTemperature
-        self.dayTemperatureFeelLike = dayTemperatureFeelLike
-        self.eveTemperature = eveTemperature
-        self.eveTemperatureFeelLike = eveTemperatureFeelLike
+        self.dayTemperatureFeelsLike = dayTemperatureFeelsLike
+        self.eveningTemperature = eveningTemperature
+        self.eveningTemperatureFeelLike = eveningTemperatureFeelLike
         self.nightTemperature = nightTemperature
-        self.nightTemperatureFeelLike = nightTemperatureFeelLike
+        self.nightTemperatureFeelsLike = nightTemperatureFeelsLike
         self.action = action
     }
 
@@ -117,11 +117,11 @@ public struct DayShortRowView: View {
                             .foregroundColor(.border)
 
                         HStack {
-                            Text("\(L10n.Common.morning) \(mornTemperature.toStringTemperature)")
+                            Text("\(L10n.Common.morning) \(morningTemperature.toStringTemperature)")
                                 .font(.headline)
                                 .foregroundStyle(textColor.opacity(0.7))
 
-                            Text("\(L10n.Common.feelsLike.lowercased()) \(mornTemperatureFeelLike.toStringTemperature)")
+                            Text("\(L10n.Common.feelsLike.lowercased()) \(morningTemperatureFeelLike.toStringTemperature)")
                                 .font(.system(size: 16))
                                 .fontWeight(.regular)
                                 .foregroundColor(textColor.opacity(0.7))
@@ -132,18 +132,18 @@ public struct DayShortRowView: View {
                                 .font(.headline)
                                 .foregroundStyle(textColor)
 
-                            Text("\(L10n.Common.feelsLike.lowercased()) \(dayTemperatureFeelLike.toStringTemperature)")
+                            Text("\(L10n.Common.feelsLike.lowercased()) \(dayTemperatureFeelsLike.toStringTemperature)")
                                 .font(.system(size: 16))
                                 .fontWeight(.regular)
                                 .foregroundColor(textColor.opacity(0.7))
                         }
 
                         HStack {
-                            Text("\(L10n.Common.evening) \(eveTemperature.toStringTemperature)")
+                            Text("\(L10n.Common.evening) \(eveningTemperature.toStringTemperature)")
                                 .font(.headline)
                                 .foregroundStyle(textColor)
 
-                            Text("\(L10n.Common.feelsLike.lowercased()) \(eveTemperatureFeelLike.toStringTemperature)")
+                            Text("\(L10n.Common.feelsLike.lowercased()) \(eveningTemperatureFeelLike.toStringTemperature)")
                                 .font(.system(size: 16))
                                 .fontWeight(.regular)
                                 .foregroundColor(textColor.opacity(0.7))
@@ -155,7 +155,7 @@ public struct DayShortRowView: View {
                                 .foregroundStyle(textColor)
 
                             // swiftlint:disable line_length
-                            Text("\(L10n.Common.feelsLike.lowercased()) \(nightTemperatureFeelLike.toStringTemperature)")
+                            Text("\(L10n.Common.feelsLike.lowercased()) \(nightTemperatureFeelsLike.toStringTemperature)")
                                 .font(.system(size: 16))
                                 .fontWeight(.regular)
                                 .foregroundColor(textColor.opacity(0.7))
@@ -182,4 +182,4 @@ public struct DayShortRowView: View {
     }
 }
 
-// .shadowElevaton(isShowDetail ? .z0 : .z3 )
+// .shadowElevation(isShowDetail ? .z0 : .z3 )

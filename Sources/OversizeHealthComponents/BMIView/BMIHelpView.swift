@@ -52,7 +52,7 @@ struct BMIHelpView: View {
                 .foregroundColor(Color.surfacePrimary)
                 .rotationEffect(.degrees(54.5))
                 .shadow(color: .black.opacity(0.04), radius: 32, y: 10)
-            // .shadowElevaton(.z3)
+            // .shadowElevation(.z3)
 
             Circle()
                 .trim(from: 0.3, to: CGFloat(state))

@@ -1,6 +1,6 @@
 //
 // Copyright © 2022 Alexander Romanov
-// GellaryPickerView.swift
+// GalleryPickerView.swift
 //
 
 import OversizeComponents
@@ -11,11 +11,14 @@ import PhotosUI
 import SwiftUI
 
 #if os(iOS)
-public struct GellaryPickerView: View {
+@available(*, deprecated, renamed: "GalleryPickerView")
+public typealias GellaryPickerView = GalleryPickerView
+
+public struct GalleryPickerView: View {
     @Environment(\.dismiss) var dismiss
 
     @State private var selectedImages: [PHAsset] = .init([])
-    @State var gellaryImages: [PHAsset] = .init([])
+    @State var galleryImages: [PHAsset] = .init([])
     @State private var cameraImage: UIImage = .init()
 
     @State var isShowCamera: Bool = .init(false)
@@ -94,15 +97,15 @@ public struct GellaryPickerView: View {
                         .renderingMode(.template)
                         .foregroundColor(.white)
                 }
-                .frame(minHeight: gellaryImages.count > 0 ? nil : 200)
+                .frame(minHeight: galleryImages.count > 0 ? nil : 200)
             }
             .buttonStyle(.scale)
 
-            ForEach(gellaryImages, id: \.self) { image in
+            ForEach(galleryImages, id: \.self) { image in
                 let isSelected = selectedImages.contains(image)
                 Color.clear
                     .background(
-                        Image(uiImage: getAssetThumbnail(asset: image))
+                        Image(uiImage: getThumbnailFromAsset(asset: image))
                             .resizable()
                             .scaledToFill(),
                     )
@@ -142,17 +145,17 @@ public struct GellaryPickerView: View {
 
     func importPhotos() async -> ([UIImage], [Date]) {
         isImportingPhotos = true
-        let selectedUiImages: [UIImage] = selectedImages.compactMap { getImageFromAsset(asset: $0) }
+        let selectedUiImages: [UIImage] = selectedImages.compactMap { getFullImageFromAsset(asset: $0) }
         let selectedImagesDates: [Date] = selectedImages.compactMap { $0.creationDate }
         return (selectedUiImages, selectedImagesDates)
     }
 
-    func upImportCounter() {
+    func incrementImportCounter() {
         importImagesCount = Double(selectedImages.count)
         importProgress += 1
     }
 
-    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+    func getThumbnailFromAsset(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
         let option: PHImageRequestOptions = .init()
         var thumbnail = UIImage()
@@ -163,7 +166,7 @@ public struct GellaryPickerView: View {
         return thumbnail
     }
 
-    func getImageFromAsset(asset: PHAsset) -> UIImage {
+    func getFullImageFromAsset(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
         let option: PHImageRequestOptions = .init()
         var thumbnail = UIImage()
@@ -173,7 +176,7 @@ public struct GellaryPickerView: View {
         manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .default, options: option, resultHandler: { result, _ in
             thumbnail = result!
         })
-        upImportCounter()
+        incrementImportCounter()
         return thumbnail
     }
 
@@ -183,14 +186,31 @@ public struct GellaryPickerView: View {
         fetchOptions.fetchLimit = 25000
         let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
         assets.enumerateObjects { object, _, _ in
-            gellaryImages.append(object)
+            galleryImages.append(object)
         }
+    }
+    
+    // MARK: - Deprecated method wrappers
+    
+    @available(*, deprecated, renamed: "incrementImportCounter")
+    func upImportCounter() {
+        incrementImportCounter()
+    }
+    
+    @available(*, deprecated, renamed: "getThumbnailFromAsset")
+    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        return getThumbnailFromAsset(asset: asset)
+    }
+    
+    @available(*, deprecated, renamed: "getFullImageFromAsset")
+    func getImageFromAsset(asset: PHAsset) -> UIImage {
+        return getFullImageFromAsset(asset: asset)
     }
 }
 
 // struct NewPhotoView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        GellaryPickerView(selection: .constant([]))
+//        GalleryPickerView(selection: .constant([]))
 //    }
 // }
 #endif

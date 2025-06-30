@@ -22,7 +22,7 @@ public struct PhotosFieldView: View {
         field
             .animation(.default, value: selection)
             .sheet(isPresented: $isShowSelector) {
-                GellaryPickerView(selection: $selection, selectionDate: $selectionDate)
+                GalleryPickerView(selection: $selection, selectionDate: $selectionDate)
             }
     }
 
@@ -86,10 +86,10 @@ public struct PhotosFieldView: View {
                 Circle()
                     .fill(Color.surfacePrimary)
                     .frame(width: 48, height: 48)
-                    .shadowElevaton(.z1)
+                    .shadowElevation(.z1)
                     .overlay {
                         IconDeprecated(.plus, color: .onSurfacePrimary)
-                            .shadowElevaton(.z1)
+                            .shadowElevation(.z1)
                     }
                 Text(L10n.Button.add)
                     .headline(.semibold)

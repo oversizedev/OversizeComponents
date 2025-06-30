@@ -1,6 +1,6 @@
 //
 // Copyright © 2022 Alexander Romanov
-// DayСolumnView.swift
+// DayColumnView.swift
 //
 
 import OversizeCore
@@ -8,7 +8,10 @@ import OversizeLocalizable
 import OversizeUI
 import SwiftUI
 
-public struct DayСolumnView: View {
+@available(*, deprecated, renamed: "DayColumnView")
+public typealias DayСolumnView = DayColumnView
+
+public struct DayColumnView: View {
     @Environment(\.weatherTextColor) var textColor
     private let day: String
     private let dayDescription: String
@@ -100,10 +103,10 @@ public struct DayСolumnView: View {
     }
 }
 
-struct DayСolumnView_Previews: PreviewProvider {
+struct DayColumnView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            DayСolumnView(
+            DayColumnView(
                 day: "Sn",
                 dayDescription: "Today",
                 dayIcon: Image(""),
@@ -114,7 +117,7 @@ struct DayСolumnView_Previews: PreviewProvider {
                 windDegrees: 0,
             )
 
-            DayСolumnView(
+            DayColumnView(
                 day: "Sn",
                 dayDescription: "Today",
                 dayIcon: Image(""),
