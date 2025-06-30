@@ -9,6 +9,9 @@ import MapKit
 import SwiftUI
 
 #if os(iOS)
+@available(*, deprecated, renamed: "MapViewDeprecated")
+public typealias MapViewDepecated = MapViewDeprecated
+
 public struct MapViewDeprecated: UIViewRepresentable {
     @Binding var centerCoordinate: CLLocationCoordinate2D
 

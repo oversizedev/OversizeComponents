@@ -11,6 +11,9 @@ import PhotosUI
 import SwiftUI
 
 #if os(iOS)
+@available(*, deprecated, renamed: "GalleryPickerView")
+public typealias GellaryPickerView = GalleryPickerView
+
 public struct GalleryPickerView: View {
     @Environment(\.dismiss) var dismiss
 
@@ -185,6 +188,23 @@ public struct GalleryPickerView: View {
         assets.enumerateObjects { object, _, _ in
             galleryImages.append(object)
         }
+    }
+    
+    // MARK: - Deprecated method wrappers
+    
+    @available(*, deprecated, renamed: "incrementImportCounter")
+    func upImportCounter() {
+        incrementImportCounter()
+    }
+    
+    @available(*, deprecated, renamed: "getThumbnailFromAsset")
+    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        return getThumbnailFromAsset(asset: asset)
+    }
+    
+    @available(*, deprecated, renamed: "getFullImageFromAsset")
+    func getImageFromAsset(asset: PHAsset) -> UIImage {
+        return getFullImageFromAsset(asset: asset)
     }
 }
 

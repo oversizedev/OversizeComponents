@@ -8,6 +8,9 @@ import OversizeLocalizable
 import OversizeUI
 import SwiftUI
 
+@available(*, deprecated, renamed: "DayColumnView")
+public typealias DayСolumnView = DayColumnView
+
 public struct DayColumnView: View {
     @Environment(\.weatherTextColor) var textColor
     private let day: String

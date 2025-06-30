@@ -94,6 +94,13 @@ public struct LocationPickerSheet: View {
             }
         }
     }
+    
+    // MARK: - Deprecated method wrapper
+    
+    @available(*, deprecated, renamed: "updateLocationName")
+    private func updateCityName(coordinate: CLLocationCoordinate2D) {
+        updateLocationName(coordinate: coordinate)
+    }
 
     func closeView() {
         isClosing = true
