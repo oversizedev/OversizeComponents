@@ -15,7 +15,7 @@ public struct SelectableSurface<SelectedContnet: View, UnselectedContnet: View>:
     public init(
         isSelected: Binding<Bool>,
         @ViewBuilder selectedContnet: () -> SelectedContnet,
-        @ViewBuilder unselectedContnet: () -> UnselectedContnet
+        @ViewBuilder unselectedContnet: () -> UnselectedContnet,
     ) {
         self.selectedContnet = selectedContnet()
         self.unselectedContnet = unselectedContnet()

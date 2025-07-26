@@ -153,22 +153,22 @@ public struct GalleryPhotoPickerView: View {
             galleryImages.append(object)
         }
     }
-    
+
     // MARK: - Deprecated method wrappers
-    
+
     @available(*, deprecated, renamed: "incrementImportCounter")
     func upImportCounter() {
         incrementImportCounter()
     }
-    
+
     @available(*, deprecated, renamed: "getThumbnailFromAsset")
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
-        return getThumbnailFromAsset(asset: asset)
+        getThumbnailFromAsset(asset: asset)
     }
-    
+
     @available(*, deprecated, renamed: "getFullImageFromAsset")
     func getImageFromAsset(asset: PHAsset) -> UIImage {
-        return getFullImageFromAsset(asset: asset)
+        getFullImageFromAsset(asset: asset)
     }
 }
 

@@ -33,7 +33,7 @@ public struct SortingPicker<Element, Content>: View
         selection: Binding<Data.Element>,
         ascending: Binding<Bool>,
         @ViewBuilder content: @escaping (Data.Element, Bool) -> Content,
-        action: ((Data.Element) -> Void)? = nil
+        action: ((Data.Element) -> Void)? = nil,
     ) {
         self.label = label
         self.data = data

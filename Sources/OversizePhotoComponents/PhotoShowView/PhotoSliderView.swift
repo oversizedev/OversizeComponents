@@ -33,7 +33,7 @@ public struct PhotoSliderView: View {
         selection: Binding<Int>,
         photos: [Image],
         dismissAction: (() -> Void)? = nil,
-        optionsAction: (() -> Void)? = nil
+        optionsAction: (() -> Void)? = nil,
     ) {
         _selectionIndex = selection
         self.photos = photos

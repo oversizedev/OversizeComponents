@@ -7,7 +7,7 @@ import OversizeUI
 import SwiftUI
 
 struct WeatherTextColorKey: EnvironmentKey {
-    public static let defaultValue: Color = .onSurfacePrimary
+    static let defaultValue: Color = .onSurfacePrimary
 }
 
 public extension EnvironmentValues {

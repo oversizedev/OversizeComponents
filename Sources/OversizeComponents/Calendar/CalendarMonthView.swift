@@ -33,7 +33,7 @@ public struct CalendarMonthView<DateView>: View where DateView: View {
         showHeaders: Bool = false,
         selectedMonth: Binding<Date>,
         onHeaderAppear: @escaping (Date) -> Void,
-        @ViewBuilder content: @escaping (Date) -> DateView
+        @ViewBuilder content: @escaping (Date) -> DateView,
     ) {
         self.interval = interval
         self.showHeaders = showHeaders

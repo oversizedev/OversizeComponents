@@ -18,7 +18,7 @@ public struct CurrencyPicker: View {
     public init(
         _ sheetTitle: String = "Currency",
         currencies: [Locale.Currency] = Locale.Currency.countryCurrencies,
-        selection: Binding<Locale.Currency>
+        selection: Binding<Locale.Currency>,
     ) {
         label = sheetTitle
         _selection = selection
@@ -27,16 +27,16 @@ public struct CurrencyPicker: View {
 
     public var body: some View {
         Select(label, currencies, selection: $selection) { element, _ in
-            Row(element.dispalyName ?? element.identifier) {
+            Row(element.displayName ?? element.identifier) {
                 ZStack {
                     RoundedRectangle(cornerRadius: .small, style: .continuous)
                         .fill(Color.surfaceSecondary)
                         .frame(width: 52, height: 36)
-                    Text(element.dispalySymbol ?? element.identifier)
+                    Text(element.displaySymbol ?? element.identifier)
                 }
             }
         } selectionView: { element in
-            Text(element.dispalyName ?? label)
+            Text(element.displayName ?? label)
         }
     }
 }

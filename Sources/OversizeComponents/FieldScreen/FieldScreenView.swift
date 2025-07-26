@@ -33,7 +33,7 @@ public struct FieldScreenView: View {
         leadingImage: IconsNames = .none,
         trailingImage: IconsNames = .none,
         buttonText: String = "Save",
-        buttonAction: @escaping () -> Void
+        buttonAction: @escaping () -> Void,
     ) {
         self.label = label
         self.placeholder = placeholder

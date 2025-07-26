@@ -21,7 +21,7 @@ public struct WeatherBackgroundView: View {
         topTrailingColor: Color,
         centerColor: Color,
         backgroundColor: Color,
-        type: WeatherBackgroundViewType
+        type: WeatherBackgroundViewType,
     ) {
         self.topLeadingColor = topLeadingColor
         self.topTrailingColor = topTrailingColor

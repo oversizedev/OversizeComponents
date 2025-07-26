@@ -136,9 +136,9 @@ public struct LocationPicker: View {
             }
         }
     }
-    
+
     // MARK: - Deprecated method wrapper
-    
+
     @available(*, deprecated, renamed: "updateLocationName")
     private func updateCityName(coordinate: CLLocationCoordinate2D) {
         updateLocationName(coordinate: coordinate)

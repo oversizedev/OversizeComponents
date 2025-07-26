@@ -32,7 +32,7 @@ public struct DayColumnView: View {
         nightIcon: Image?,
         nightTemperature: Double = 0,
         windSpeed: Double = 0,
-        windDegrees: Int = 0
+        windDegrees: Int = 0,
     ) {
         self.day = day
         self.dayDescription = dayDescription

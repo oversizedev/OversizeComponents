@@ -35,7 +35,7 @@ public struct IconNamePicker: View {
     public init(
         _ label: String,
         _ icons: [String],
-        selection: Binding<String?>
+        selection: Binding<String?>,
     ) {
         self.label = label
         self.icons = icons
