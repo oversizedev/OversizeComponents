@@ -52,13 +52,13 @@ public struct LocationPicker: View {
         .padding()
         .background(
             RoundedRectangle(
-                cornerRadius: Radius.medium,
+                cornerRadius: .xSmall,
                 style: .continuous,
             )
             .fill(Color.surfaceSecondary)
             .overlay(
                 RoundedRectangle(
-                    cornerRadius: Radius.medium,
+                    cornerRadius: .xxxSmall,
                     style: .continuous,
                 )
                 .stroke(

@@ -114,13 +114,13 @@ public struct GalleryPickerView: View {
                     .contentShape(Rectangle())
                     .overlay(alignment: .topTrailing) {
                         ZStack {
-                            RoundedRectangle(cornerRadius: Radius.small, style: .continuous)
+                            RoundedRectangle(cornerRadius: .xxSmall, style: .continuous)
                                 .stroke(Color.white, lineWidth: 2)
                                 .frame(width: 24, height: 24)
                                 .shadow(radius: 4)
                                 .opacity(isSelected ? 0 : 1)
 
-                            RoundedRectangle(cornerRadius: Radius.small, style: .continuous).fill(Color.accent)
+                            RoundedRectangle(cornerRadius: .xxSmall, style: .continuous).fill(Color.accent)
                                 .frame(width: 24, height: 24)
                                 .opacity(isSelected ? 1 : 0)
 
