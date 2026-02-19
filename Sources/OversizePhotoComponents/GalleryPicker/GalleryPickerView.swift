@@ -81,7 +81,6 @@ public struct GalleryPickerView: View {
         }
     }
 
-    @ViewBuilder
     private func content() -> some View {
         LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
             Button {

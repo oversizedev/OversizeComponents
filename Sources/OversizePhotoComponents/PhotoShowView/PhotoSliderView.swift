@@ -103,7 +103,6 @@ public struct PhotoSliderView: View {
         .colorScheme(.dark)
     }
 
-    @ViewBuilder
     private func photoWithOptions(image: Image) -> some View {
         image
             .resizable()

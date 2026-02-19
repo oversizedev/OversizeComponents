@@ -103,7 +103,6 @@ public struct PhotoShowView: ViewModifier {
             }
     }
 
-    @ViewBuilder
     func photoWithOptions(image: Image) -> some View {
         image
             .resizable()

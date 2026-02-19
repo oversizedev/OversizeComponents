@@ -24,7 +24,6 @@ public struct PhotoFieldView: View {
             }
     }
 
-    @ViewBuilder
     private var field: some View {
         Button {
             isShowSelector.toggle()

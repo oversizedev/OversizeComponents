@@ -34,11 +34,19 @@ public struct NoteEditor: View {
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image.Base.close.icon()
-                    }
+                    Button(
+                        "Close",
+                        systemImage: "xmark",
+                        role: .cancel,
+                        action: {
+                            dismiss()
+                        }
+                    )
+                    .labelStyle(.toolbar)
+                    .buttonStyle(.toolbarSecondary)
+                    #if !os(tvOS)
+                        .keyboardShortcut(.cancelAction)
+                    #endif
                 }
             }
         #if os(iOS)

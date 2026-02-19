@@ -39,7 +39,7 @@ public struct SelectableSurface<SelectedContnet: View, UnselectedContnet: View>:
             }
         }
         .elevation(.z2)
-        .surfaceRadius(.xLarge)
+        .surfaceRadius(.medium)
         .padding(.horizontal, isSelected ? .zero : .xxSmall)
         .surfaceContentMargins(.zero)
     }
