@@ -1,6 +1,7 @@
 // swift-tools-version: 6.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
+import Foundation
 import PackageDescription
 
 let commonDependencies: [PackageDescription.Package.Dependency] = [
@@ -19,7 +20,8 @@ let localDependencies: [PackageDescription.Package.Dependency] = commonDependenc
     .package(name: "OversizeLocalizable", path: "../OversizeLocalizable"),
 ]
 
-let dependencies: [PackageDescription.Package.Dependency] = localDependencies
+let isLocalDev = FileManager.default.fileExists(atPath: "\(NSHomeDirectory())/Developer/Packages/OversizeCore")
+let dependencies: [PackageDescription.Package.Dependency] = isLocalDev ? localDependencies : remoteDependencies
 
 let package = Package(
     name: "OversizeComponents",

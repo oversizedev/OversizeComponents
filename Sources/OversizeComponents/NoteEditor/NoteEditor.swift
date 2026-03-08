@@ -40,7 +40,7 @@ public struct NoteEditor: View {
                         role: .cancel,
                         action: {
                             dismiss()
-                        }
+                        },
                     )
                     .labelStyle(.toolbar)
                     .buttonStyle(.toolbarSecondary)

@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct TabItemPreferenceKey: PreferenceKey, Sendable {
+struct TabItemPreferenceKey: PreferenceKey {
     static var defaultValue: [TabItem] {
         []
     }
