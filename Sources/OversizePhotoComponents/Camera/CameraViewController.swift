@@ -29,12 +29,12 @@ final class CameraViewController: UIViewController {
 }
 
 extension CameraViewController: UIViewControllerRepresentable {
-    public typealias UIViewControllerType = CameraViewController
+    typealias UIViewControllerType = CameraViewController
 
-    public func makeUIViewController(context _: UIViewControllerRepresentableContext<CameraViewController>) -> CameraViewController {
+    func makeUIViewController(context _: UIViewControllerRepresentableContext<CameraViewController>) -> CameraViewController {
         CameraViewController()
     }
 
-    public func updateUIViewController(_: CameraViewController, context _: UIViewControllerRepresentableContext<CameraViewController>) {}
+    func updateUIViewController(_: CameraViewController, context _: UIViewControllerRepresentableContext<CameraViewController>) {}
 }
 #endif

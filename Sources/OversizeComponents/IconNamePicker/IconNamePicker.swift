@@ -35,7 +35,7 @@ public struct IconNamePicker: View {
     public init(
         _ label: String,
         _ icons: [String],
-        selection: Binding<String?>
+        selection: Binding<String?>,
     ) {
         self.label = label
         self.icons = icons
@@ -61,13 +61,13 @@ public struct IconNamePicker: View {
         .padding()
         .background(
             RoundedRectangle(
-                cornerRadius: Radius.medium.rawValue,
+                cornerRadius: .xSmall,
                 style: .continuous,
             )
             .fill(Color.surfaceSecondary)
             .overlay(
                 RoundedRectangle(
-                    cornerRadius: Radius.medium.rawValue,
+                    cornerRadius: .xSmall,
                     style: .continuous,
                 )
                 .stroke(
@@ -100,11 +100,10 @@ public struct IconNamePicker: View {
                                             .frame(width: 24, height: 24, alignment: .center)
                                     }
                                     .overlay(
-                                        RoundedRectangle(cornerRadius: Radius.medium.rawValue, style: .continuous)
+                                        RoundedRectangle(cornerRadius: .xSmall, style: .continuous)
                                             .strokeBorder(Color.border, lineWidth: 1)
                                             .frame(width: 48, height: 48, alignment: .center),
                                     )
-
                                 } else {
                                     Image(icons[index], bundle: .main)
                                         .resizable()

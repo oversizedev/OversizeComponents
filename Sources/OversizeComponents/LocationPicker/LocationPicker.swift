@@ -52,13 +52,13 @@ public struct LocationPicker: View {
         .padding()
         .background(
             RoundedRectangle(
-                cornerRadius: Radius.medium,
+                cornerRadius: .xSmall,
                 style: .continuous,
             )
             .fill(Color.surfaceSecondary)
             .overlay(
                 RoundedRectangle(
-                    cornerRadius: Radius.medium,
+                    cornerRadius: .xxxSmall,
                     style: .continuous,
                 )
                 .stroke(
@@ -136,9 +136,9 @@ public struct LocationPicker: View {
             }
         }
     }
-    
+
     // MARK: - Deprecated method wrapper
-    
+
     @available(*, deprecated, renamed: "updateLocationName")
     private func updateCityName(coordinate: CLLocationCoordinate2D) {
         updateLocationName(coordinate: coordinate)

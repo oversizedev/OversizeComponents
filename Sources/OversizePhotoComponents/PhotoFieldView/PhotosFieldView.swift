@@ -93,7 +93,7 @@ public struct PhotosFieldView: View {
                     }
                 Text(L10n.Button.add)
                     .headline(.semibold)
-                    .onSurfacePrimaryForeground()
+                    .onSurfacePrimary()
             }
             .frame(width: 104)
         }

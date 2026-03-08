@@ -7,11 +7,7 @@ import OversizeUI
 import SwiftUI
 
 @available(iOS 15.0, macOS 14, tvOS 15.0, watchOS 9.0, *)
-public struct SortingPicker<Element, Content>: View
-    where
-    Content: View,
-    Element: Equatable
-{
+public struct SortingPicker<Element: Equatable, Content: View>: View {
     @Environment(\.theme) private var theme: ThemeSettings
     @Environment(\.dismiss) var dismiss
 
@@ -33,7 +29,7 @@ public struct SortingPicker<Element, Content>: View
         selection: Binding<Data.Element>,
         ascending: Binding<Bool>,
         @ViewBuilder content: @escaping (Data.Element, Bool) -> Content,
-        action: ((Data.Element) -> Void)? = nil
+        action: ((Data.Element) -> Void)? = nil,
     ) {
         self.label = label
         self.data = data

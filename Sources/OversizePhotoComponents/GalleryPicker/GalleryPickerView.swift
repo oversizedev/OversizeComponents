@@ -81,7 +81,6 @@ public struct GalleryPickerView: View {
         }
     }
 
-    @ViewBuilder
     private func content() -> some View {
         LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
             Button {
@@ -114,13 +113,13 @@ public struct GalleryPickerView: View {
                     .contentShape(Rectangle())
                     .overlay(alignment: .topTrailing) {
                         ZStack {
-                            RoundedRectangle(cornerRadius: Radius.small, style: .continuous)
+                            RoundedRectangle(cornerRadius: .xxSmall, style: .continuous)
                                 .stroke(Color.white, lineWidth: 2)
                                 .frame(width: 24, height: 24)
                                 .shadow(radius: 4)
                                 .opacity(isSelected ? 0 : 1)
 
-                            RoundedRectangle(cornerRadius: Radius.small, style: .continuous).fill(Color.accent)
+                            RoundedRectangle(cornerRadius: .xxSmall, style: .continuous).fill(Color.accent)
                                 .frame(width: 24, height: 24)
                                 .opacity(isSelected ? 1 : 0)
 
@@ -189,22 +188,22 @@ public struct GalleryPickerView: View {
             galleryImages.append(object)
         }
     }
-    
+
     // MARK: - Deprecated method wrappers
-    
+
     @available(*, deprecated, renamed: "incrementImportCounter")
     func upImportCounter() {
         incrementImportCounter()
     }
-    
+
     @available(*, deprecated, renamed: "getThumbnailFromAsset")
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
-        return getThumbnailFromAsset(asset: asset)
+        getThumbnailFromAsset(asset: asset)
     }
-    
+
     @available(*, deprecated, renamed: "getFullImageFromAsset")
     func getImageFromAsset(asset: PHAsset) -> UIImage {
-        return getFullImageFromAsset(asset: asset)
+        getFullImageFromAsset(asset: asset)
     }
 }
 

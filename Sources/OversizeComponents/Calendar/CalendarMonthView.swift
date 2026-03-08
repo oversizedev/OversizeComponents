@@ -11,7 +11,7 @@ import SwiftUI
 @available(macOS, unavailable)
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)
-public struct CalendarMonthView<DateView>: View where DateView: View {
+public struct CalendarMonthView<DateView: View>: View {
     @Environment(\.sizeCategory) private var contentSize
     @Environment(\.calendar) private var calendar
     @Binding var selectedMonth: Date
@@ -33,7 +33,7 @@ public struct CalendarMonthView<DateView>: View where DateView: View {
         showHeaders: Bool = false,
         selectedMonth: Binding<Date>,
         onHeaderAppear: @escaping (Date) -> Void,
-        @ViewBuilder content: @escaping (Date) -> DateView
+        @ViewBuilder content: @escaping (Date) -> DateView,
     ) {
         self.interval = interval
         self.showHeaders = showHeaders

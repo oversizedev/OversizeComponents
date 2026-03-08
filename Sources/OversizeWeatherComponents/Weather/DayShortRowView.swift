@@ -42,7 +42,7 @@ public struct DayShortRowView: View {
         eveningTemperatureFeelLike: Double,
         nightTemperature: Double,
         nightTemperatureFeelsLike: Double,
-        action: @escaping () -> Void
+        action: @escaping () -> Void,
     ) {
         self.icon = icon
         self.day = day

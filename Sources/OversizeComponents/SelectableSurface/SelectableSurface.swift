@@ -15,7 +15,7 @@ public struct SelectableSurface<SelectedContnet: View, UnselectedContnet: View>:
     public init(
         isSelected: Binding<Bool>,
         @ViewBuilder selectedContnet: () -> SelectedContnet,
-        @ViewBuilder unselectedContnet: () -> UnselectedContnet
+        @ViewBuilder unselectedContnet: () -> UnselectedContnet,
     ) {
         self.selectedContnet = selectedContnet()
         self.unselectedContnet = unselectedContnet()
@@ -39,7 +39,7 @@ public struct SelectableSurface<SelectedContnet: View, UnselectedContnet: View>:
             }
         }
         .elevation(.z2)
-        .surfaceRadius(.xLarge)
+        .surfaceRadius(.medium)
         .padding(.horizontal, isSelected ? .zero : .xxSmall)
         .surfaceContentMargins(.zero)
     }

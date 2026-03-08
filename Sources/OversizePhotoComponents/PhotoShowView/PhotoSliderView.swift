@@ -33,7 +33,7 @@ public struct PhotoSliderView: View {
         selection: Binding<Int>,
         photos: [Image],
         dismissAction: (() -> Void)? = nil,
-        optionsAction: (() -> Void)? = nil
+        optionsAction: (() -> Void)? = nil,
     ) {
         _selectionIndex = selection
         self.photos = photos
@@ -103,7 +103,6 @@ public struct PhotoSliderView: View {
         .colorScheme(.dark)
     }
 
-    @ViewBuilder
     private func photoWithOptions(image: Image) -> some View {
         image
             .resizable()

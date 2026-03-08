@@ -17,7 +17,7 @@ public struct ImageGridView: View {
         _ images: [Image],
         columnCount: Binding<Int>,
         tapAction: ((Image) -> Void)? = nil,
-        longPressAction: ((Image) -> Void)? = nil
+        longPressAction: ((Image) -> Void)? = nil,
     ) {
         self.images = images
         _columnCount = columnCount
