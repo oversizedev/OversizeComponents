@@ -16,10 +16,9 @@ public class CameraPreviewUIView: UIView {
     public init() {
         super.init(frame: .zero)
         Task {
-            guard await requestCameraAccess() else {
-                return
-            }
+            guard await requestCameraAccess() else { return }
             await configureCaptureSession()
+            await startSession()
         }
     }
 
@@ -38,17 +37,10 @@ public class CameraPreviewUIView: UIView {
 
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
-
-        if superview != nil {
-            videoPreviewLayer.session = captureSession
-            videoPreviewLayer.videoGravity = .resizeAspectFill
-            Task {
-                await startSession()
-            }
-        } else {
-            Task {
-                await stopSession()
-            }
+        if superview == nil {
+            Task { await stopSession() }
+        } else if captureSession != nil {
+            Task { await startSession() }
         }
     }
 
@@ -74,18 +66,25 @@ public class CameraPreviewUIView: UIView {
         session.addInput(videoDeviceInput)
         session.commitConfiguration()
         captureSession = session
+
+        await MainActor.run {
+            videoPreviewLayer.session = captureSession
+            videoPreviewLayer.videoGravity = .resizeAspectFill
+        }
     }
 
     private func startSession() async {
-        await MainActor.run {
-            captureSession?.startRunning()
-        }
+        guard let session = captureSession else { return }
+        await Task.detached(priority: .userInitiated) {
+            session.startRunning()
+        }.value
     }
 
     private func stopSession() async {
-        await MainActor.run {
-            captureSession?.stopRunning()
-        }
+        guard let session = captureSession else { return }
+        await Task.detached(priority: .userInitiated) {
+            session.stopRunning()
+        }.value
     }
 }
 

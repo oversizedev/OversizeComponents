@@ -4,7 +4,6 @@
 //
 
 import OversizeComponents
-import OversizeCore
 import OversizeLocalizable
 import OversizeUI
 import PhotosUI
@@ -30,6 +29,9 @@ public struct GalleryPickerView: View {
 
     @State var importProgress = 0.0
     @State var importImagesCount = 0.0
+    
+    
+    private var isCameraHidden: Bool = false
 
     private let threeColumnGrid = [
         GridItem(.flexible(minimum: 40), spacing: 2),
@@ -37,40 +39,48 @@ public struct GalleryPickerView: View {
         GridItem(.flexible(minimum: 40), spacing: 2),
     ]
 
-    public init(selection: Binding<[UIImage]>, selectionDate: Binding<[Date]>) {
+    public init(selection: Binding<[UIImage]>, selectionDate: Binding<[Date]>, preselected: [PHAsset] = []) {
         _selection = selection
         _selectionDate = selectionDate
+        _selectedImages = State(initialValue: preselected)
     }
 
     public var body: some View {
-        PageView("Gallery") {
-            content()
-                .disabled(isImportingPhotos)
-                .opacity(isImportingPhotos ? 0.6 : 1)
-                .onAppear {
-                    getImages()
-                }
-        }
-        .leadingBar {
-            BarButton(.close)
-        }
-        .trailingBar {
-            if !selectedImages.isEmpty, !isImportingPhotos {
-                BarButton(.accent(L10n.Button.add, action: {
-                    Task {
-                        let result = await importPhotos()
-                        selection += result.0
-                        selectionDate += result.1
-                        dismiss()
+            ScrollView {
+                content
+                    .disabled(isImportingPhotos)
+                    .opacity(isImportingPhotos ? 0.6 : 1)
+                    .onAppear {
+                        getImages()
                     }
-
-                }))
             }
-            if isImportingPhotos {
-                ProgressView("", value: importProgress, total: importImagesCount)
-                    .progressViewStyle(.circular)
+            .navigationTitle("Gallery")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close", systemImage: "xmark", role: .cancel) { dismiss() }
+                        .labelStyle(.toolbar)
+                        .buttonStyle(.toolbarSecondary)
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    if !selectedImages.isEmpty, !isImportingPhotos {
+                        Button(L10n.Button.add, systemImage: "checkmark") {
+                            Task {
+                                let result = await importPhotos()
+                                selection += result.0
+                                selectionDate += result.1
+                                dismiss()
+                            }
+                        }
+                        .labelStyle(.toolbar)
+                        .buttonStyle(.toolbarPrimary)
+                    }
+                    if isImportingPhotos {
+                        ProgressView()
+                    }
+                }
             }
-        }
+        
         .fullScreenCover(isPresented: $isShowCamera, onDismiss: {
             selection.append(cameraImage)
             selectionDate.append(Date())
@@ -81,24 +91,27 @@ public struct GalleryPickerView: View {
         }
     }
 
-    private func content() -> some View {
-        LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
-            Button {
-                isShowCamera.toggle()
-            } label: {
-                ZStack {
-                    CameraPreviewVideo()
-                    Circle()
-                        .fill(.black.opacity(0.2))
-                        .frame(width: 48, height: 48)
 
-                    Image.Base.camera
-                        .renderingMode(.template)
-                        .foregroundColor(.white)
+    private var content: some View {
+        LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
+            if !isCameraHidden {
+                Button {
+                    isShowCamera.toggle()
+                } label: {
+                    ZStack {
+                        CameraPreviewVideo()
+                        Circle()
+                            .fill(.black.opacity(0.2))
+                            .frame(width: 48, height: 48)
+
+                        Image.Base.camera
+                            .renderingMode(.template)
+                            .foregroundColor(.white)
+                    }
+                    .frame(minHeight: galleryImages.count > 0 ? nil : 200)
                 }
-                .frame(minHeight: galleryImages.count > 0 ? nil : 200)
+                .buttonStyle(.scale)
             }
-            .buttonStyle(.scale)
 
             ForEach(galleryImages, id: \.self) { image in
                 let isSelected = selectedImages.contains(image)
@@ -180,12 +193,20 @@ public struct GalleryPickerView: View {
     }
 
     func getImages() {
-        let fetchOptions: PHFetchOptions = .init()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        fetchOptions.fetchLimit = 25000
-        let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
-        assets.enumerateObjects { object, _, _ in
-            galleryImages.append(object)
+        Task {
+            let status = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
+            guard status == .authorized || status == .limited else { return }
+            let fetchOptions = PHFetchOptions()
+            fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+            fetchOptions.fetchLimit = 25000
+            let assets = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+            var images: [PHAsset] = []
+            assets.enumerateObjects { object, _, _ in
+                images.append(object)
+            }
+            await MainActor.run {
+                galleryImages = images
+            }
         }
     }
 
@@ -212,4 +233,14 @@ public struct GalleryPickerView: View {
 //        GalleryPickerView(selection: .constant([]))
 //    }
 // }
+
+// MARK: - Modifiers
+
+public extension GalleryPickerView {
+    func hideCamera(_ hidden: Bool = true) -> Self {
+        var view = self
+        view.isCameraHidden = hidden
+        return view
+    }
+}
 #endif

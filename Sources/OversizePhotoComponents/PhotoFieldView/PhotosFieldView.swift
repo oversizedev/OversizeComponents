@@ -8,6 +8,8 @@ import OversizeUI
 import SwiftUI
 
 #if os(iOS)
+
+@available(iOS 16.0, *)
 public struct PhotosFieldView: View {
     @Binding var selection: [UIImage]
     @Binding var selectionDate: [Date]
@@ -22,7 +24,9 @@ public struct PhotosFieldView: View {
         field
             .animation(.default, value: selection)
             .sheet(isPresented: $isShowSelector) {
-                GalleryPickerView(selection: $selection, selectionDate: $selectionDate)
+                NavigationStack {
+                    GalleryPickerView(selection: $selection, selectionDate: $selectionDate)
+                }
             }
     }
 
@@ -104,6 +108,7 @@ public struct PhotosFieldView: View {
     }
 }
 
+@available(iOS 16.0, *)
 struct PhotosFieldView_Previews: PreviewProvider {
     static var previews: some View {
         PhotosFieldView(.constant([]), selectionDate: .constant([]))

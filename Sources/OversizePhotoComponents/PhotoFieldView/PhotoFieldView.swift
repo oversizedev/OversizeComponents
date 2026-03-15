@@ -20,7 +20,9 @@ public struct PhotoFieldView: View {
         field
             .animation(.default, value: selection)
             .sheet(isPresented: $isShowSelector) {
-                GalleryPhotoPickerView(selection: $selection)
+                NavigationView {
+                    GalleryPhotoPickerView(selection: $selection)
+                }
             }
     }
 
