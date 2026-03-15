@@ -53,9 +53,7 @@ public struct AvatarPickerView: View {
     }
 }
 
-// struct AvatarPickerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AvatarPickerView()
-//    }
-// }
+#Preview {
+    AvatarPickerView(avatar: .constant(nil))
+}
 #endif

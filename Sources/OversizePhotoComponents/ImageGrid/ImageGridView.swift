@@ -57,3 +57,19 @@ public struct ImageGridView: View {
         .padding(.vertical, .xxxSmall)
     }
 }
+
+#Preview {
+    ScrollView {
+        ImageGridView(
+            [
+                Image(systemName: "photo"),
+                Image(systemName: "photo.fill"),
+                Image(systemName: "photo.on.rectangle"),
+                Image(systemName: "photo.on.rectangle.angled"),
+                Image(systemName: "rectangle.on.rectangle"),
+                Image(systemName: "photo.stack"),
+            ],
+            columnCount: .constant(4)
+        )
+    }
+}

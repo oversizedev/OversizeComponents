@@ -289,6 +289,20 @@ public struct GalleryPhotoPickerView: View {
     }
 }
 
+@available(iOS 16.0, *)
+#Preview("Single selection") {
+    NavigationStack {
+        GalleryPhotoPickerView(selection: .constant(nil))
+    }
+}
+
+@available(iOS 16.0, *)
+#Preview("Multi selection") {
+    NavigationStack {
+        GalleryPhotoPickerView(selection: .constant([]), dates: .constant([]))
+    }
+}
+
 // MARK: - Modifiers
 
 public extension GalleryPhotoPickerView {

@@ -228,11 +228,12 @@ public struct GalleryPickerView: View {
     }
 }
 
-// struct NewPhotoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GalleryPickerView(selection: .constant([]))
-//    }
-// }
+@available(iOS 16.0, *)
+#Preview {
+    NavigationStack {
+        GalleryPickerView(selection: .constant([]), selectionDate: .constant([]))
+    }
+}
 
 // MARK: - Modifiers
 

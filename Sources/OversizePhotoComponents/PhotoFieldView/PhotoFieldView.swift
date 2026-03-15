@@ -42,4 +42,9 @@ public struct PhotoFieldView: View {
         .buttonStyle(.field)
     }
 }
+
+#Preview {
+    PhotoFieldView(.constant(nil))
+        .padding()
+}
 #endif

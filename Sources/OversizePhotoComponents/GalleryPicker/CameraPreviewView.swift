@@ -100,4 +100,9 @@ public struct CameraPreviewVideo: UIViewRepresentable {
     public typealias UIViewType = CameraPreviewUIView
 }
 
+#Preview {
+    CameraPreviewVideo()
+        .ignoresSafeArea()
+}
+
 #endif
