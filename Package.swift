@@ -34,7 +34,6 @@ let package = Package(
     ],
     products: [
         .library(name: "OversizeComponents", targets: ["OversizeComponents"]),
-        .library(name: "OversizePhotoComponents", targets: ["OversizePhotoComponents"]),
         .library(name: "OversizeHealthComponents", targets: ["OversizeHealthComponents"]),
         .library(name: "OversizeWeatherComponents", targets: ["OversizeWeatherComponents"]),
     ],
@@ -47,15 +46,6 @@ let package = Package(
                 .product(name: "OversizeCore", package: "OversizeCore"),
                 .product(name: "OversizeLocalizable", package: "OversizeLocalizable"),
                 .product(name: "CachedAsyncImage", package: "swiftui-cached-async-image"),
-            ],
-        ),
-        .target(
-            name: "OversizePhotoComponents",
-            dependencies: [
-                "OversizeComponents",
-                .product(name: "OversizeUI", package: "OversizeUI"),
-                .product(name: "OversizeCore", package: "OversizeCore"),
-                .product(name: "OversizeLocalizable", package: "OversizeLocalizable"),
             ],
         ),
         .target(
