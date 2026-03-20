@@ -43,7 +43,6 @@ jobs:
     needs:
       - oversize-components
       - oversize-health-components
-      - oversize-photo-components
       - oversize-weather-components
     uses: oversizedev/GithubWorkflows/.github/workflows/test.yml@main
     secrets: inherit
