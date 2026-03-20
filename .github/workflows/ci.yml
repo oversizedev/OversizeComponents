@@ -29,15 +29,7 @@ jobs:
     with:
       package: OversizeHealthComponents
     secrets: inherit
-    
-  oversize-photo-components:
-    name: Build OversizePhotoComponents
-    uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
-    if: "!startsWith(github.ref, 'refs/tags/')"
-    with:
-      package: OversizePhotoComponents
-    secrets: inherit
-    
+
   oversize-weather-components:
     name: Build OversizeWeatherComponents
     uses: oversizedev/GithubWorkflows/.github/workflows/build-swiftpm-all-platforms.yml@main
