@@ -6,6 +6,7 @@
 import OversizeUI
 import SwiftUI
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 public struct FloatingTabBar<Content: View>: View {
     @Environment(\.screenSize) var screenSize
 
@@ -40,7 +41,7 @@ public struct FloatingTabBar<Content: View>: View {
                     .foregroundColor(Color.surfacePrimary)
             }
             .shadowElevation(.z2)
-            .padding(.bottom, screenSize.safeAreaBottom + 24)
+            .safeAreaPadding(24)
         }
         .ignoresSafeArea()
         .onPreferenceChange(TabItemPreferenceKey.self) { value in
@@ -100,6 +101,7 @@ public struct FloatingTabBar<Content: View>: View {
     }
 }
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 struct FloatingTabBarExample: View {
     @State var selection = 0
 
@@ -120,6 +122,7 @@ struct FloatingTabBarExample: View {
     }
 }
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 struct FloatingTabBar_Previews: PreviewProvider {
     static var previews: some View {
         FloatingTabBarExample()
