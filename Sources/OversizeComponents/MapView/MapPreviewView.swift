@@ -24,10 +24,9 @@ public struct MapPreviewView: View {
             let region = MKCoordinateRegion(center: location, latitudinalMeters: 10000, longitudinalMeters: 10000)
             let annotations = [MapPreviewPoint(name: annotation.valueOrEmpty, coordinate: location)]
 
-            Map(coordinateRegion: .constant(region), interactionModes: .zoom, annotationItems: annotations) {
+            Map(coordinateRegion: .constant(region), interactionModes: [], annotationItems: annotations) {
                 MapMarker(coordinate: $0.coordinate)
             }
-
             .onTapGesture {
                 if action == nil {
                     #if !os(tvOS)
@@ -41,6 +40,7 @@ public struct MapPreviewView: View {
                 }
             }
         }
+        .surfaceClip()
         .surfaceContentMargins(.zero)
     }
 }

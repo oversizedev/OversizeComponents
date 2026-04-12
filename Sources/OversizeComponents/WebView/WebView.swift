@@ -9,6 +9,7 @@ import SwiftUI
 import WebKit
 #endif
 
+#if os(iOS) || os(macOS)
 public struct WebView: View {
     @State var tabBarVisibility: Visibility = .hidden
     @Environment(\.openURL) var openURL
@@ -38,20 +39,20 @@ public struct WebView: View {
     }
 
     var webView: some View {
-        VStack(spacing: .zero) {
-            ModalNavigationBar(title: "", largeTitle: false, leadingBar: {
-                BarButton(.back)
-            }, trailingBar: {
-                BarButton(.icon(.globe, action: {
-                    openURL(url)
-                }))
-            })
-            #if os(iOS) || os(macOS)
-            WebViewRepresentable(url: url)
-            #endif
-        }
+        WebViewRepresentable(url: url)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Open in Browser", systemImage: "globe") {
+                        openURL(url)
+                    }
+                    .labelStyle(.toolbar)
+                    .buttonStyle(.toolbarSecondary)
+                }
+            }
     }
 }
+#endif
 
 #if os(iOS)
 public struct WebViewRepresentable: UIViewRepresentable {
