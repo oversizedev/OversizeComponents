@@ -18,8 +18,6 @@ public struct LocationPickerSheet: View {
     private let label: String
 
     private let saveButtonText: String?
-    @State private var offset = CGPoint(x: 0, y: 0)
-
     @State private var isClosing = false
 
     public init(label: String, coordinates: Binding<CLLocationCoordinate2D>, positionName: Binding<String?>, saveButtonText: String? = nil) {
@@ -57,17 +55,18 @@ public struct LocationPickerSheet: View {
 
             }.padding()
         }
-        .navigationBar(label, style: .fixed($offset)) {
-            BarButton(.closeAction {
-                closeView()
-            })
-        } trailingBar: {
-            BarButton(.secondary(saveButtonText ?? "Save", action: {
-                closeView()
-            }))
+        .navigationTitle(label)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button { closeView() } label: { Icon(Image.Base.close) }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(saveButtonText ?? "Save") { closeView() }
+            }
         }
-        .onChange(of: coordinates) {
-            updateLocationName(coordinate: $0)
+        .onChange(of: coordinates) { _, new in
+            updateLocationName(coordinate: new)
         }
     }
 

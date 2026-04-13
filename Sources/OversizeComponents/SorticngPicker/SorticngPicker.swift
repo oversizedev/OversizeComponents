@@ -6,7 +6,7 @@
 import OversizeUI
 import SwiftUI
 
-@available(iOS 15.0, macOS 14, tvOS 15.0, watchOS 9.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 public struct SortingPicker<Element: Equatable, Content: View>: View {
     @Environment(\.theme) private var theme: ThemeSettings
     @Environment(\.dismiss) var dismiss
@@ -40,18 +40,15 @@ public struct SortingPicker<Element: Equatable, Content: View>: View {
     }
 
     public var body: some View {
-        PageView("Sort by") {
+        LayoutView("Sort by") {
             VStack(spacing: .zero) {
                 sortView
                 ascendingView
             }
             .surfaceContentRowMargins()
+        } background: {
+            Color.surfaceSecondary
         }
-        .leadingBar {
-            BarButton(.close)
-        }
-        .backgroundSecondary()
-        .disableScrollShadow()
         .onAppear {
             selectedIndex = data.firstIndex(where: { $0 == selection })
         }

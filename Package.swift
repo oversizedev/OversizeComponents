@@ -27,10 +27,10 @@ let package = Package(
     name: "OversizeComponents",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v17),
         .macOS(.v14),
-        .tvOS(.v16),
-        .watchOS(.v9),
+        .tvOS(.v17),
+        .watchOS(.v10),
     ],
     products: [
         .library(name: "OversizeComponents", targets: ["OversizeComponents"]),

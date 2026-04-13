@@ -17,7 +17,6 @@ public struct LocationPicker: View {
     private let label: String
 
     private let saveButtonText: String?
-    @State private var offset = CGPoint(x: 0, y: 0)
     @State private var showModal = false
     @State private var isSelected = false
 
@@ -46,7 +45,7 @@ public struct LocationPicker: View {
                     .foregroundColor(.onPrimarySecondary)
             }
 
-            IconDeprecated(.chevronDown, color: .onSurfacePrimary)
+            Icon(Image.Base.chevronDown).iconColor(.onSurfacePrimary)
         }
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding()
@@ -70,10 +69,12 @@ public struct LocationPicker: View {
             ),
         )
         .sheet(isPresented: $showModal) {
-            modal
+            NavigationStack {
+                modal
+            }
         }
-        .onChange(of: coordinates) {
-            updateLocationName(coordinate: $0)
+        .onChange(of: coordinates) { _, new in
+            updateLocationName(coordinate: new)
         }
     }
 
@@ -103,13 +104,19 @@ public struct LocationPicker: View {
 
             }.padding()
         }
-        .navigationBar(label, style: .fixed($offset)) {
-            BarButton(.close)
-        } trailingBar: {
-            BarButton(.secondary(saveButtonText ?? "Save", action: {
-                isSelected = true
-                showModal.toggle()
-            }))
+        .ignoresSafeArea(edges: .top)
+        .navigationTitle(label)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button { showModal = false } label: { Icon(Image.Base.close) }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(saveButtonText ?? "Save") {
+                    isSelected = true
+                    showModal = false
+                }
+            }
         }
     }
 

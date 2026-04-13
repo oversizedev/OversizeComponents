@@ -20,8 +20,6 @@ public struct IconNamePicker: View {
 
     @State private var selectedIndex: Int?
 
-    @State var offset = CGPoint(x: 0, y: 0)
-
     private var gridPadding: CGFloat {
         guard let sizeClass = horizontalSizeClass else { return 40 }
         switch sizeClass {
@@ -55,7 +53,7 @@ public struct IconNamePicker: View {
             if let imageName = selection {
                 Image(imageName, bundle: .main)
             }
-            OversizeUI.IconDeprecated(.chevronDown, color: .onSurfacePrimary)
+            Icon(Image.Base.chevronDown).iconColor(.onSurfacePrimary)
         }
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding()
@@ -79,55 +77,57 @@ public struct IconNamePicker: View {
             ),
         )
         .sheet(isPresented: $showModal) {
-            modal
+            NavigationStack {
+                modal
+            }
         }
     }
 
     private var modal: some View {
-        PageView(label) {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: gridPadding))]) {
-                    ForEach(icons.indices, id: \.self) { index in
-                        Button(
-                            action: {
-                                selectedIndex = index
-                            },
-                            label: {
-                                if index == selectedIndex {
-                                    Group {
-                                        Image(icons[index], bundle: .main)
-                                            .resizable()
-                                            .frame(width: 24, height: 24, alignment: .center)
-                                    }
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: .xSmall, style: .continuous)
-                                            .strokeBorder(Color.border, lineWidth: 1)
-                                            .frame(width: 48, height: 48, alignment: .center),
-                                    )
-                                } else {
+        LayoutView(label) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: gridPadding))]) {
+                ForEach(icons.indices, id: \.self) { index in
+                    Button(
+                        action: {
+                            selectedIndex = index
+                        },
+                        label: {
+                            if index == selectedIndex {
+                                Group {
                                     Image(icons[index], bundle: .main)
                                         .resizable()
                                         .frame(width: 24, height: 24, alignment: .center)
                                 }
-                            },
-                        )
-                        .padding(.vertical, horizontalSizeClass == .compact ? 12 : 20)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: .xSmall, style: .continuous)
+                                        .strokeBorder(Color.border, lineWidth: 1)
+                                        .frame(width: 48, height: 48, alignment: .center),
+                                )
+                            } else {
+                                Image(icons[index], bundle: .main)
+                                    .resizable()
+                                    .frame(width: 24, height: 24, alignment: .center)
+                            }
+                        },
+                    )
+                    .padding(.vertical, horizontalSizeClass == .compact ? 12 : 20)
+                }
+            }
+            .padding(.top, .medium)
+            .paddingContent(.horizontal)
+            .paddingContent(.bottom)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button { showModal = false } label: { Icon(Image.Base.close) }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(L10n.Button.save) {
+                        selection = icons[selectedIndex ?? 0]
+                        isSelected = true
+                        showModal = false
                     }
                 }
-                .padding(.top, .medium)
-                .paddingContent(.horizontal)
-                .paddingContent(.bottom)
             }
-        }
-        .leadingBar {
-            BarButton(.close)
-        }
-        .trailingBar {
-            BarButton(.secondary(L10n.Button.save, action: {
-                selection = icons[selectedIndex ?? 0]
-                isSelected = true
-                showModal.toggle()
-            }))
         }
     }
 }
