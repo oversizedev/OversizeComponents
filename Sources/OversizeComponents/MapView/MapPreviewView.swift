@@ -20,25 +20,15 @@ public struct MapPreviewView: View {
     }
 
     public var body: some View {
-        Surface {
-            let region = MKCoordinateRegion(center: location, latitudinalMeters: 10000, longitudinalMeters: 10000)
-            let annotations = [MapPreviewPoint(name: annotation.valueOrEmpty, coordinate: location)]
-
-            Map(coordinateRegion: .constant(region), interactionModes: [], annotationItems: annotations) {
-                MapMarker(coordinate: $0.coordinate)
+        Surface(action: action) {
+            Map(position: .constant(.region(MKCoordinateRegion(
+                center: location,
+                latitudinalMeters: 10000,
+                longitudinalMeters: 10000
+            )))) {
+                Marker(annotation ?? "", coordinate: location)
             }
-            .onTapGesture {
-                if action == nil {
-                    #if !os(tvOS)
-                    let placemark = MKPlacemark(coordinate: location, addressDictionary: nil)
-                    let mapItem = MKMapItem(placemark: placemark)
-                    mapItem.name = annotation
-                    mapItem.openInMaps()
-                    #endif
-                } else {
-                    action?()
-                }
-            }
+            
         }
         .surfaceClip()
         .surfaceContentMargins(.zero)

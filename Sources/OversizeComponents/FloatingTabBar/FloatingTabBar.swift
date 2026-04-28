@@ -140,8 +140,6 @@ private struct ScaleRoundButtonStyle: ButtonStyle {
                     Circle()
                         .fillSurfaceTertiary()
                         .padding(.all, -12)
-                } else {
-                    EmptyView()
                 }
             }
             .animation(.easeIn(duration: 0.2), value: configuration.isPressed)

@@ -40,9 +40,9 @@ public struct WebView: View {
 
     var webView: some View {
         WebViewRepresentable(url: url)
-            .navigationBarTitleDisplayMode(.inline)
+            .toolbarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .confirmationAction) {
                     Button("Open in Browser", systemImage: "globe") {
                         openURL(url)
                     }
@@ -90,8 +90,10 @@ public struct WebViewRepresentable: NSViewRepresentable {
 }
 #endif
 
+#if canImport(WebKit)
 struct WebView_Previews: PreviewProvider {
     static var previews: some View {
         WebView(url: URL(string: "https://www.apple.com")!)
     }
 }
+#endif
