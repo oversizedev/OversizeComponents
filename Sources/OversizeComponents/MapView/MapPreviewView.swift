@@ -21,14 +21,16 @@ public struct MapPreviewView: View {
 
     public var body: some View {
         Surface(action: action) {
-            Map(position: .constant(.region(MKCoordinateRegion(
-                center: location,
-                latitudinalMeters: 10000,
-                longitudinalMeters: 10000
-            )))) {
+            Map(
+                position: .constant(.region(MKCoordinateRegion(
+                    center: location,
+                    latitudinalMeters: 10000,
+                    longitudinalMeters: 10000,
+                ))),
+                interactionModes: [],
+            ) {
                 Marker(annotation ?? "", coordinate: location)
             }
-            
         }
         .surfaceClip()
         .surfaceContentMargins(.zero)
