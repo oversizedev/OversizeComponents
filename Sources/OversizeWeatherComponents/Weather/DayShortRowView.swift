@@ -60,17 +60,11 @@ public struct DayShortRowView: View {
     }
 
     public var body: some View {
-        Surface { withAnimation {
+        Button {
             isShowDetail.toggle()
-        } } label: {
-            VStack(alignment: .leading, spacing: .zero) {
-                if isShowDetail == false {
-                    Rectangle()
-                        .frame(height: 0.5)
-                        .foregroundColor(.border)
-                }
 
-                // header
+        } label: {
+            VStack(alignment: .leading, spacing: .zero) {
                 HStack(spacing: .zero) {
                     icon
                         .resizable()
@@ -80,8 +74,7 @@ public struct DayShortRowView: View {
                         .font(.headline)
                         .foregroundStyle(textColor.opacity(0.7))
                         .padding(.leading, .medium)
-
-                    Spacer()
+                        .hLeading()
 
                     if isShowDetail == false {
                         Bage(color: .link) {
@@ -100,21 +93,17 @@ public struct DayShortRowView: View {
                             .foregroundStyle(textColor.opacity(0.7))
                             .frame(minWidth: 44)
                             .multilineTextAlignment(.center)
+
                     } else {
-                        IconDeprecated(.chevronUp)
+                        Icon(Image.Base.chevronUp)
                     }
                 }
-                .padding(.vertical, .small)
+                .padding(.vertical, .regular)
                 .paddingContent(.horizontal)
 
                 if isShowDetail {
-//                    Button {
-//                        print("action")
-//                    } label: {
                     VStack(alignment: .leading, spacing: .medium) {
-                        Rectangle()
-                            .frame(height: 0.5)
-                            .foregroundColor(.border)
+                        Separator()
 
                         HStack {
                             Text("\(L10n.Common.morning) \(morningTemperature.toStringTemperature)")
@@ -175,10 +164,14 @@ public struct DayShortRowView: View {
                 }
             }
         }
-        .surfaceStyle(isShowDetail ? .primary : .clear)
-        .controlMargin(.zero)
-        .controlRadius(.large)
-        .elevation(isShowDetail ? .z0 : .z3)
+        .listRowInsets(.init(horizontal: .zero, vertical: .zero))
+        #if !os(watchOS)
+            .alignmentGuide(.listRowSeparatorLeading) { _ in .zero }
+            .alignmentGuide(.listRowSeparatorTrailing) { d in d.width }
+            .listRowSeparatorTint(Color.border)
+            .listRowSeparator(.visible, edges: .all)
+            .listRowBackground(Color.surfacePrimary.opacity(isShowDetail ? 1 : 0))
+        #endif
     }
 }
 

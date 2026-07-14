@@ -3,8 +3,8 @@
 // ScreenMockup.swift
 //
 
-import CachedAsyncImage
 import OversizeCore
+import OversizeUI
 import SwiftUI
 
 public struct ScreenMockup: View {

@@ -8,8 +8,6 @@ import SwiftUI
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 public struct FloatingTabBar<Content: View>: View {
-    @Environment(\.screenSize) var screenSize
-
     @Binding private var selection: Int
 
     @Namespace private var tabBarItem
@@ -27,23 +25,34 @@ public struct FloatingTabBar<Content: View>: View {
     }
 
     public var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
             content
-
-            HStack(spacing: 30) {
-                tabsView
-            }
-            .padding(.horizontal, 28)
-            .padding(.vertical, 14)
-            .frame(height: 60)
-            .background {
-                Capsule()
-                    .foregroundColor(Color.surfacePrimary)
-            }
-            .shadowElevation(.z2)
-            .safeAreaPadding(24)
         }
-        .ignoresSafeArea()
+        .safeAreaInset(edge: .bottom) {
+            if #available(iOS 26.0, macOS 26.0, *) {
+                HStack(spacing: 30) {
+                    tabsView
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 14)
+                .frame(height: 60)
+                .contentShape(Rectangle())
+                .glassEffect(.regular, in: .capsule)
+
+            } else {
+                HStack(spacing: 30) {
+                    tabsView
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 14)
+                .frame(height: 60)
+                .background {
+                    Capsule()
+                        .foregroundColor(Color.surfacePrimary)
+                        .shadowElevation(.z2)
+                }
+            }
+        }
         .onPreferenceChange(TabItemPreferenceKey.self) { value in
             tabs = value
         }
@@ -71,18 +80,29 @@ public struct FloatingTabBar<Content: View>: View {
                     }
                     .buttonStyle(ScaleRoundButtonStyle())
 
-                    Button {
-                        plusAction?()
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(Color.white)
-                            .font(.system(size: 16, weight: .heavy))
-                            .background {
-                                Circle()
-                                    .frame(width: 32, height: 32, alignment: .center)
-                            }
+                    if #available(iOS 26.0, macOS 26.0, *) {
+                        Button {
+                            plusAction?()
+                        } label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(.onPrimary)
+                                .font(.system(size: 16, weight: .heavy))
+                                .frame(width: 32, height: 32)
+                        }
+                        .glassEffect(.regular.interactive().tint(Color.accent), in: .circle)
+                    } else {
+                        Button {
+                            plusAction?()
+                        } label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(Color.white)
+                                .font(.system(size: 16, weight: .heavy))
+                                .background {
+                                    Circle()
+                                        .frame(width: 32, height: 32, alignment: .center)
+                                }
+                        }
                     }
-                    // .buttonStyle(.scale)
                 }
 
             } else {

@@ -7,6 +7,8 @@ import OversizeUI
 import SwiftUI
 
 struct BMIHelpView: View {
+    @Environment(\.dismiss) var dismiss
+
     private var progress: Double {
         ((bmi * 0.01) * 2.0) + 0.15
     }
@@ -26,22 +28,34 @@ struct BMIHelpView: View {
     }
 
     var body: some View {
-        PageView("BMI") {
-            VStack(spacing: .large) {
-                bmiView
-                    .frame(width: 270, height: 270)
-                    .padding(.top, 24)
-                    .padding(.bottom, -80)
+        NavigationStack {
+            LayoutView("BMI") {
+                VStack(spacing: .large) {
+                    bmiView
+                        .frame(width: 270, height: 270)
+                        .padding(.top, 24)
+                        .padding(.bottom, -80)
 
-                textInfoView
-                    .paddingContent(.horizontal)
+                    textInfoView
+                        .paddingContent(.horizontal)
 
-                infoListView
-                    .paddingContent(.horizontal)
+                    infoListView
+                        .paddingContent(.horizontal)
+                }
+            } background: {
+                Color.backgroundSecondary
+            }
+            .toolbarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Close", systemImage: "xmark", role: .cancel) {
+                        dismiss()
+                    }
+                    .labelStyle(.toolbar)
+                    .buttonStyle(.toolbarSecondary)
+                }
             }
         }
-        .backgroundColor(.backgroundSecondary)
-        .trailingBar(trailingBar: { BarButton(.close) })
     }
 
     var bmiView: some View {

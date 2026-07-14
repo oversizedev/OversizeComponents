@@ -3,7 +3,6 @@
 // AsyncIllustrationView.swift
 //
 
-import CachedAsyncImage
 import OversizeCore
 import OversizeUI
 import SwiftUI
