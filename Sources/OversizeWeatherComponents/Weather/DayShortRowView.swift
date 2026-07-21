@@ -165,11 +165,13 @@ public struct DayShortRowView: View {
             }
         }
         .listRowInsets(.init(horizontal: .zero, vertical: .zero))
-        #if !os(watchOS)
+        #if !os(watchOS) && !os(tvOS)
             .alignmentGuide(.listRowSeparatorLeading) { _ in .zero }
             .alignmentGuide(.listRowSeparatorTrailing) { d in d.width }
             .listRowSeparatorTint(Color.border)
             .listRowSeparator(.visible, edges: .all)
+        #endif
+        #if !os(watchOS)
             .listRowBackground(Color.surfacePrimary.opacity(isShowDetail ? 1 : 0))
         #endif
     }

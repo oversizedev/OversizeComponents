@@ -29,7 +29,7 @@ public struct FloatingTabBar<Content: View>: View {
             content
         }
         .safeAreaInset(edge: .bottom) {
-            if #available(iOS 26.0, macOS 26.0, *) {
+            if #available(iOS 26.0, macOS 26.0, watchOS 26.0, tvOS 26.0, *) {
                 HStack(spacing: 30) {
                     tabsView
                 }
@@ -80,7 +80,7 @@ public struct FloatingTabBar<Content: View>: View {
                     }
                     .buttonStyle(ScaleRoundButtonStyle())
 
-                    if #available(iOS 26.0, macOS 26.0, *) {
+                    if #available(iOS 26.0, macOS 26.0, watchOS 26.0, tvOS 26.0, *) {
                         Button {
                             plusAction?()
                         } label: {
