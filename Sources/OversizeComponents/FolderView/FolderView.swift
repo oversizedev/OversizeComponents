@@ -54,42 +54,41 @@ public struct FolderView: View {
         }
     }
 
+    @ViewBuilder
     private var folderContent: some View {
-        Group {
-            if isLocked {
-                ZStack {
-                    if controlSize == .large {
-                        Circle()
-                            .fill(Color.black.opacity(0.2))
-                            .frame(width: 54, height: 54)
-                    }
-                    Image.Base.lock
+        if isLocked {
+            ZStack {
+                if controlSize == .large {
+                    Circle()
+                        .fill(Color.black.opacity(0.2))
+                        .frame(width: 54, height: 54)
+                }
+                Image.Base.lock
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: iconSize, height: iconSize)
+                    .foregroundColor(Color.white)
+            }
+            .frame(width: previewImageWidth, height: previewImageHeight)
+            .padding(.bottom, previewImagePadding)
+        } else {
+            switch contentType {
+            case let .photos(images):
+                if let image = images.first {
+                    image
+                        .frame(width: previewImageWidth, height: previewImageHeight)
+                        .padding(.bottom, previewImagePadding)
+                }
+            case let .icon(icon):
+                VStack {
+                    icon
                         .renderingMode(.template)
-                        .resizable()
-                        .frame(width: iconSize, height: iconSize)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(.black.opacity(0.5))
                 }
                 .frame(width: previewImageWidth, height: previewImageHeight)
                 .padding(.bottom, previewImagePadding)
-            } else {
-                switch contentType {
-                case let .photos(images):
-                    if let image = images.first {
-                        image
-                            .frame(width: previewImageWidth, height: previewImageHeight)
-                            .padding(.bottom, previewImagePadding)
-                    }
-                case let .icon(icon):
-                    VStack {
-                        icon
-                            .renderingMode(.template)
-                            .foregroundColor(.black.opacity(0.5))
-                    }
-                    .frame(width: previewImageWidth, height: previewImageHeight)
-                    .padding(.bottom, previewImagePadding)
-                default:
-                    EmptyView()
-                }
+            default:
+                EmptyView()
             }
         }
     }

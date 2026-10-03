@@ -77,23 +77,23 @@ public struct FieldEditor<Action: View>: View {
         }
         .navigationTitle(label)
         #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
         #endif
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Close", systemImage: "xmark", role: .cancel) {
-                        dismiss()
-                    }
-                    .labelStyle(.toolbar)
-                    .buttonStyle(.toolbarSecondary)
-                    #if !os(tvOS) && !os(watchOS)
-                        .keyboardShortcut(.cancelAction)
-                    #endif
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Close", systemImage: "xmark", role: .cancel) {
+                    dismiss()
                 }
+                .labelStyle(.toolbar)
+                .buttonStyle(.toolbarSecondary)
+                #if !os(tvOS) && !os(watchOS)
+                .keyboardShortcut(.cancelAction)
+                #endif
             }
-            .onAppear {
-                isFocused = true
-            }
+        }
+        .onAppear {
+            isFocused = true
+        }
     }
 }
 
