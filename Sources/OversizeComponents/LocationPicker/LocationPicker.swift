@@ -129,7 +129,9 @@ public struct LocationPicker: View {
         let geocoder: CLGeocoder = .init()
 
         geocoder.reverseGeocodeLocation(loc) { placemarks, error in
-            if error != nil { return }
+            if error != nil {
+                return
+            }
             if let firstLocation = placemarks?.first as? CLPlacemark {
                 Task { @MainActor in
                     if let locality = firstLocation.locality {

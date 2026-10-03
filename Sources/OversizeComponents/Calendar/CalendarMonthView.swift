@@ -88,13 +88,12 @@ public struct CalendarMonthView<DateView: View>: View {
         }
     }
 
+    @ViewBuilder
     private func header(for month: Date) -> some View {
-        Group {
-            if showHeaders {
-                Text(DateFormatter.monthAndYear.string(from: month))
-                    .font(.title)
-                    .padding()
-            }
+        if showHeaders {
+            Text(DateFormatter.monthAndYear.string(from: month))
+                .font(.title)
+                .padding()
         }
     }
 }
